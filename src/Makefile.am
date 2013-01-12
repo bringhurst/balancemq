@@ -1,0 +1,1 @@
+SUBDIRS = libbalancemq balancemq balancemqd
