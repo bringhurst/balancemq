@@ -13,6 +13,8 @@ class TreewalkListener(object):
             print 'F: %s' % message
 
         if os.path.isdir(message):
+            print 'D: %s' % message
+
             for file in os.listdir(message):
                 conn.send(file, destination='/queue/treewalk_example')
 
