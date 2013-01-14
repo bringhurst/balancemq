@@ -5,7 +5,7 @@
  *
  * This example contains minimal error checking to keep things readable.
  *
- * FIXME: This file is mostly psuedocode. It really eeds fixing so it actually
+ * FIXME: This file is mostly psuedocode. It really needs fixing so it actually
  *        compile and works.
  */
 
@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     mqd_t mq = mq_open(TREEWALK_QUEUE_NAME, O_WRONLY);
 
     /* Send the root of the directory structure. */
-    mq_send(mq, argv[1], strlen(argv[0]), 0);
+    mq_send(mq, argv[1], strlen(argv[1]), 0);
 
     /*
      * Receive messages to print regular files and place directories back
@@ -39,11 +39,16 @@ int main(int argc, char **argv)
         struct stat s;
         lstat(buffer, &s);
 
+        /* If we encounter a file, just print it out. */
         if(s.st_mode & S_IFREG) {
             printf("F: `%s'\n", buffer);
             continue;
         }
 
+        /*
+         * If we encounter a directory, print out the files it contains and
+         * enqueue the directories for processing by other servers.
+         */
         if(s.st_mode & S_IFDIR) {
             printf("D: `%s'\n", buffer);
 
