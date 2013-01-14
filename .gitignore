@@ -1,0 +1,12 @@
+*.o
+Makefile
+.deps
+stamp-h1
+/autom4te.cache
+/config.h*
+/config.log
+/config.status
+/libtool
+/doc/Doxyfile
+/doc/html
+/doc/latex

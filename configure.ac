@@ -19,7 +19,7 @@ AC_PROG_MAKE_SET
 AC_PROG_RANLIB
 
 # Needed for docs
-#X_AC_BMQ_DOXYGEN
+X_AC_BMQ_DOXYGEN
 
 # Needed for tests
 #X_AC_BMQ_CHECK
@@ -42,6 +42,13 @@ AC_TYPE_UINT64_T
 # Check for library functions.
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([memset realpath strerror])
+
+# Check for libev.
+AC_CHECK_HEADERS([ev.h], [], [AC_MSG_ERROR("ev.h not found")])
+AC_CHECK_LIB([ev], [ev_time], [
+	LIBS="-lev ${LIBS}"
+	AC_DEFINE([HAVE_LIBEV], [1], [ev_time in -lev])
+	], [AC_MSG_ERROR("libev not found")])
 
 AC_CONFIG_FILES([Makefile              \
                  src/Makefile          \
