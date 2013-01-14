@@ -1,3 +1,9 @@
+"""
+This example is a distributed treewalk of a filesystem hierarchy. Assuming
+the underlying filesystem is parallel (i.e. has multiple read heads), this
+will distribute and balance the stat(2) workload among many nodes.
+"""
+
 import sys
 import stomp
 
