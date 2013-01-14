@@ -18515,7 +18515,7 @@ echo "$as_me: error: \"libev not found\"" >&2;}
 fi
 
 
-ac_config_files="$ac_config_files Makefile src/Makefile doc/Makefile doc/man/Makefile doc/man/man1/Makefile"
+ac_config_files="$ac_config_files Makefile src/Makefile src/balancemqd/Makefile doc/Makefile doc/man/Makefile doc/man/man1/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -19482,6 +19482,7 @@ do
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
+    "src/balancemqd/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/Makefile" ;;
     "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
     "doc/man/Makefile") CONFIG_FILES="$CONFIG_FILES doc/man/Makefile" ;;
     "doc/man/man1/Makefile") CONFIG_FILES="$CONFIG_FILES doc/man/man1/Makefile" ;;
