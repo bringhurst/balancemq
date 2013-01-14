@@ -1,10 +1,8 @@
 BalanceMQ
 =========
+BalanceMQ is a continuous workload balancer that knows how to efficiently and automatically distribute work evenly among many (tens of thousands) of servers with minimal communications overhead.
 
-BalanceMQ is a continuous workload balancer that knows how to automatically
-distribute work evenly among many servers.
-
-BalanceMQ is still in development, please come back later if you want to use it for a production need.
+This program is still in development, please come back later if you want to use it for a production need.
 
 Example
 -------
