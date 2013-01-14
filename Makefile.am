@@ -1,9 +1,9 @@
 AUTOMAKE_OPTIONS = foreign
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = src doc
+SUBDIRS = src examples doc
  
-MAINTAINERCLEANFILES =                                  \
+MAINTAINERCLEANFILES = \
 	aclocal.m4 config.guess config.xml              \
 	config.h.in config.sub configure install-sh     \
 	ltconfig ltmain.sh missing mkinstalldirs        \

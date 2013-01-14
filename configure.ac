@@ -50,12 +50,15 @@ AC_CHECK_LIB([ev], [ev_time], [
 	AC_DEFINE([HAVE_LIBEV], [1], [ev_time in -lev])
 	], [AC_MSG_ERROR("libev not found")])
 
-AC_CONFIG_FILES([Makefile                \
-                 src/Makefile            \
-                 src/balancemqd/Makefile \
-                 doc/Makefile            \
-                 doc/man/Makefile        \
-                 doc/man/man1/Makefile   \
+AC_CONFIG_FILES([Makefile                                \
+                 src/Makefile                            \
+                 src/balancemqd/Makefile                 \
+                 examples/Makefile                       \
+                 examples/filesystem_treewalk/Makefile   \
+                 examples/filesystem_treewalk/c/Makefile \
+                 doc/Makefile                            \
+                 doc/man/Makefile                        \
+                 doc/man/man1/Makefile                   \
 ])
 
 AC_OUTPUT
