@@ -9,10 +9,11 @@ options
  
 @members
 {
-#include "STOMPLexer.h"
+
+ #include "STOMPLexer.h"
  
-int main(int argc, char* argv[])
-{
+ int main(int argc, char* argv[])
+ {
     pANTLR3_INPUT_STREAM        input;
     pSTOMPLexer                 lex;
     pANTLR3_COMMON_TOKEN_STREAM tokens;
@@ -32,19 +33,21 @@ int main(int argc, char* argv[])
     input  ->close(input);
  
     return 0;
-}
+ }
+
 }
 
 /* Parser rules. */
  
-frame_stream   : 1*frame;
+frame_stream   : ( frame )
+               ;
 
 frame          : command EOL
-                 *( header EOL )
+                 ( header EOL )*
                  EOL
-                 *OCTET
+                 ( OCTET )*
                  NULL
-                 *( EOL )
+                 ( EOL )*
                ;
 
 command        : client_command
@@ -70,21 +73,23 @@ server_command : 'CONNECTED'
                  | 'ERROR'
                ;
 
-header         : header_name ':' header_value
+header         : header_name COLON header_value
                ;
 
-header_name    : 1*( ~':' | ~CR | ~LF | OCTET )
+header_name    : SPECIAL
                ;
-
-header_value   : *( ~':' | ~CR | ~LF | OCTET )
+               
+header_value   : ( header_name )*
                ;
 
 /* Lexer rules. */
 
-NULL  : '\u0000';
-LF    : '\u000A';
-CR    : '\u000D';
-EOL   : [CR] LF;
-OCTET : '\u0000'..'\u00FF';
+NULL    : '\u0000';
+LF      : '\u000A';
+CR      : '\u000D';
+EOL     : (CR)? LF;
+COLON   : ':';
+OCTET   : '\u0000'..'\u00FF';
+SPECIAL : '\u0000'..'\u0009' | '\u000B'..'\u000C' | '\u000E'..'\u00FF';
 
 /* EOF */
