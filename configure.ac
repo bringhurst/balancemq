@@ -1,4 +1,4 @@
-AC_INIT([BalanceMQ],[0.0.3],[jon@bringhurst.org],[BalanceMQ],[http://www.balancemq.com/])
+AC_INIT([BalanceMQ],[0.0.1],[jon@bringhurst.org],[BalanceMQ],[http://www.balancemq.com/])
 
 # Keep artifacts in directories as much as possible.
 AC_CONFIG_AUX_DIR(auxdir)
@@ -50,15 +50,18 @@ AC_CHECK_LIB([ev], [ev_time], [
 	AC_DEFINE([HAVE_LIBEV], [1], [ev_time in -lev])
 	], [AC_MSG_ERROR("libev not found")])
 
-AC_CONFIG_FILES([Makefile                                \
-                 src/Makefile                            \
-                 src/balancemqd/Makefile                 \
-                 examples/Makefile                       \
-                 examples/filesystem_treewalk/Makefile   \
-                 examples/filesystem_treewalk/c/Makefile \
-                 doc/Makefile                            \
-                 doc/man/Makefile                        \
-                 doc/man/man1/Makefile                   \
+AC_CONFIG_FILES([Makefile                                    \
+                 src/Makefile                                \
+                 src/balancemqd/Makefile                     \
+                 src/balancemqd/comm/Makefile                \
+                 src/balancemqd/comm/stomp/Makefile          \
+                 src/balancemqd/comm/stomp/compiler/Makefile \
+                 examples/Makefile                           \
+                 examples/filesystem_treewalk/Makefile       \
+                 examples/filesystem_treewalk/c/Makefile     \
+                 doc/Makefile                                \
+                 doc/man/Makefile                            \
+                 doc/man/man1/Makefile                       \
 ])
 
 AC_OUTPUT
