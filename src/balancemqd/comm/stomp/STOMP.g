@@ -73,14 +73,9 @@ server_command : 'CONNECTED'
                  | 'ERROR'
                ;
 
-header         : header_name COLON header_value
-               ;
-
-header_name    : SPECIAL
-               ;
-               
-header_value   : ( header_name )*
-               ;
+header         : header_name COLON header_value;
+header_name    : SPECIAL;
+header_value   : ( header_name )*;
 
 /* Lexer rules. */
 
@@ -90,6 +85,6 @@ CR      : '\u000D';
 EOL     : (CR)? LF;
 COLON   : ':';
 OCTET   : '\u0000'..'\u00FF';
-SPECIAL : '\u0000'..'\u0009' | '\u000B'..'\u000C' | '\u000E'..'\u00FF';
+SPECIAL : ~(LF | CR | COLON) | OCTET;
 
 /* EOF */
