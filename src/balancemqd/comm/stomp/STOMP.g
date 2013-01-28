@@ -72,19 +72,19 @@ server_command : 'CONNECTED'
 
 header         : header_name ':' header_value
                ;
-           
-header_name    : 1*<any OCTET except CR or LF or ':'>
+
+header_name    : 1*( ~':' | ~CR | ~LF | OCTET )
                ;
-           
-header_value   : *<any OCTET except CR or LF or ':'>
+
+header_value   : *( ~':' | ~CR | ~ LF | OCTET )
                ;
 
 /* Lexer rules. */
 
-NULL  : '\0';
-LF    : '\0x0A';
-CR    : '\0x0D';
-EOL   : [CR] LF; 
-OCTET : <any 8-bit sequence of data>;
+NULL  : '\u0000';
+LF    : '\u000A';
+CR    : '\u000D';
+EOL   : [CR] LF;
+OCTET : '\u0000'..'\u00FF';
 
 /* EOF */
