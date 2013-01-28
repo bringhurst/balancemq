@@ -76,7 +76,7 @@ header         : header_name ':' header_value
 header_name    : 1*( ~':' | ~CR | ~LF | OCTET )
                ;
 
-header_value   : *( ~':' | ~CR | ~ LF | OCTET )
+header_value   : *( ~':' | ~CR | ~LF | OCTET )
                ;
 
 /* Lexer rules. */
