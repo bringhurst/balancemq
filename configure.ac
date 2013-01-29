@@ -58,6 +58,7 @@ AC_CONFIG_FILES([Makefile                                      \
                  src/Makefile                                  \
                  src/balancemqd/Makefile                       \
                  src/balancemqd/protocol/Makefile              \
+                 src/balancemqd/protocol/posixmq/Makefile      \
                  src/balancemqd/protocol/stomp/Makefile        \
                  src/balancemqd/protocol/stomp/parser/Makefile \
                  examples/Makefile                             \

@@ -4,7 +4,7 @@ SUBDIRS = parser
 
 INCLUDES = \
            -I$(top_srcdir) \
-           -I$(top_srcdir)/src/balancemqd/comm/stomp/parser
+           -I$(top_srcdir)/src/balancemqd/protocol/stomp/parser
 
 noinst_LTLIBRARIES = libprotocol_stomp.la
 

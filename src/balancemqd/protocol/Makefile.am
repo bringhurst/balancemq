@@ -1,1 +1,1 @@
-SUBDIRS = stomp
+SUBDIRS = stomp posixmq
