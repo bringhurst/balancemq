@@ -66,7 +66,7 @@ void BALANCE_finalize_persistant(char* tag);
 void BALANCE_finalize_transient(BALANCE_cb func);
 
 /**
- * Reject all new work and nsure all current work on this node has been
+ * Reject all new work and ensure all current work on this node has been
  * completed or passed to other workers.
  */
 void BALANCE_shutdown(void);
