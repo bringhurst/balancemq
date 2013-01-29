@@ -18087,7 +18087,7 @@ rm -f conftest.l $LEX_OUTPUT_ROOT.c
 
 fi
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/balancemqd/Makefile src/balancemqd/comm/Makefile src/balancemqd/comm/stomp/Makefile src/balancemqd/comm/stomp/parser/Makefile examples/Makefile examples/filesystem_treewalk/Makefile examples/filesystem_treewalk/c/Makefile doc/Makefile doc/man/Makefile doc/man/man1/Makefile"
+ac_config_files="$ac_config_files Makefile src/Makefile src/balancemqd/Makefile src/balancemqd/protocol/Makefile src/balancemqd/protocol/stomp/Makefile src/balancemqd/protocol/stomp/parser/Makefile examples/Makefile examples/filesystem_treewalk/Makefile examples/filesystem_treewalk/c/Makefile doc/Makefile doc/man/Makefile doc/man/man1/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -19218,9 +19218,9 @@ do
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "src/balancemqd/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/Makefile" ;;
-    "src/balancemqd/comm/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/comm/Makefile" ;;
-    "src/balancemqd/comm/stomp/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/comm/stomp/Makefile" ;;
-    "src/balancemqd/comm/stomp/parser/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/comm/stomp/parser/Makefile" ;;
+    "src/balancemqd/protocol/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/protocol/Makefile" ;;
+    "src/balancemqd/protocol/stomp/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/protocol/stomp/Makefile" ;;
+    "src/balancemqd/protocol/stomp/parser/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/protocol/stomp/parser/Makefile" ;;
     "examples/Makefile") CONFIG_FILES="$CONFIG_FILES examples/Makefile" ;;
     "examples/filesystem_treewalk/Makefile") CONFIG_FILES="$CONFIG_FILES examples/filesystem_treewalk/Makefile" ;;
     "examples/filesystem_treewalk/c/Makefile") CONFIG_FILES="$CONFIG_FILES examples/filesystem_treewalk/c/Makefile" ;;

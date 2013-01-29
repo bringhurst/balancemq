@@ -252,7 +252,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra
-SUBDIRS = comm
+SUBDIRS = protocol
 balancemqd_SOURCES = balancemqd.c
 balancemqd_LDADD = 
 balancemqd_CPPFLAGS = 

@@ -1,6 +1,6 @@
 include $(top_srcdir)/common.mk
 
-SUBDIRS = comm
+SUBDIRS = protocol
 
 bin_PROGRAMS = balancemqd
 balancemqd_SOURCES = balancemqd.c

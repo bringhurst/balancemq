@@ -54,18 +54,18 @@ AC_CHECK_LIB([ev], [ev_time], [
 AC_PROG_YACC
 AC_PROG_LEX
 
-AC_CONFIG_FILES([Makefile                                    \
-                 src/Makefile                                \
-                 src/balancemqd/Makefile                     \
-                 src/balancemqd/comm/Makefile                \
-                 src/balancemqd/comm/stomp/Makefile          \
-                 src/balancemqd/comm/stomp/parser/Makefile \
-                 examples/Makefile                           \
-                 examples/filesystem_treewalk/Makefile       \
-                 examples/filesystem_treewalk/c/Makefile     \
-                 doc/Makefile                                \
-                 doc/man/Makefile                            \
-                 doc/man/man1/Makefile                       \
+AC_CONFIG_FILES([Makefile                                      \
+                 src/Makefile                                  \
+                 src/balancemqd/Makefile                       \
+                 src/balancemqd/protocol/Makefile              \
+                 src/balancemqd/protocol/stomp/Makefile        \
+                 src/balancemqd/protocol/stomp/parser/Makefile \
+                 examples/Makefile                             \
+                 examples/filesystem_treewalk/Makefile         \
+                 examples/filesystem_treewalk/c/Makefile       \
+                 doc/Makefile                                  \
+                 doc/man/Makefile                              \
+                 doc/man/man1/Makefile                         \
 ])
 
 AC_OUTPUT
