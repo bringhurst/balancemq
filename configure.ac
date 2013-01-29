@@ -56,6 +56,8 @@ AC_PROG_LEX
 
 AC_CONFIG_FILES([Makefile                                      \
                  src/Makefile                                  \
+                 src/libbalancemq/Makefile                     \
+                 src/libbalancemq/core/Makefile                \
                  src/balancemqd/Makefile                       \
                  src/balancemqd/protocol/Makefile              \
                  src/balancemqd/protocol/posixmq/Makefile      \

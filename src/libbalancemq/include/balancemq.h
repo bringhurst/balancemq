@@ -3,6 +3,18 @@
 
 #include <stdint.h>
 
+/**
+ * The various logging levels that libbalancemq will output.
+ */
+typedef enum BALANCE_loglevel
+{
+    BALANCE_LOG_FATAL = 1,
+    BALANCE_LOG_ERR   = 2,
+    BALANCE_LOG_WARN  = 3,
+    BALANCE_LOG_INFO  = 4,
+    BALANCE_LOG_DBG   = 5
+} BALANCE_loglevel;
+
 /* An item to be processed. */
 typedef struct {
 
