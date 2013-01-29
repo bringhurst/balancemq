@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <netinet/in.h>
 #include <ev.h>
+#include <strings.h>
 
 #define PORT_NO 1625
 #define BUFFER_SIZE 1024
