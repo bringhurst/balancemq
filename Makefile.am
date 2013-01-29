@@ -1,18 +1,13 @@
 AUTOMAKE_OPTIONS = foreign
 ACLOCAL_AMFLAGS = -I m4
 
-SUBDIRS = contrib src examples doc
+SUBDIRS = src examples doc
  
 MAINTAINERCLEANFILES = \
 	aclocal.m4 config.guess config.xml              \
 	config.h.in config.sub configure install-sh     \
 	ltconfig ltmain.sh missing mkinstalldirs        \
 	stamp-h.in
-
-stomp-compile:
-	-(cd $(top_srcdir)/src/balancemqd/comm/stomp/compiler && \
-	java -jar ../../../../../contrib/antlr//antlr-3.4-complete.jar \
-	STOMP.g)
 
 test: all
 	./tests/test_all.sh

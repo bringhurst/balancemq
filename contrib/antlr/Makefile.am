@@ -1,1 +1,0 @@
-SUBDIRS = libantlr3c
