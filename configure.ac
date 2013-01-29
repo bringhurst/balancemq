@@ -59,7 +59,7 @@ AC_CONFIG_FILES([Makefile                                    \
                  src/balancemqd/Makefile                     \
                  src/balancemqd/comm/Makefile                \
                  src/balancemqd/comm/stomp/Makefile          \
-                 src/balancemqd/comm/stomp/compiler/Makefile \
+                 src/balancemqd/comm/stomp/parser/Makefile \
                  examples/Makefile                           \
                  examples/filesystem_treewalk/Makefile       \
                  examples/filesystem_treewalk/c/Makefile     \
