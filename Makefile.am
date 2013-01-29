@@ -9,6 +9,11 @@ MAINTAINERCLEANFILES = \
 	ltconfig ltmain.sh missing mkinstalldirs        \
 	stamp-h.in
 
+stomp-compile:
+	-(cd $(top_srcdir)/src/balancemqd/comm/stomp/compiler && \
+	java -jar ../../../../../contrib/antlr//antlr-3.4-complete.jar \
+	STOMP.g)
+
 test: all
 	./tests/test_all.sh
 
