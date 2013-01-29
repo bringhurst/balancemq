@@ -50,7 +50,12 @@ AC_CHECK_LIB([ev], [ev_time], [
 	AC_DEFINE([HAVE_LIBEV], [1], [ev_time in -lev])
 	], [AC_MSG_ERROR("libev not found")])
 
+# Build antlr3 C headers.
+AC_CONFIG_SUBDIRS([contrib/antlr/libantlr3c-3.4])
+
 AC_CONFIG_FILES([Makefile                                    \
+                 contrib/Makefile                            \
+                 contrib/antlr/Makefile                      \
                  src/Makefile                                \
                  src/balancemqd/Makefile                     \
                  src/balancemqd/comm/Makefile                \
