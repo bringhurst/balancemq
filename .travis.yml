@@ -2,9 +2,9 @@ language: c
 
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install -qq check libopenmpi-dev openmpi-bin check bc libev
+ - sudo apt-get install -qq
 
-script: ./autogen.sh && ./configure && make && make test
+script: ./autogen.sh && ./configure && make
 
 compiler:
   - clang
@@ -13,4 +13,3 @@ compiler:
 notifications:
   email:
     - jonb@lanl.gov
-    - jon@bringhurst.org
