@@ -22,7 +22,7 @@ typedef struct {
 
 /**
  * The interface to the work queue. This can be accessed from within the
- * process and create work callbacks.
+ * process work callback.
  */
 typedef struct {
 
