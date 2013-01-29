@@ -8,10 +8,12 @@
 /doc/latex
 /examples/filesystem_treewalk/c/treewalk
 *.la
+*.lai
 .libs
 /libtool
 *.lo
 Makefile
 *.o
+*.so
 /src/balancemqd/balancemqd
 stamp-h1
