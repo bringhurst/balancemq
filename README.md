@@ -39,3 +39,7 @@ conn.subscribe(destination='/queue/treewalk_example', ack='auto')
 
 conn.disconnect()
 ```
+
+Build Status
+------------
+The current build status is [![Build Status](https://travis-ci.org/fintler/balancemq.png?branch=master)](https://travis-ci.org/fintler/balancemq).
