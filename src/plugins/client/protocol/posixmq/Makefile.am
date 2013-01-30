@@ -2,10 +2,10 @@ include $(top_srcdir)/common.mk
 
 INCLUDES = \
            -I$(top_srcdir) \
-           -I$(top_srcdir)/src/balancemqd/protocol/posixmq
+           -I$(top_srcdir)/src/plugins/client/protocol/posixmq
 
-noinst_LTLIBRARIES = libprotocol_posixmq.la
+pkglib_LTLIBRARIES = libclient_protocol_posixmq.la
 
-libprotocol_posixmq_la_SOURCES = protocol_posixmq.c
-libprotocol_posixmq_la_LIBADD =
-libprotocol_posixmq_la_LDFLAGS = $(LIB_LDFLAGS)
+libclient_protocol_posixmq_la_SOURCES = client_protocol_posixmq.c
+libclient_protocol_posixmq_la_LIBADD =
+libclient_protocol_posixmq_la_LDFLAGS = $(LIB_LDFLAGS) -module -avoid-version -shared

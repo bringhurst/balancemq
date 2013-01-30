@@ -1,7 +1,7 @@
 %{
  /* Parser for the STOMP 1.2 protocol. */
  #include <stdio.h>
- #include "../protocol_stomp.h"
+ #include "../client_protocol_stomp.h"
 
  extern stomp_node_t stomp_frame_root;
 
