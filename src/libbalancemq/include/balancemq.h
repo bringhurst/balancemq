@@ -55,6 +55,18 @@ typedef struct {
 typedef void (*BALANCE_cb)(BALANCE_handle *handle);
 
 /**
+ * Begin accepting work requests. If requests are already being accepted,
+ * this will be a no-op.
+ */
+void BALANCE_accept(void);
+
+/**
+ * Reject all new work and ensure all current work on this node has been
+ * completed or passed to other workers.
+ */
+void BALANCE_shutdown(void);
+
+/**
  * If not already accepting work, begin accepting new work items. Also, create
  * a new tagged queue with the specified item or, if the tagged queue already
  * exists, insert the item for processing.
@@ -76,12 +88,6 @@ void BALANCE_finalize_persistant(char* tag);
  * Define a callback for when a transient queue has finished.
  */
 void BALANCE_finalize_transient(BALANCE_cb func);
-
-/**
- * Reject all new work and ensure all current work on this node has been
- * completed or passed to other workers.
- */
-void BALANCE_shutdown(void);
 
 /**
  * Read/reread configuration file at the specified path.

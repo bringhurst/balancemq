@@ -4,6 +4,15 @@
 #include <stdio.h>
 
 /**
+ * Begin accepting workload requests.
+ */
+void BALANCE_accept(void)
+{
+    printf("BalanceMQ BALANCE_accept is not implemented yet.");
+    return;
+}
+
+/**
  * If not already accepting work, begin accepting new work items. Also, create
  * a new tagged queue with the specified item or, if the tagged queue already
  * exists, insert the item for processing.
