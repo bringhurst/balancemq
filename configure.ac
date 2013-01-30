@@ -59,6 +59,7 @@ AC_CONFIG_FILES([Makefile                                          \
                  src/libbalancemq/Makefile                         \
                  src/libbalancemq/core/Makefile                    \
                  src/libbalancemq/include/Makefile                 \
+                 src/balancemqctl/Makefile                         \
                  src/balancemqd/Makefile                           \
                  src/plugins/Makefile                              \
                  src/plugins/client/Makefile                       \
