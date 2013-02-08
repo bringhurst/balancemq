@@ -82,9 +82,11 @@
      return 1;
  }
 
+ int yylex(void);
+
 
 /* Line 268 of yacc.c  */
-#line 88 "stomp.c"
+#line 90 "stomp.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -167,14 +169,14 @@ typedef union YYSTYPE
 {
 
 /* Line 293 of yacc.c  */
-#line 27 "stomp.y"
+#line 29 "stomp.y"
 
     stomp_node_t node;
 
 
 
 /* Line 293 of yacc.c  */
-#line 178 "stomp.c"
+#line 180 "stomp.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -186,7 +188,7 @@ typedef union YYSTYPE
 
 
 /* Line 343 of yacc.c  */
-#line 190 "stomp.c"
+#line 192 "stomp.c"
 
 #ifdef short
 # undef short
@@ -480,9 +482,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    35,    35,    38,    46,    53,    54,    57,    58,    61,
-      62,    65,    66,    67,    68,    69,    70,    71,    72,    73,
-      74,    75,    78,    79,    80,    81
+       0,    37,    37,    40,    48,    55,    56,    59,    60,    63,
+      64,    67,    68,    69,    70,    71,    72,    73,    74,    75,
+      76,    77,    80,    81,    82,    83
 };
 #endif
 
@@ -1431,14 +1433,14 @@ yyreduce:
         case 2:
 
 /* Line 1806 of yacc.c  */
-#line 35 "stomp.y"
+#line 37 "stomp.y"
     { /* stomp_frame_root = $1; */ }
     break;
 
 
 
 /* Line 1806 of yacc.c  */
-#line 1442 "stomp.c"
+#line 1444 "stomp.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1669,6 +1671,6 @@ yyreturn:
 
 
 /* Line 2067 of yacc.c  */
-#line 93 "stomp.y"
+#line 95 "stomp.y"
 
 

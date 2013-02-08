@@ -12,6 +12,8 @@
  int yywrap() {
      return 1;
  }
+
+ int yylex(void);
 %}
 
 %defines

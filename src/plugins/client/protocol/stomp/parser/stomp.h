@@ -93,7 +93,7 @@ typedef union YYSTYPE
 {
 
 /* Line 2068 of yacc.c  */
-#line 27 "stomp.y"
+#line 29 "stomp.y"
 
     stomp_node_t node;
 
