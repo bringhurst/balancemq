@@ -93,14 +93,15 @@ typedef union YYSTYPE
 {
 
 /* Line 2068 of yacc.c  */
-#line 29 "stomp.y"
+#line 30 "stomp.y"
 
-    stomp_node_t node;
+    char* string;
+    /* stomp_node_t *node */
 
 
 
 /* Line 2068 of yacc.c  */
-#line 104 "stomp.h"
+#line 105 "stomp.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

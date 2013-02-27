@@ -1,9 +1,10 @@
 %{
  /* Parser for the STOMP 1.2 protocol. */
+
  #include <stdio.h>
  #include "../client_protocol_stomp.h"
 
- extern stomp_node_t stomp_frame_root;
+stomp_node_t *stomp_frame_root;
 
  void yyerror(const char *str) {
      fprintf(stderr,"error: %s\n",str);
@@ -20,21 +21,23 @@
 %error-verbose
 
 /* Tokens for header file generation. */
-%token T_CLIENT_SEND T_CLIENT_SUBSCRIBE T_CLIENT_UNSUBSCRIBE T_CLIENT_BEGIN
-%token T_CLIENT_COMMIT T_CLIENT_ABORT T_CLIENT_ACK T_CLIENT_NACK
-%token T_CLIENT_DISCONNECT T_CLIENT_CONNECT T_CLIENT_STOMP T_SERVER_CONNECTED
-%token T_SERVER_MESSAGE T_SERVER_RECEIPT T_SERVER_ERROR T_NULL T_LF T_CR T_EOL
-%token T_COLON T_OCTET T_SPECIAL
+%token <string> T_CLIENT_SEND T_CLIENT_SUBSCRIBE T_CLIENT_UNSUBSCRIBE T_CLIENT_BEGIN
+%token <string> T_CLIENT_COMMIT T_CLIENT_ABORT T_CLIENT_ACK T_CLIENT_NACK
+%token <string> T_CLIENT_DISCONNECT T_CLIENT_CONNECT T_CLIENT_STOMP T_SERVER_CONNECTED
+%token <string> T_SERVER_MESSAGE T_SERVER_RECEIPT T_SERVER_ERROR T_NULL T_LF T_CR T_EOL
+%token <string> T_COLON T_OCTET T_SPECIAL
 
 %union {
-    stomp_node_t node;
+    char* string;
+    /* stomp_node_t *node */
 }
 
-/* Map tokens and non-terminals to fiels in the yylval union. */
-/* %type <node> factor term exp */
+%type <string> expression frame header command
+%type <string> frame_command frame_header frame_octet
+%type <string> client_command
 
 %%
-expression     : frame { /* stomp_frame_root = $1; */ }
+expression     : frame { printf("received frame = %s\n", $1); }
                ;
 
 frame          : frame_command
@@ -45,7 +48,7 @@ frame          : frame_command
                  frame_eol
                ;
 
-frame_command  : command T_EOL
+frame_command  : command T_EOL { printf("received frame_command = %s\n", $1); }
                ;
 
 frame_header   : header T_EOL
@@ -74,7 +77,7 @@ client_command : T_CLIENT_SEND
                | T_CLIENT_NACK
                | T_CLIENT_DISCONNECT
                | T_CLIENT_CONNECT
-               | T_CLIENT_STOMP
+               | T_CLIENT_STOMP { printf("received client_command = %s\n", $1); }
                ;
 
 server_command : T_SERVER_CONNECTED

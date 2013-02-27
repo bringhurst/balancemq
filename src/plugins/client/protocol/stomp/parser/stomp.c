@@ -69,10 +69,11 @@
 #line 1 "stomp.y"
 
  /* Parser for the STOMP 1.2 protocol. */
+
  #include <stdio.h>
  #include "../client_protocol_stomp.h"
 
- extern stomp_node_t stomp_frame_root;
+stomp_node_t *stomp_frame_root;
 
  void yyerror(const char *str) {
      fprintf(stderr,"error: %s\n",str);
@@ -86,7 +87,7 @@
 
 
 /* Line 268 of yacc.c  */
-#line 90 "stomp.c"
+#line 91 "stomp.c"
 
 /* Enabling traces.  */
 #ifndef YYDEBUG
@@ -169,14 +170,15 @@ typedef union YYSTYPE
 {
 
 /* Line 293 of yacc.c  */
-#line 29 "stomp.y"
+#line 30 "stomp.y"
 
-    stomp_node_t node;
+    char* string;
+    /* stomp_node_t *node */
 
 
 
 /* Line 293 of yacc.c  */
-#line 180 "stomp.c"
+#line 182 "stomp.c"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
@@ -188,7 +190,7 @@ typedef union YYSTYPE
 
 
 /* Line 343 of yacc.c  */
-#line 192 "stomp.c"
+#line 194 "stomp.c"
 
 #ifdef short
 # undef short
@@ -482,9 +484,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    37,    37,    40,    48,    55,    56,    59,    60,    63,
-      64,    67,    68,    69,    70,    71,    72,    73,    74,    75,
-      76,    77,    80,    81,    82,    83
+       0,    40,    40,    43,    51,    58,    59,    62,    63,    66,
+      67,    70,    71,    72,    73,    74,    75,    76,    77,    78,
+      79,    80,    83,    84,    85,    86
 };
 #endif
 
@@ -1433,14 +1435,28 @@ yyreduce:
         case 2:
 
 /* Line 1806 of yacc.c  */
-#line 37 "stomp.y"
-    { /* stomp_frame_root = $1; */ }
+#line 40 "stomp.y"
+    { printf("received frame = %s\n", (yyvsp[(1) - (1)].string)); }
+    break;
+
+  case 4:
+
+/* Line 1806 of yacc.c  */
+#line 51 "stomp.y"
+    { printf("received frame_command = %s\n", (yyvsp[(1) - (2)].string)); }
+    break;
+
+  case 21:
+
+/* Line 1806 of yacc.c  */
+#line 80 "stomp.y"
+    { printf("received client_command = %s\n", (yyvsp[(1) - (1)].string)); }
     break;
 
 
 
 /* Line 1806 of yacc.c  */
-#line 1444 "stomp.c"
+#line 1460 "stomp.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1671,6 +1687,6 @@ yyreturn:
 
 
 /* Line 2067 of yacc.c  */
-#line 95 "stomp.y"
+#line 98 "stomp.y"
 
 
