@@ -175,7 +175,7 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-sysconf_DATA = balancemq.conf
+sysconf_DATA = balancemqd.conf
 all: all-am
 
 .SUFFIXES:

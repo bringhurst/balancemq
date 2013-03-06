@@ -1,1 +1,1 @@
-sysconf_DATA = balancemq.conf
+sysconf_DATA = balancemqd.conf
