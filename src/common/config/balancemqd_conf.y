@@ -22,7 +22,6 @@
 %token <double_type> T_DOUBLE
 %token <integer_type> T_INTEGER
 
-
 %union {
     char* string;
     float double_type;
