@@ -1,61 +1,51 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <netinet/in.h>
-#include <ev.h>
-#include <strings.h>
+/* stomp_server.c
+ *
+ * This file contains the stomp server launch.
+ */
 
-#define PORT_NO 1625
-#define BUFFER_SIZE 1024
+#include "stomp_server.h"
 
-int total_clients = 0;  // Total number of connected clients
-
-void accept_cb(struct ev_loop* loop, struct ev_io* watcher, int revents);
-void read_cb(struct ev_loop* loop, struct ev_io* watcher, int revents);
-
-int main()
+void client_protocol_stomp_server_loop(client_protocol_stomp_state_t* state)
 {
     struct ev_loop* loop = ev_default_loop(0);
-    int sd;
     struct sockaddr_in addr;
     int addr_len = sizeof(addr);
     struct ev_io w_accept;
 
-    // Create server socket
-    if((sd = socket(PF_INET, SOCK_STREAM, 0)) < 0) {
+    /* Create a server socket. */
+    if((state->server_socket = socket(PF_INET, SOCK_STREAM, 0)) < 0) {
         perror("socket error");
         return -1;
     }
 
     bzero(&addr, sizeof(addr));
     addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT_NO);
+    addr.sin_port = htons(state->conf->port_number);
     addr.sin_addr.s_addr = INADDR_ANY;
 
-    // Bind socket to address
-    if(bind(sd, (struct sockaddr*) &addr, sizeof(addr)) != 0) {
+    /* Bind the server socket to an address. */
+    if(bind(state->server_socket, (struct sockaddr*) &addr, sizeof(addr)) != 0) {
         perror("bind error");
     }
 
-    // Start listing on the socket
-    if(listen(sd, 2) < 0) {
+    /* Start listening on the socket. */
+    if(listen(state->server_socket, 2) < 0) {
         perror("listen error");
         return -1;
     }
 
-    // Initialize and start a watcher to accepts client requests
-    ev_io_init(&w_accept, accept_cb, sd, EV_READ);
+    /* Initialize and start a libev watcher to accept client requests. */
+    ev_io_init(&w_accept, client_protocol_stomp_accept_cb, state->server_socket, EV_READ);
     ev_io_start(loop, &w_accept);
 
-    // Start infinite loop
+    /* Start the libev event loop. */
     while(1) {
         ev_loop(loop, 0);
     }
-
-    return 0;
 }
 
 /* Accept client requests */
-void accept_cb(struct ev_loop* loop, struct ev_io* watcher, int revents)
+void client_protocol_stomp_accept_cb(struct ev_loop* loop, struct ev_io* watcher, int revents)
 {
     struct sockaddr_in client_addr;
     socklen_t client_len = sizeof(client_addr);
@@ -67,7 +57,7 @@ void accept_cb(struct ev_loop* loop, struct ev_io* watcher, int revents)
         return;
     }
 
-    // Accept client request
+    /* Accept a client request */
     client_sd = accept(watcher->fd, (struct sockaddr*)&client_addr, &client_len);
 
     if(client_sd < 0) {
@@ -75,19 +65,17 @@ void accept_cb(struct ev_loop* loop, struct ev_io* watcher, int revents)
         return;
     }
 
-    total_clients ++; // Increment total_clients count
     printf("Successfully connected with client.\n");
-    printf("%d client(s) connected.\n", total_clients);
 
-    // Initialize and start watcher to read client requests
-    ev_io_init(w_client, read_cb, client_sd, EV_READ);
+    /* Initialize and start a libev watcher to read client requests */
+    ev_io_init(w_client, client_protocol_stomp_read_cb, client_sd, EV_READ);
     ev_io_start(loop, w_client);
 }
 
 /* Read client message */
-void read_cb(struct ev_loop* loop, struct ev_io* watcher, int revents)
+void client_protocol_stomp_read_cb(struct ev_loop* loop, struct ev_io* watcher, int revents)
 {
-    char buffer[BUFFER_SIZE];
+    char buffer[LIBEV_READ_BUFFER_SIZE];
     ssize_t read;
 
     if(EV_ERROR & revents) {
@@ -95,8 +83,8 @@ void read_cb(struct ev_loop* loop, struct ev_io* watcher, int revents)
         return;
     }
 
-    // Receive message from client socket
-    read = recv(watcher->fd, buffer, BUFFER_SIZE, 0);
+    /* Receive a message from the client's socket. */
+    read = recv(watcher->fd, buffer, LIBEV_READ_BUFFER_SIZE, 0);
 
     if(read < 0) {
         perror("read error");
@@ -104,19 +92,25 @@ void read_cb(struct ev_loop* loop, struct ev_io* watcher, int revents)
     }
 
     if(read == 0) {
-        // Stop and free watchet if client socket is closing
+        /* If the client socket is closing, stop and free the watcher. */
         ev_io_stop(loop, watcher);
         free(watcher);
-        perror("peer might closing");
-        total_clients --; // Decrement total_clients count
-        printf("%d client(s) connected.\n", total_clients);
+
+        perror("Client socket is closing.");
         return;
     }
     else {
-        printf("message:%s\n", buffer);
+        /*
+         * TODO: Parse the client's stomp request which should be
+         * stored in buffer.
+         */
+
+        printf("Stomp protocol client server received message `%s'\n", buffer);
     }
 
-    // Send message bach to the client
+    /* FIXME: Send a response back to the client. */
     send(watcher->fd, buffer, read, 0);
     bzero(buffer, read);
 }
+
+/* EOF */

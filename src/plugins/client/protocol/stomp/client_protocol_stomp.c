@@ -8,29 +8,59 @@
  * to determine what action to perform based on the content of the request.
  */
 
-#include "../../../../common/balancemq_plugin.h"
+#include "client_protocol_stomp.h"
+#include "stomp_server.h"
 
 const char balancemq_plugin_name[]      = "Client protocol STOMP server";
 const char balancemq_plugin_type[]      = "client/protocol";
 const uint32_t balancemq_plugin_version = 0;
 
-typedef struct {
-} client_protocol_stomp_conf_t;
+/* A handle to the current state of the server. */
+client_protocol_stomp_state_t* client_protocol_stomp_state = NULL;
 
-/* FIXME */
-something_t client_protocol_stomp_handle = NULL;
+void plugin_balancemq_initialize()
+{
+    client_protocol_stomp_state = (client_protocol_stomp_state_t*) \
+        malloc(sizeof(client_protocol_stomp_state_t));
 
-void plugin_balancemq_initialize() {
-    /* First determine what the configuration for the server should be. */
-    client_protocol_stomp_conf_t conf = client_protocol_stomp_get_conf();
+    /* Determine the configuration based on the balancemqd.conf. */
+    client_protocol_stomp_state->conf = client_protocol_stomp_get_conf();
+}
 
+void plugin_balancemq_exec()
+{
     /* Start up the server and begin handling requests. */
-    client_protocol_stomp_handle = client_protocol_stomp_accept_requests();
+    client_protocol_stomp_server_loop(client_protocol_stomp_state);
 }
 
 void plugin_balancemq_finalize() {
     /* Reject incoming requests while allowing existing requests to complete. */
-    client_protocol_stomp_shutdown(client_protocol_stomp_handle);
+    client_protocol_stomp_shutdown(client_protocol_stomp_state);
+
+    /* Free configuration and state. */
+    free(client_protocol_stomp_state->conf);
+    free(client_protocol_stomp_state);
+}
+
+/*
+balancemq_plugin_status_t*
+plugin_balancemq_query_status() {
+    TODO: return a balancemq_plugin_status_t that contains things like how
+          many clients are connected
+}
+ */
+
+client_protocol_stomp_conf_t*
+client_protocol_stomp_get_conf()
+{
+    client_protocol_stomp_conf_t* conf = \
+        (client_protocol_stomp_conf_t*) malloc(\
+            sizeof(client_protocol_stomp_conf_t));
+
+    /* TODO: get these values from the balancemqd.conf file. */
+    conf->port_number = 1625;
+
+    return conf;
 }
 
 /* EOF */
