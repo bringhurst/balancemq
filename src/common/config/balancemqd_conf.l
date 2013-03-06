@@ -16,7 +16,6 @@
 [0-9]+\.[0-9]*          yylval = atof(yytext); return T_DOUBLE
 [0-9]+                  yylval = atoi(yytext); return T_INTEGER;
 
-"="                     return T_EQUAL;
 "{"                     return T_LBRACE;
 "}"                     return T_BRACE;
 ","                     return T_COMMA;

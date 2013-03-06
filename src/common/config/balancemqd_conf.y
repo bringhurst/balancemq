@@ -18,7 +18,7 @@
 %error-verbose
 
 /* Tokens for header file generation. */
-%token <string> T_IDENTIFIER T_EQUAL T_LBRACE T_RBRACE T_COMMA
+%token <string> T_IDENTIFIER T_LBRACE T_RBRACE T_COMMA
 %token <double_type> T_DOUBLE
 %token <integer_type> T_INTEGER
 
@@ -35,27 +35,23 @@
 %type <block> block
 
 %%
-config : stmts { configBlock = $1; }
+config : blocks { configBlock = $1; }
        ;
 
-stmts : stmt { $$ = balancemq_config_create_block(); $$->statements.push($<stmt>1); }
-      | stmts stmt { $1->statements.push($<stmt>2); }
+blocks : block
+       | blocks block
+       ;
+
+block : T_IDENTIFIER T_LBRACE var_decls T_RBRACE { $$ = $2; }
+      | T_IDENTIFIER T_LBRACE T_RBRACE { $$ = balancemq_config_create_block(); }
       ;
 
-stmt : var_decl
-     | expr { $$ = balancemq_config_create_expression(*$1); }
-     ;
-        
 var_decls : var_decl { $$ = balancemq_config_create_block(); $$->statements.push($<stmt>1); }
-          | var_decls var_decl { $1->statements.push($<stmt>2); }
+          | var_decls T_COMMA var_decl { $1->statements.push($<stmt>2); }
           ;
 
-var_decl : ident T_EQUAL value { $$ = balancemq_config_create_keyvalue(*$1, *$2); }
+var_decl : ident value { $$ = balancemq_config_create_keyvalue(*$1, *$2); }
          ;
-
-block : TLBRACE stmts TRBRACE { $$ = $2; }
-      | TLBRACE TRBRACE { $$ = balancemq_config_create_block(); }
-      ;
 
 value : T_IDENTIFIER { $$ = balancemq_config_create_string_identifier(*$1); }
       | TINTEGER { $$ = balancemq_config_create_integer_identifier(atol($1->c_str())); }
