@@ -57,6 +57,8 @@ AC_PROG_LEX
 AC_CONFIG_FILES([Makefile                                          \
                  etc/Makefile                                      \
                  src/Makefile                                      \
+                 src/common/Makefile                               \
+                 src/common/config/Makefile                        \
                  src/libbalancemq/Makefile                         \
                  src/libbalancemq/core/Makefile                    \
                  src/libbalancemq/include/Makefile                 \

@@ -18776,7 +18776,7 @@ rm -f conftest.l $LEX_OUTPUT_ROOT.c
 
 fi
 
-ac_config_files="$ac_config_files Makefile etc/Makefile src/Makefile src/libbalancemq/Makefile src/libbalancemq/core/Makefile src/libbalancemq/include/Makefile src/balancemqctl/Makefile src/balancemqd/Makefile src/plugins/Makefile src/plugins/client/Makefile src/plugins/client/protocol/Makefile src/plugins/client/protocol/posixmq/Makefile src/plugins/client/protocol/stomp/Makefile src/plugins/client/protocol/stomp/parser/Makefile src/plugins/server/Makefile src/plugins/server/auth/Makefile src/plugins/server/auth/munge/Makefile src/plugins/server/auth/none/Makefile src/plugins/server/protocol/Makefile src/plugins/server/protocol/mpi/Makefile src/plugins/server/protocol/msgpack/Makefile examples/Makefile examples/filesystem_treewalk/Makefile examples/filesystem_treewalk/c/Makefile doc/Makefile doc/man/Makefile doc/man/man1/Makefile"
+ac_config_files="$ac_config_files Makefile etc/Makefile src/Makefile src/common/Makefile src/common/config/Makefile src/libbalancemq/Makefile src/libbalancemq/core/Makefile src/libbalancemq/include/Makefile src/balancemqctl/Makefile src/balancemqd/Makefile src/plugins/Makefile src/plugins/client/Makefile src/plugins/client/protocol/Makefile src/plugins/client/protocol/posixmq/Makefile src/plugins/client/protocol/stomp/Makefile src/plugins/client/protocol/stomp/parser/Makefile src/plugins/server/Makefile src/plugins/server/auth/Makefile src/plugins/server/auth/munge/Makefile src/plugins/server/auth/none/Makefile src/plugins/server/protocol/Makefile src/plugins/server/protocol/mpi/Makefile src/plugins/server/protocol/msgpack/Makefile examples/Makefile examples/filesystem_treewalk/Makefile examples/filesystem_treewalk/c/Makefile doc/Makefile doc/man/Makefile doc/man/man1/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -19744,6 +19744,8 @@ do
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "etc/Makefile") CONFIG_FILES="$CONFIG_FILES etc/Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
+    "src/common/Makefile") CONFIG_FILES="$CONFIG_FILES src/common/Makefile" ;;
+    "src/common/config/Makefile") CONFIG_FILES="$CONFIG_FILES src/common/config/Makefile" ;;
     "src/libbalancemq/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/Makefile" ;;
     "src/libbalancemq/core/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/core/Makefile" ;;
     "src/libbalancemq/include/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/include/Makefile" ;;
