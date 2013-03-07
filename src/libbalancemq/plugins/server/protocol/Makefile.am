@@ -1,1 +1,1 @@
-SUBDIRS = mpi msgpack
+SUBDIRS = mpi asn_1

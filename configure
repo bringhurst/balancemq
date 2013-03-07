@@ -18776,7 +18776,7 @@ rm -f conftest.l $LEX_OUTPUT_ROOT.c
 
 fi
 
-ac_config_files="$ac_config_files Makefile etc/Makefile src/Makefile src/common/Makefile src/common/config/Makefile src/libbalancemq/Makefile src/libbalancemq/core/Makefile src/libbalancemq/include/Makefile src/balancemqctl/Makefile src/balancemqd/Makefile src/plugins/Makefile src/plugins/client/Makefile src/plugins/client/protocol/Makefile src/plugins/client/protocol/posixmq/Makefile src/plugins/client/protocol/stomp/Makefile src/plugins/client/protocol/stomp/parser/Makefile src/plugins/server/Makefile src/plugins/server/auth/Makefile src/plugins/server/auth/munge/Makefile src/plugins/server/auth/none/Makefile src/plugins/server/protocol/Makefile src/plugins/server/protocol/mpi/Makefile src/plugins/server/protocol/msgpack/Makefile examples/Makefile examples/filesystem_treewalk/Makefile examples/filesystem_treewalk/c/Makefile doc/Makefile doc/man/Makefile doc/man/man1/Makefile"
+ac_config_files="$ac_config_files doc/Makefile doc/man/Makefile doc/man/man1/Makefile etc/Makefile examples/filesystem_treewalk/c/Makefile examples/filesystem_treewalk/Makefile examples/Makefile Makefile src/balancemqd/balancemqctl/Makefile src/balancemqd/Makefile src/libbalancemq/config/Makefile src/libbalancemq/core/Makefile src/libbalancemq/include/Makefile src/libbalancemq/Makefile src/libbalancemq/plugins/client/Makefile src/libbalancemq/plugins/client/protocol/Makefile src/libbalancemq/plugins/client/protocol/posixmq/Makefile src/libbalancemq/plugins/client/protocol/stomp/Makefile src/libbalancemq/plugins/client/protocol/stomp/parser/Makefile src/libbalancemq/plugins/loader/Makefile src/libbalancemq/plugins/Makefile src/libbalancemq/plugins/server/auth/Makefile src/libbalancemq/plugins/server/auth/munge/Makefile src/libbalancemq/plugins/server/auth/none/Makefile src/libbalancemq/plugins/server/Makefile src/libbalancemq/plugins/server/protocol/Makefile src/libbalancemq/plugins/server/protocol/mpi/Makefile src/libbalancemq/plugins/server/protocol/asn_1/Makefile src/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -19741,35 +19741,35 @@ do
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "doc/Doxyfile") CONFIG_FILES="$CONFIG_FILES doc/Doxyfile" ;;
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
-    "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-    "etc/Makefile") CONFIG_FILES="$CONFIG_FILES etc/Makefile" ;;
-    "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
-    "src/common/Makefile") CONFIG_FILES="$CONFIG_FILES src/common/Makefile" ;;
-    "src/common/config/Makefile") CONFIG_FILES="$CONFIG_FILES src/common/config/Makefile" ;;
-    "src/libbalancemq/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/Makefile" ;;
-    "src/libbalancemq/core/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/core/Makefile" ;;
-    "src/libbalancemq/include/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/include/Makefile" ;;
-    "src/balancemqctl/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqctl/Makefile" ;;
-    "src/balancemqd/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/Makefile" ;;
-    "src/plugins/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/Makefile" ;;
-    "src/plugins/client/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/client/Makefile" ;;
-    "src/plugins/client/protocol/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/client/protocol/Makefile" ;;
-    "src/plugins/client/protocol/posixmq/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/client/protocol/posixmq/Makefile" ;;
-    "src/plugins/client/protocol/stomp/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/client/protocol/stomp/Makefile" ;;
-    "src/plugins/client/protocol/stomp/parser/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/client/protocol/stomp/parser/Makefile" ;;
-    "src/plugins/server/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/server/Makefile" ;;
-    "src/plugins/server/auth/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/server/auth/Makefile" ;;
-    "src/plugins/server/auth/munge/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/server/auth/munge/Makefile" ;;
-    "src/plugins/server/auth/none/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/server/auth/none/Makefile" ;;
-    "src/plugins/server/protocol/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/server/protocol/Makefile" ;;
-    "src/plugins/server/protocol/mpi/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/server/protocol/mpi/Makefile" ;;
-    "src/plugins/server/protocol/msgpack/Makefile") CONFIG_FILES="$CONFIG_FILES src/plugins/server/protocol/msgpack/Makefile" ;;
-    "examples/Makefile") CONFIG_FILES="$CONFIG_FILES examples/Makefile" ;;
-    "examples/filesystem_treewalk/Makefile") CONFIG_FILES="$CONFIG_FILES examples/filesystem_treewalk/Makefile" ;;
-    "examples/filesystem_treewalk/c/Makefile") CONFIG_FILES="$CONFIG_FILES examples/filesystem_treewalk/c/Makefile" ;;
     "doc/Makefile") CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
     "doc/man/Makefile") CONFIG_FILES="$CONFIG_FILES doc/man/Makefile" ;;
     "doc/man/man1/Makefile") CONFIG_FILES="$CONFIG_FILES doc/man/man1/Makefile" ;;
+    "etc/Makefile") CONFIG_FILES="$CONFIG_FILES etc/Makefile" ;;
+    "examples/filesystem_treewalk/c/Makefile") CONFIG_FILES="$CONFIG_FILES examples/filesystem_treewalk/c/Makefile" ;;
+    "examples/filesystem_treewalk/Makefile") CONFIG_FILES="$CONFIG_FILES examples/filesystem_treewalk/Makefile" ;;
+    "examples/Makefile") CONFIG_FILES="$CONFIG_FILES examples/Makefile" ;;
+    "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+    "src/balancemqd/balancemqctl/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/balancemqctl/Makefile" ;;
+    "src/balancemqd/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/Makefile" ;;
+    "src/libbalancemq/config/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/config/Makefile" ;;
+    "src/libbalancemq/core/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/core/Makefile" ;;
+    "src/libbalancemq/include/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/include/Makefile" ;;
+    "src/libbalancemq/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/Makefile" ;;
+    "src/libbalancemq/plugins/client/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/client/Makefile" ;;
+    "src/libbalancemq/plugins/client/protocol/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/client/protocol/Makefile" ;;
+    "src/libbalancemq/plugins/client/protocol/posixmq/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/client/protocol/posixmq/Makefile" ;;
+    "src/libbalancemq/plugins/client/protocol/stomp/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/client/protocol/stomp/Makefile" ;;
+    "src/libbalancemq/plugins/client/protocol/stomp/parser/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/client/protocol/stomp/parser/Makefile" ;;
+    "src/libbalancemq/plugins/loader/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/loader/Makefile" ;;
+    "src/libbalancemq/plugins/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/Makefile" ;;
+    "src/libbalancemq/plugins/server/auth/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/server/auth/Makefile" ;;
+    "src/libbalancemq/plugins/server/auth/munge/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/server/auth/munge/Makefile" ;;
+    "src/libbalancemq/plugins/server/auth/none/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/server/auth/none/Makefile" ;;
+    "src/libbalancemq/plugins/server/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/server/Makefile" ;;
+    "src/libbalancemq/plugins/server/protocol/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/server/protocol/Makefile" ;;
+    "src/libbalancemq/plugins/server/protocol/mpi/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/server/protocol/mpi/Makefile" ;;
+    "src/libbalancemq/plugins/server/protocol/asn_1/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/server/protocol/asn_1/Makefile" ;;
+    "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
 
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}

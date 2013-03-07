@@ -54,35 +54,35 @@ AC_CHECK_LIB([ev], [ev_time], [
 AC_PROG_YACC
 AC_PROG_LEX
 
-AC_CONFIG_FILES([Makefile                                          \
-                 etc/Makefile                                      \
-                 src/Makefile                                      \
-                 src/common/Makefile                               \
-                 src/common/config/Makefile                        \
-                 src/libbalancemq/Makefile                         \
-                 src/libbalancemq/core/Makefile                    \
-                 src/libbalancemq/include/Makefile                 \
-                 src/balancemqctl/Makefile                         \
-                 src/balancemqd/Makefile                           \
-                 src/plugins/Makefile                              \
-                 src/plugins/client/Makefile                       \
-                 src/plugins/client/protocol/Makefile              \
-                 src/plugins/client/protocol/posixmq/Makefile      \
-                 src/plugins/client/protocol/stomp/Makefile        \
-                 src/plugins/client/protocol/stomp/parser/Makefile \
-                 src/plugins/server/Makefile                       \
-                 src/plugins/server/auth/Makefile                  \
-                 src/plugins/server/auth/munge/Makefile            \
-                 src/plugins/server/auth/none/Makefile             \
-                 src/plugins/server/protocol/Makefile              \
-                 src/plugins/server/protocol/mpi/Makefile          \
-                 src/plugins/server/protocol/msgpack/Makefile      \
-                 examples/Makefile                                 \
-                 examples/filesystem_treewalk/Makefile             \
-                 examples/filesystem_treewalk/c/Makefile           \
-                 doc/Makefile                                      \
-                 doc/man/Makefile                                  \
-                 doc/man/man1/Makefile                             \
+AC_CONFIG_FILES([doc/Makefile                                                   \
+                 doc/man/Makefile                                               \
+                 doc/man/man1/Makefile                                          \
+                 etc/Makefile                                                   \
+                 examples/filesystem_treewalk/c/Makefile                        \
+                 examples/filesystem_treewalk/Makefile                          \
+                 examples/Makefile                                              \
+                 Makefile                                                       \
+                 src/balancemqd/balancemqctl/Makefile                           \
+                 src/balancemqd/Makefile                                        \
+                 src/libbalancemq/config/Makefile                               \
+                 src/libbalancemq/core/Makefile                                 \
+                 src/libbalancemq/include/Makefile                              \
+                 src/libbalancemq/Makefile                                      \
+                 src/libbalancemq/plugins/client/Makefile                       \
+                 src/libbalancemq/plugins/client/protocol/Makefile              \
+                 src/libbalancemq/plugins/client/protocol/posixmq/Makefile      \
+                 src/libbalancemq/plugins/client/protocol/stomp/Makefile        \
+                 src/libbalancemq/plugins/client/protocol/stomp/parser/Makefile \
+                 src/libbalancemq/plugins/loader/Makefile                       \
+                 src/libbalancemq/plugins/Makefile                              \
+                 src/libbalancemq/plugins/server/auth/Makefile                  \
+                 src/libbalancemq/plugins/server/auth/munge/Makefile            \
+                 src/libbalancemq/plugins/server/auth/none/Makefile             \
+                 src/libbalancemq/plugins/server/Makefile                       \
+                 src/libbalancemq/plugins/server/protocol/Makefile              \
+                 src/libbalancemq/plugins/server/protocol/mpi/Makefile          \
+                 src/libbalancemq/plugins/server/protocol/asn_1/Makefile        \
+                 src/Makefile                                                   \
 ])
 
 AC_OUTPUT

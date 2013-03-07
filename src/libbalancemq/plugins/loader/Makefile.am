@@ -1,13 +1,11 @@
 include $(top_srcdir)/common.mk
 
-SUBDIRS = config
-
 INCLUDES = \
            -I$(top_srcdir) \
-           -I$(top_srcdir)/src/common/
+           -I$(top_srcdir)/src/libbalancemq/plugins/loader
 
-noinst_LTLIBRARIES = libcommon.la
+noinst_LTLIBRARIES = lib_plugin_loader.la
 
-libcommon_la_SOURCES = balancemq_plugin.c
-libcommon_la_LIBADD =
-libcommon_la_LDFLAGS = $(LIB_LDFLAGS)
+lib_plugin_loader_la_SOURCES = balancemq_plugin.c
+lib_plugin_loader_la_LIBADD =
+lib_plugin_loader_la_LDFLAGS = $(LIB_LDFLAGS)
