@@ -1,15 +1,15 @@
 include $(top_srcdir)/common.mk
 
-BUILT_SOURCES = balancemqd_conf.h
-PARSER = balancemqd_conf.y balancemqd_conf.l
+BUILT_SOURCES = balancemq_conf.h
+PARSER = balancemq_conf.y balancemq_conf.l
 AM_YFLAGS = -d
 
 INCLUDES = \
            -I$(top_srcdir) \
-           -I$(top_srcdir)/src/common/config/
+           -I$(top_srcdir)/src/libbalancemq/config
 
-noinst_LTLIBRARIES = libcommon_config_compiler.la
+noinst_LTLIBRARIES = lib_config_compiler.la
 
-libcommon_config_compiler_la_SOURCES = balancemqd_conf.y
-libcommon_config_compiler_la_LIBADD = $(LEXLIB)
-libcommon_config_compiler_la_LDFLAGS = $(LIB_LDFLAGS)
+lib_config_compiler_la_SOURCES = balancemq_conf.y
+lib_config_compiler_la_LIBADD = $(LEXLIB)
+lib_config_compiler_la_LDFLAGS = $(LIB_LDFLAGS)

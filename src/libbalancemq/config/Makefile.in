@@ -33,7 +33,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/common.mk balancemqd_conf.c balancemqd_conf.h
+	$(top_srcdir)/common.mk balancemq_conf.c balancemq_conf.h
 subdir = src/libbalancemq/config
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -47,14 +47,12 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 am__DEPENDENCIES_1 =
-libcommon_config_compiler_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
-am_libcommon_config_compiler_la_OBJECTS = balancemqd_conf.lo
-libcommon_config_compiler_la_OBJECTS =  \
-	$(am_libcommon_config_compiler_la_OBJECTS)
-libcommon_config_compiler_la_LINK = $(LIBTOOL) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(AM_CFLAGS) $(CFLAGS) $(libcommon_config_compiler_la_LDFLAGS) \
-	$(LDFLAGS) -o $@
+lib_config_compiler_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
+am_lib_config_compiler_la_OBJECTS = balancemq_conf.lo
+lib_config_compiler_la_OBJECTS = $(am_lib_config_compiler_la_OBJECTS)
+lib_config_compiler_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(lib_config_compiler_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I. -I$(top_builddir)@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/auxdir/depcomp
 am__depfiles_maybe = depfiles
@@ -71,8 +69,8 @@ YACCCOMPILE = $(YACC) $(YFLAGS) $(AM_YFLAGS)
 LTYACCCOMPILE = $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=compile $(YACC) $(YFLAGS) $(AM_YFLAGS)
 YLWRAP = $(top_srcdir)/auxdir/ylwrap
-SOURCES = $(libcommon_config_compiler_la_SOURCES)
-DIST_SOURCES = $(libcommon_config_compiler_la_SOURCES)
+SOURCES = $(lib_config_compiler_la_SOURCES)
+DIST_SOURCES = $(lib_config_compiler_la_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -196,17 +194,17 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra
-BUILT_SOURCES = balancemqd_conf.h
-PARSER = balancemqd_conf.y balancemqd_conf.l
+BUILT_SOURCES = balancemq_conf.h
+PARSER = balancemq_conf.y balancemq_conf.l
 AM_YFLAGS = -d
 INCLUDES = \
            -I$(top_srcdir) \
-           -I$(top_srcdir)/src/common/config/
+           -I$(top_srcdir)/src/libbalancemq/config
 
-noinst_LTLIBRARIES = libcommon_config_compiler.la
-libcommon_config_compiler_la_SOURCES = balancemqd_conf.y
-libcommon_config_compiler_la_LIBADD = $(LEXLIB)
-libcommon_config_compiler_la_LDFLAGS = $(LIB_LDFLAGS)
+noinst_LTLIBRARIES = lib_config_compiler.la
+lib_config_compiler_la_SOURCES = balancemq_conf.y
+lib_config_compiler_la_LIBADD = $(LEXLIB)
+lib_config_compiler_la_LDFLAGS = $(LIB_LDFLAGS)
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -250,13 +248,13 @@ clean-noinstLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-balancemqd_conf.h: balancemqd_conf.c
+balancemq_conf.h: balancemq_conf.c
 	@if test ! -f $@; then \
-	  rm -f balancemqd_conf.c; \
-	  $(MAKE) $(AM_MAKEFLAGS) balancemqd_conf.c; \
+	  rm -f balancemq_conf.c; \
+	  $(MAKE) $(AM_MAKEFLAGS) balancemq_conf.c; \
 	else :; fi
-libcommon_config_compiler.la: $(libcommon_config_compiler_la_OBJECTS) $(libcommon_config_compiler_la_DEPENDENCIES) 
-	$(libcommon_config_compiler_la_LINK)  $(libcommon_config_compiler_la_OBJECTS) $(libcommon_config_compiler_la_LIBADD) $(LIBS)
+lib_config_compiler.la: $(lib_config_compiler_la_OBJECTS) $(lib_config_compiler_la_DEPENDENCIES) 
+	$(lib_config_compiler_la_LINK)  $(lib_config_compiler_la_OBJECTS) $(lib_config_compiler_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -264,7 +262,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/balancemqd_conf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/balancemq_conf.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -400,8 +398,8 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-	-rm -f balancemqd_conf.c
-	-rm -f balancemqd_conf.h
+	-rm -f balancemq_conf.c
+	-rm -f balancemq_conf.h
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 

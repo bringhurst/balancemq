@@ -1,1 +1,1 @@
-SUBDIRS = core
+SUBDIRS = include config core plugins
