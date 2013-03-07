@@ -213,7 +213,7 @@ AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra
 SUBDIRS = parser
 INCLUDES = \
            -I$(top_srcdir) \
-           -I$(top_srcdir)/src/plugins/client/protocol/stomp/parser
+           -I$(top_srcdir)/src/libbalancemq/plugins/client/protocol/stomp/parser
 
 pkglib_LTLIBRARIES = libclient_protocol_stomp.la
 libclient_protocol_stomp_la_SOURCES = stomp_server.c client_protocol_stomp.c

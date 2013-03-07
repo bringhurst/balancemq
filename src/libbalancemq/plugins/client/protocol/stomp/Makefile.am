@@ -4,7 +4,7 @@ SUBDIRS = parser
 
 INCLUDES = \
            -I$(top_srcdir) \
-           -I$(top_srcdir)/src/plugins/client/protocol/stomp/parser
+           -I$(top_srcdir)/src/libbalancemq/plugins/client/protocol/stomp/parser
 
 pkglib_LTLIBRARIES = libclient_protocol_stomp.la
 

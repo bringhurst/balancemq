@@ -1,7 +1,9 @@
 %{
  /* Parser for a balancemqd.conf file. */
 
- #include "balancemqd_conf.h"
+ #include <stdio.h>
+
+ #include "balancemq_conf.h"
 
  void yyerror(const char *str) {
      fprintf(stderr,"error: %s\n",str);
@@ -23,18 +25,15 @@
 %token <integer_type> T_INTEGER
 
 %union {
-    char* string;
+    const char* string;
     float double_type;
     int integer_type;
 }
 
-%type <block> config
-%type <statement> stmt
-%type <decl> var_decl
-%type <block> block
+%type <string> config blocks block var_decl var_decls value
 
 %%
-config : blocks { configBlock = $1; }
+config : blocks { /*configBlock = $1;*/ }
        ;
 
 blocks : block
@@ -42,18 +41,18 @@ blocks : block
        ;
 
 block : T_IDENTIFIER T_LBRACE var_decls T_RBRACE { $$ = $2; }
-      | T_IDENTIFIER T_LBRACE T_RBRACE { $$ = balancemq_config_create_block(); }
+      | T_IDENTIFIER T_LBRACE T_RBRACE { /*$$ = balancemq_config_create_block();*/ }
       ;
 
-var_decls : var_decl { $$ = balancemq_config_create_block(); $$->statements.push($<stmt>1); }
-          | var_decls T_COMMA var_decl { $1->statements.push($<stmt>2); }
+var_decls : var_decl { /*$$ = balancemq_config_create_block(); $$->statements.push($<stmt>1);*/ }
+          | var_decls T_COMMA var_decl { /*$1->statements.push($<stmt>2);*/ }
           ;
 
-var_decl : ident value { $$ = balancemq_config_create_keyvalue(*$1, *$2); }
+var_decl : T_IDENTIFIER value { /*$$ = balancemq_config_create_keyvalue(*$1, *$2);*/ }
          ;
 
-value : T_IDENTIFIER { $$ = balancemq_config_create_string_identifier(*$1); }
-      | TINTEGER { $$ = balancemq_config_create_integer_identifier(atol($1->c_str())); }
-      | TDOUBLE { $$ = balancemq_config_create_double_identifier(atof($1->c_str())); }
+value : T_IDENTIFIER { /*$$ = balancemq_config_create_string_identifier(*$1);*/ }
+      | T_INTEGER { /*$$ = balancemq_config_create_integer_identifier(atol($1->c_str()));*/ }
+      | T_DOUBLE { /*$$ = balancemq_config_create_double_identifier(atof($1->c_str()));*/ }
       ;
 %%
