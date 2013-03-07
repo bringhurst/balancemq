@@ -24,6 +24,9 @@ typedef struct {
     /* The user specified options for this queue. */
     uint16_t options;
 
+    /* The priority of this item (lower value is processed first). */
+    uint16_t priority;
+
     /* The data size. */
     uint32_t data_size;
 
