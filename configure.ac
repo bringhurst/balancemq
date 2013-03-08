@@ -1,5 +1,8 @@
 AC_INIT([BalanceMQ],[0.0.1],[jon@bringhurst.org],[BalanceMQ],[http://www.balancemq.com/])
 
+AC_LANG_CONFTEST(
+   [AC_LANG_SOURCE([[const char hw[] = "Hello, World\n";]])])
+
 # Keep artifacts in directories as much as possible.
 AC_CONFIG_AUX_DIR(auxdir)
 AC_CONFIG_MACRO_DIR([m4])
