@@ -1,5 +1,5 @@
 %{
- /* Parser for a balancemqd.conf file. */
+ /* Parser for a balancemq.conf file. */
 
  #include <stdio.h>
 

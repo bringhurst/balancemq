@@ -23,7 +23,7 @@ void plugin_balancemq_initialize()
     client_protocol_stomp_state = (client_protocol_stomp_state_t*) \
         malloc(sizeof(client_protocol_stomp_state_t));
 
-    /* Determine the configuration based on the balancemqd.conf. */
+    /* Determine the configuration based on the balancemq.conf. */
     client_protocol_stomp_state->conf = client_protocol_stomp_get_conf();
 }
 

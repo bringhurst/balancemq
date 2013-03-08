@@ -88,7 +88,7 @@
 /* Copy the first part of user declarations.  */
 #line 1 "balancemq_conf.y"
 
- /* Parser for a balancemqd.conf file. */
+ /* Parser for a balancemq.conf file. */
 
  #include <stdio.h>
 
