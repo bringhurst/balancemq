@@ -1,1 +1,1 @@
-SUBDIRS = include config core plugins
+SUBDIRS = include startup runtime plugins
