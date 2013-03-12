@@ -20,7 +20,8 @@
 }
 
 %code provides {
- extern int balancemq_settings_yylex(void);
+  extern int balancemq_settings_yylex(void);
+  extern void balancemq_settings_yyerror(const char* msg);
 }
 
 %union {
@@ -101,3 +102,5 @@ value     : T_IDENTIFIER { $$ = BALANCEMQ_settings_create_string_value($1); }
           ;
 
 %%
+
+/* EOF */

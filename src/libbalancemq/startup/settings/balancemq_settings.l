@@ -1,5 +1,9 @@
 /* A lexer for balancemq.conf */
 
+%option noyywrap nounput
+%option reentrant
+%option bison-bridge
+
 %option prefix="balancemq_settings_yy"
 
 %{

@@ -87,7 +87,7 @@ extern int balancemq_settings_yydebug;
 typedef union BALANCEMQ_SETTINGS_YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 26 "balancemq_settings.y"
+#line 27 "balancemq_settings.y"
 
     char* string_value;
     float double_value;
@@ -136,10 +136,11 @@ void balancemq_settings_yypstate_delete ();
 /* Line 2058 of yacc.c  */
 #line 22 "balancemq_settings.y"
 
- extern int balancemq_settings_yylex(void);
+  extern int balancemq_settings_yylex(void);
+  extern void balancemq_settings_yyerror(const char* msg);
 
 
 /* Line 2058 of yacc.c  */
-#line 144 "balancemq_settings.h"
+#line 145 "balancemq_settings.h"
 
 #endif /* !YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_H_INCLUDED  */

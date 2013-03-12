@@ -7,8 +7,10 @@
 #define BALANCEMQ_SETTINGS_INTEGER 4
 #define BALANCEMQ_SETTINGS_DOUBLE  8
 
+#define BALANCEMQ_SETTINGS_MAX_KEY_LENGTH 128
+
 typedef struct {
-  int value_type;
+  int type;
   union {
       int    ival;
       double dval;
@@ -29,6 +31,8 @@ typedef struct {
 typedef struct {
     BALANCEMQ_list_t* blocks;
 } BALANCEMQ_settings_t;
+
+extern void balancemq_settings_yyerror(const char* msg);
 
 BALANCEMQ_settings_t* BALANCEMQ_settings_create_settings();
 BALANCEMQ_settings_block_t* BALANCEMQ_settings_create_block();
