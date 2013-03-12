@@ -28,8 +28,8 @@
 
 %union {
     const char* string_value;
-    float double_value;
-    int integer_value;
+    float       double_value;
+    int         integer_value;
 
     BALANCEMQ_config_value_t*    balance_value;
     BALANCEMQ_config_variable_t* variable_value;
@@ -51,7 +51,7 @@
 %%
 config    : /* nothing */ {
                 $$ = (BALANCEMQ_config_t*) NULL;
-               }
+            }
           | blocks {
                 $$ = BALANCEMQ_config_create_config();
                 $$->push($1);
