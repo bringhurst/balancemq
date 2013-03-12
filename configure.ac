@@ -12,14 +12,13 @@ AM_INIT_AUTOMAKE([foreign])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 # Check for programs
-AC_PROG_CC
-AC_PROG_CXX
 AC_PROG_AWK
 AC_PROG_CC
-AC_PROG_CPP
 AC_PROG_INSTALL
+AC_PROG_LEX
 AC_PROG_MAKE_SET
 AC_PROG_RANLIB
+AC_PROG_YACC
 
 # Needed for docs
 X_AC_BMQ_DOXYGEN
@@ -52,10 +51,6 @@ AC_CHECK_LIB([ev], [ev_time], [
 	LIBS="-lev ${LIBS}"
 	AC_DEFINE([HAVE_LIBEV], [1], [ev_time in -lev])
 	], [AC_MSG_ERROR("libev not found")])
-
-# Check for compiler compilers.
-AC_PROG_YACC
-AC_PROG_LEX
 
 AC_CONFIG_FILES([Makefile                                              \
                  doc/Makefile                                          \
