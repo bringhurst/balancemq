@@ -8,8 +8,8 @@ INCLUDES = \
            -I$(top_srcdir) \
            -I$(top_srcdir)/src/libbalancemq/settings
 
-noinst_LTLIBRARIES = lib_settings_compiler.la
+noinst_LTLIBRARIES = libbalancemq_startup_settings.la
 
-lib_settings_compiler_la_SOURCES = balancemq_settings.y
-lib_settings_compiler_la_LIBADD = $(LEXLIB)
-lib_settings_compiler_la_LDFLAGS = $(LIB_LDFLAGS)
+libbalancemq_startup_settings_la_SOURCES = balancemq_settings.y
+libbalancemq_startup_settings_la_LIBADD = $(LEXLIB)
+libbalancemq_startup_settings_la_LDFLAGS = $(LIB_LDFLAGS)

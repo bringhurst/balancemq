@@ -18099,7 +18099,7 @@ rm -f conftest.l $LEX_OUTPUT_ROOT.c
 
 fi
 
-ac_config_files="$ac_config_files Makefile doc/Makefile doc/man/Makefile doc/man/man1/Makefile etc/Makefile examples/Makefile examples/filesystem_treewalk/Makefile examples/filesystem_treewalk/c/Makefile src/Makefile src/balancemqd/Makefile src/balancemqd/balancemqctl/Makefile src/balancemqd/plugins/Makefile src/balancemqd/plugins/protocol/Makefile src/balancemqd/plugins/protocol/posixmq/Makefile src/balancemqd/plugins/protocol/stomp/Makefile src/balancemqd/plugins/protocol/stomp/parser/Makefile src/libbalancemq/Makefile src/libbalancemq/include/Makefile src/libbalancemq/plugins/Makefile src/libbalancemq/plugins/auth/Makefile src/libbalancemq/plugins/auth/munge/Makefile src/libbalancemq/plugins/auth/none/Makefile src/libbalancemq/plugins/protocol/Makefile src/libbalancemq/plugins/protocol/asn_1/Makefile src/libbalancemq/plugins/protocol/mpi/Makefile src/libbalancemq/runtime/Makefile src/libbalancemq/startup/Makefile src/libbalancemq/startup/plugin_loader/Makefile src/libbalancemq/startup/settings/Makefile"
+ac_config_files="$ac_config_files Makefile doc/Makefile doc/man/Makefile doc/man/man1/Makefile etc/Makefile examples/Makefile examples/filesystem_treewalk/Makefile examples/filesystem_treewalk/c/Makefile src/Makefile src/balancemqd/Makefile src/balancemqd/balancemqctl/Makefile src/balancemqd/plugins/Makefile src/balancemqd/plugins/protocol/Makefile src/balancemqd/plugins/protocol/posixmq/Makefile src/balancemqd/plugins/protocol/stomp/Makefile src/balancemqd/plugins/protocol/stomp/parser/Makefile src/libbalancemq/Makefile src/libbalancemq/common/Makefile src/libbalancemq/include/Makefile src/libbalancemq/plugins/Makefile src/libbalancemq/plugins/auth/Makefile src/libbalancemq/plugins/auth/munge/Makefile src/libbalancemq/plugins/auth/none/Makefile src/libbalancemq/plugins/protocol/Makefile src/libbalancemq/plugins/protocol/asn_1/Makefile src/libbalancemq/plugins/protocol/mpi/Makefile src/libbalancemq/runtime/Makefile src/libbalancemq/startup/Makefile src/libbalancemq/startup/plugin_loader/Makefile src/libbalancemq/startup/settings/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -19232,6 +19232,7 @@ do
     "src/balancemqd/plugins/protocol/stomp/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/plugins/protocol/stomp/Makefile" ;;
     "src/balancemqd/plugins/protocol/stomp/parser/Makefile") CONFIG_FILES="$CONFIG_FILES src/balancemqd/plugins/protocol/stomp/parser/Makefile" ;;
     "src/libbalancemq/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/Makefile" ;;
+    "src/libbalancemq/common/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/common/Makefile" ;;
     "src/libbalancemq/include/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/include/Makefile" ;;
     "src/libbalancemq/plugins/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/Makefile" ;;
     "src/libbalancemq/plugins/auth/Makefile") CONFIG_FILES="$CONFIG_FILES src/libbalancemq/plugins/auth/Makefile" ;;

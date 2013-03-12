@@ -1,1 +1,1 @@
-SUBDIRS = include startup runtime plugins
+SUBDIRS = include common startup runtime plugins
