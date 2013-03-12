@@ -16,6 +16,7 @@
 
 %code provides {
  void yyerror(const char *str) {
+     /* TODO: use common logging here. */
      fprintf(stderr,"error: %s\n",str);
  }
  
@@ -48,7 +49,11 @@
 %type <config_value>   config
 %type <list_value>     blocks var_decls
 
+/* TODO: define destructors */
+
 %%
+
+/* Build a BALANCEMQ_config_t */
 config    : /* nothing */ {
                 $$ = (BALANCEMQ_config_t*) NULL;
             }
@@ -58,6 +63,7 @@ config    : /* nothing */ {
             }
           ;
 
+/* Build a list of BALANCEMQ_config_block_t */
 blocks    : block {
                 $$ = BALANCEMQ_config_create_blocklist();
                 $$->push($1);
@@ -67,12 +73,14 @@ blocks    : block {
             }
           ;
 
+/* Build a BALANCEMQ_config_block_t */
 block     : T_IDENTIFIER T_LBRACE var_decls T_RBRACE {
                 $$ = BALANCEMQ_config_create_block($1);
                 $$->push($3);
             }
           ;
 
+/* Build a list of BALANCEMQ_config_variable_t */
 var_decls : var_decl {
                 $$ = BALANCEMQ_config_create_variable_list();
                 $$->push($1);
