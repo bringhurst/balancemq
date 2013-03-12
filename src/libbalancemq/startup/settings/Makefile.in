@@ -52,8 +52,9 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/common.mk balancemq_conf.c balancemq_conf.h
-subdir = src/libbalancemq/startup/config
+	$(top_srcdir)/common.mk balancemq_settings.c \
+	balancemq_settings.h
+subdir = src/libbalancemq/startup/settings
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -67,15 +68,16 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 am__DEPENDENCIES_1 =
-lib_config_compiler_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
-am_lib_config_compiler_la_OBJECTS = balancemq_conf.lo
-lib_config_compiler_la_OBJECTS = $(am_lib_config_compiler_la_OBJECTS)
+lib_settings_compiler_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
+am_lib_settings_compiler_la_OBJECTS = balancemq_settings.lo
+lib_settings_compiler_la_OBJECTS =  \
+	$(am_lib_settings_compiler_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
-lib_config_compiler_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+lib_settings_compiler_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(AM_CFLAGS) $(CFLAGS) $(lib_config_compiler_la_LDFLAGS) \
+	$(AM_CFLAGS) $(CFLAGS) $(lib_settings_compiler_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/auxdir/depcomp
@@ -110,8 +112,8 @@ YLWRAP = $(top_srcdir)/auxdir/ylwrap
 AM_V_GEN = $(am__v_GEN_@AM_V@)
 am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
 am__v_GEN_0 = @echo "  GEN   " $@;
-SOURCES = $(lib_config_compiler_la_SOURCES)
-DIST_SOURCES = $(lib_config_compiler_la_SOURCES)
+SOURCES = $(lib_settings_compiler_la_SOURCES)
+DIST_SOURCES = $(lib_settings_compiler_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -246,17 +248,17 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra -Wshadow
-BUILT_SOURCES = balancemq_conf.h
-PARSER = balancemq_conf.y balancemq_conf.l
+BUILT_SOURCES = balancemq_settings.h
+PARSER = balancemq_settings.y balancemq_settings.l
 AM_YFLAGS = -d
 INCLUDES = \
            -I$(top_srcdir) \
-           -I$(top_srcdir)/src/libbalancemq/config
+           -I$(top_srcdir)/src/libbalancemq/settings
 
-noinst_LTLIBRARIES = lib_config_compiler.la
-lib_config_compiler_la_SOURCES = balancemq_conf.y
-lib_config_compiler_la_LIBADD = $(LEXLIB)
-lib_config_compiler_la_LDFLAGS = $(LIB_LDFLAGS)
+noinst_LTLIBRARIES = lib_settings_compiler.la
+lib_settings_compiler_la_SOURCES = balancemq_settings.y
+lib_settings_compiler_la_LIBADD = $(LEXLIB)
+lib_settings_compiler_la_LDFLAGS = $(LIB_LDFLAGS)
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -271,9 +273,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/common.mk $(am__conf
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/libbalancemq/startup/config/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/libbalancemq/startup/settings/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign src/libbalancemq/startup/config/Makefile
+	  $(AUTOMAKE) --foreign src/libbalancemq/startup/settings/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -302,11 +304,11 @@ clean-noinstLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-balancemq_conf.h: balancemq_conf.c
-	@if test ! -f $@; then rm -f balancemq_conf.c; else :; fi
-	@if test ! -f $@; then $(MAKE) $(AM_MAKEFLAGS) balancemq_conf.c; else :; fi
-lib_config_compiler.la: $(lib_config_compiler_la_OBJECTS) $(lib_config_compiler_la_DEPENDENCIES) $(EXTRA_lib_config_compiler_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(lib_config_compiler_la_LINK)  $(lib_config_compiler_la_OBJECTS) $(lib_config_compiler_la_LIBADD) $(LIBS)
+balancemq_settings.h: balancemq_settings.c
+	@if test ! -f $@; then rm -f balancemq_settings.c; else :; fi
+	@if test ! -f $@; then $(MAKE) $(AM_MAKEFLAGS) balancemq_settings.c; else :; fi
+lib_settings_compiler.la: $(lib_settings_compiler_la_OBJECTS) $(lib_settings_compiler_la_DEPENDENCIES) $(EXTRA_lib_settings_compiler_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(lib_settings_compiler_la_LINK)  $(lib_settings_compiler_la_OBJECTS) $(lib_settings_compiler_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -314,7 +316,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/balancemq_conf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/balancemq_settings.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -464,8 +466,8 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-	-rm -f balancemq_conf.c
-	-rm -f balancemq_conf.h
+	-rm -f balancemq_settings.c
+	-rm -f balancemq_settings.h
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 

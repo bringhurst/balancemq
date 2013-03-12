@@ -1,1 +1,1 @@
-SUBDIRS = config plugin_loader
+SUBDIRS = settings plugin_loader
