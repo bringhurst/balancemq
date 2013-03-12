@@ -1,6 +1,0 @@
-#ifndef _BALANCEMQ_SETTINGS_H
-#define _BALANCEMQ_SETTINGS_H
-
-
-
-#endif /* _BALANCEMQ_SETTINGS_H */

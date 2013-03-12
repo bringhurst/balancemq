@@ -12,12 +12,13 @@
 }
 
 %code requires {
+  #include "settings_private.h"
   #include "balancemq_settings.h"
+  #include "../../common/list.h"
 }
 
 %code provides {
  void balancemq_settings_yyerror(const char *str) {
-     /* TODO: use common logging here. */
      fprintf(stderr,"error: %s\n",str);
  }
  
@@ -37,7 +38,7 @@
     BALANCEMQ_settings_variable_t* variable_value;
     BALANCEMQ_settings_block_t*    block_value;
     BALANCEMQ_settings_t*          settings_value;
-    BALANCEMQ_settings_list_t*     list_value;
+    BALANCEMQ_list_t*              list_value;
 }
 
 %token <string>        T_IDENTIFIER T_LBRACE T_RBRACE
@@ -60,34 +61,34 @@ settings  : /* nothing */ {
             }
           | blocks {
                 $$ = BALANCEMQ_settings_create_settings();
-                $$->push($1);
+                BALANCEMQ_list_push($$->blocks, $1);
             }
           ;
 
-/* Build a list of BALANCEMQ_settings_block_t */
+/* Build a BALANCEMQ_list_t for BALANCEMQ_settings_block_t */
 blocks    : block {
-                $$ = BALANCEMQ_settings_create_blocklist();
-                $$->push($1);
+                $$ = BALANCEMQ_list_create();
+                BALANCEMQ_list_push($$, $1);
             }
           | blocks block {
-                $$->push($2);
+                BALANCEMQ_list_push($$, $2);
             }
           ;
 
 /* Build a BALANCEMQ_settings_block_t */
 block     : T_IDENTIFIER T_LBRACE var_decls T_RBRACE {
                 $$ = BALANCEMQ_settings_create_block($1);
-                $$->push($3);
+                BALANCEMQ_list_push($$->variables, $3);
             }
           ;
 
-/* Build a list of BALANCEMQ_settings_variable_t */
+/* Build a BALANCEMQ_list_t for BALANCEMQ_settings_variable_t */
 var_decls : var_decl {
-                $$ = BALANCEMQ_settings_create_variable_list();
-                $$->push($1);
+                $$ = BALANCEMQ_list_create();
+                BALANCEMQ_list_push($$, $1);
             }
           | var_decls var_decl {
-                $$->push($2);
+                BALANCEMQ_list_push($$, $2);
             }
           ;
 

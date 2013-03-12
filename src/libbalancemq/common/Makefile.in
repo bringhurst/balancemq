@@ -67,7 +67,7 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 libbalancemq_common_la_DEPENDENCIES =
-am_libbalancemq_common_la_OBJECTS = linked_list.lo
+am_libbalancemq_common_la_OBJECTS = list.lo
 libbalancemq_common_la_OBJECTS = $(am_libbalancemq_common_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -243,7 +243,7 @@ INCLUDES = \
            -I$(top_srcdir)/src/libbalancemq/common
 
 noinst_LTLIBRARIES = libbalancemq_common.la
-libbalancemq_common_la_SOURCES = linked_list.c
+libbalancemq_common_la_SOURCES = list.c
 libbalancemq_common_la_LIBADD = 
 libbalancemq_common_la_LDFLAGS = $(LIB_LDFLAGS)
 all: all-am
@@ -299,7 +299,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/linked_list.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/list.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

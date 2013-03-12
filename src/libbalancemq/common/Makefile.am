@@ -6,6 +6,6 @@ INCLUDES = \
 
 noinst_LTLIBRARIES = libbalancemq_common.la
 
-libbalancemq_common_la_SOURCES = linked_list.c
+libbalancemq_common_la_SOURCES = list.c
 libbalancemq_common_la_LIBADD =
 libbalancemq_common_la_LDFLAGS = $(LIB_LDFLAGS)
