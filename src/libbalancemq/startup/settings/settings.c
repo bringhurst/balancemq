@@ -2,6 +2,8 @@
 #include "balancemq_settings.h"
 
 #include <log.h>
+
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -10,8 +12,14 @@ BALANCEMQ_settings_t* BALANCEMQ_parse_settings(char* path)
     int status;
     balancemq_settings_yypstate *ps = balancemq_settings_yypstate_new();
 
-//    balancemq_settings_yy_scan_buffer("hello { foo bar }");
 
+    //balancemq_settings_yyin = fopen(path, "r");
+/*
+    if(balancemq_settings_yyin == NULL) {
+        LOG("Could not open config file `%s'. %s", path, strerror(errno));
+        return NULL;
+    }   
+*/
     do {
         status = balancemq_settings_yypush_parse(ps, balancemq_settings_yylex(), NULL);
     } while (status == YYPUSH_MORE);
