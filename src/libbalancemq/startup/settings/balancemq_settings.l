@@ -6,18 +6,18 @@
 %option reentrant
 %option bison-bridge
 
-WHITESPACE [ \t\n]
-IDENTIFIER [a-zA-Z_][a-zA-Z0-9_]*
-DOUBLE     [0-9]+\.[0-9]*
-INTEGER    [0-9]+
+WHITESPACE            [ \t\n]
+IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
+DOUBLE                [0-9]+\.[0-9]*
+INTEGER               [0-9]+
 
 %%
 
 WHITESPACE            ; /* Ignore this token. */
 
 "/*"                  BEGIN(comment); /* Handle C-style comments. */
-<comment>[^*\n]*      /* Ignore anything that's not a '*'. */
-<comment>"*"+[^*/\n]* /* Ignore '*'s not followed by a '/'. */
+<comment>[^*\n]*      ; /* Ignore anything that's not a '*'. */
+<comment>"*"+[^*/\n]* ; /* Ignore '*'s not followed by a '/'. */
 <comment>"*"+"/"      BEGIN(INITIAL);
      
 "{"                   return T_LBRACE;
