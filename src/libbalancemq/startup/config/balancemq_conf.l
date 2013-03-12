@@ -17,7 +17,7 @@
 [0-9]+                  yylval = atoi(yytext); return T_INTEGER;
 
 "{"                     return T_LBRACE;
-"}"                     return T_BRACE;
+"}"                     return T_RBRACE;
 ","                     return T_COMMA;
 
 .                       printf("Unknown token in configuration file.\n"); yyterminate();
