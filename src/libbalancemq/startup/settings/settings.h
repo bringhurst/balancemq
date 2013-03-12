@@ -1,7 +1,7 @@
 #ifndef _BALANCEMQ_SETTINGS_H
 #define _BALANCEMQ_SETTINGS_H
 
-#include "../../common/list.h"
+#include <xlist.h>
 
 #define BALANCEMQ_SETTINGS_STRING  2
 #define BALANCEMQ_SETTINGS_INTEGER 4

@@ -1,8 +1,6 @@
 #ifndef _BALANCEMQ_LOG_H
 #define _BALANCEMQ_LOG_H
 
-#include <balancemq.h>
-
 #include <stdio.h>
 #include <stdint.h>
 #include <time.h>

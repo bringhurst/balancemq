@@ -1,5 +1,5 @@
-#ifndef _BALANCEMQ_LIST_H
-#define _BALANCEMQ_LIST_H
+#ifndef _BALANCEMQ_XLIST_H
+#define _BALANCEMQ_XLIST_H
 
 typedef struct BALANCEMQ_list_node_t {
     void* data;
@@ -18,4 +18,4 @@ BALANCEMQ_list_t* BALANCEMQ_list_create();
 void BALANCEMQ_list_destroy(BALANCEMQ_list_t* list);
 void BALANCEMQ_list_push(BALANCEMQ_list_t* list, void* data);
 
-#endif /* _BALANCEMQ_LIST_H */
+#endif /* _BALANCEMQ_XLIST_H */

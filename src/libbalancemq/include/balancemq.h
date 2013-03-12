@@ -88,6 +88,6 @@ void BALANCE_read_config(char* path);
 /**
  * Define the detail and location for logging.
  */
-void BALANCE_setup_log(int fd, enum BALANCE_loglevel level);
+void BALANCE_setup_log(int fd, int level);
 
 #endif /* _BALANCEMQ_BALANCEMQ_H */

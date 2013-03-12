@@ -51,13 +51,15 @@ extern int balancemq_settings_yydebug;
 /* Line 2058 of yacc.c  */
 #line 14 "balancemq_settings.y"
 
+  #include <log.h>
+  #include <xlist.h>
+
   #include "settings.h"
   #include "balancemq_settings.h"
-  #include "../../common/list.h"
 
 
 /* Line 2058 of yacc.c  */
-#line 61 "balancemq_settings.h"
+#line 63 "balancemq_settings.h"
 
 /* Tokens.  */
 #ifndef BALANCEMQ_SETTINGS_YYTOKENTYPE
@@ -85,7 +87,7 @@ extern int balancemq_settings_yydebug;
 typedef union BALANCEMQ_SETTINGS_YYSTYPE
 {
 /* Line 2058 of yacc.c  */
-#line 24 "balancemq_settings.y"
+#line 26 "balancemq_settings.y"
 
     char* string_value;
     float double_value;
@@ -99,7 +101,7 @@ typedef union BALANCEMQ_SETTINGS_YYSTYPE
 
 
 /* Line 2058 of yacc.c  */
-#line 103 "balancemq_settings.h"
+#line 105 "balancemq_settings.h"
 } BALANCEMQ_SETTINGS_YYSTYPE;
 # define BALANCEMQ_SETTINGS_YYSTYPE_IS_TRIVIAL 1
 # define balancemq_settings_yystype BALANCEMQ_SETTINGS_YYSTYPE /* obsolescent; will be withdrawn */
@@ -132,12 +134,12 @@ void balancemq_settings_yypstate_delete ();
 #endif
 /* "%code provides" blocks.  */
 /* Line 2058 of yacc.c  */
-#line 20 "balancemq_settings.y"
+#line 22 "balancemq_settings.y"
 
  extern int balancemq_settings_yylex(void);
 
 
 /* Line 2058 of yacc.c  */
-#line 142 "balancemq_settings.h"
+#line 144 "balancemq_settings.h"
 
 #endif /* !YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_H_INCLUDED  */

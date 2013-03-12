@@ -6,6 +6,7 @@ AM_YFLAGS = -d
 
 INCLUDES = \
            -I$(top_srcdir) \
+           -I$(top_srcdir)/src/libbalancemq/common \
            -I$(top_srcdir)/src/libbalancemq/settings
 
 noinst_LTLIBRARIES = libbalancemq_startup_settings.la

@@ -12,9 +12,11 @@
 }
 
 %code requires {
+  #include <log.h>
+  #include <xlist.h>
+
   #include "settings.h"
   #include "balancemq_settings.h"
-  #include "../../common/list.h"
 }
 
 %code provides {
