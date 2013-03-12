@@ -2,6 +2,7 @@
 
 %require "2.7"
 
+%define api.prefix balancemq_config_yy
 %define api.pure full
 %define api.push-pull push
 
@@ -15,16 +16,16 @@
 }
 
 %code provides {
- void yyerror(const char *str) {
+ void balancemq_config_yyerror(const char *str) {
      /* TODO: use common logging here. */
      fprintf(stderr,"error: %s\n",str);
  }
  
- int yywrap() {
+ int balancemq_config_yywrap() {
      return 1;
  }
 
- extern int yylex(void);
+ extern int balancemq_config_yylex(void);
 }
 
 %union {
