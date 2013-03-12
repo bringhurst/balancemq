@@ -62,31 +62,31 @@ settings  : /* nothing */ {
 /* Build a BALANCEMQ_list_t for BALANCEMQ_settings_block_t */
 blocks    : block {
                 $$ = BALANCEMQ_list_create();
-                BALANCEMQ_list_push($$, $1);
+                BALANCEMQ_list_push($$, $block);
             }
           | blocks block {
-                BALANCEMQ_list_push($$, $2);
+                BALANCEMQ_list_push($$, $block);
             }
           ;
 
 /* Build a BALANCEMQ_settings_block_t */
 block     : T_IDENTIFIER T_LBRACE var_decls T_RBRACE {
                 $$ = BALANCEMQ_settings_create_block($1);
-                BALANCEMQ_list_push($$->variables, $3);
+                BALANCEMQ_list_push($$->variables, $var_decls);
             }
           | T_IDENTIFIER T_LBRACE blocks T_RBRACE {
                 $$ = BALANCEMQ_settings_create_block($1);
-                BALANCEMQ_list_push($$->blocks, $3);
+                BALANCEMQ_list_push($$->blocks, $blocks);
             }
           ;
 
 /* Build a BALANCEMQ_list_t for BALANCEMQ_settings_variable_t */
 var_decls : var_decl {
                 $$ = BALANCEMQ_list_create();
-                BALANCEMQ_list_push($$, $1);
+                BALANCEMQ_list_push($$, $var_decl);
             }
           | var_decls var_decl {
-                BALANCEMQ_list_push($$, $2);
+                BALANCEMQ_list_push($$, $var_decl);
             }
           ;
 
