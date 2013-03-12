@@ -30,4 +30,12 @@ typedef struct {
     BALANCEMQ_list_t* blocks;
 } BALANCEMQ_settings_t;
 
+BALANCEMQ_settings_t* BALANCEMQ_settings_create_settings();
+BALANCEMQ_settings_block_t* BALANCEMQ_settings_create_block();
+BALANCEMQ_settings_variable_t* BALANCEMQ_settings_create_variable();
+
+BALANCEMQ_settings_value_t* BALANCEMQ_settings_create_string_value(char* value);
+BALANCEMQ_settings_value_t* BALANCEMQ_settings_create_integer_value(int value);
+BALANCEMQ_settings_value_t* BALANCEMQ_settings_create_double_value(double value);
+
 #endif /* _BALANCEMQ_SETTINGS_H */

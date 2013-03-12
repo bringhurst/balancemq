@@ -10,6 +10,6 @@ INCLUDES = \
 
 noinst_LTLIBRARIES = libbalancemq_startup_settings.la
 
-libbalancemq_startup_settings_la_SOURCES = balancemq_settings.y
+libbalancemq_startup_settings_la_SOURCES = settings.c balancemq_settings.y
 libbalancemq_startup_settings_la_LIBADD = $(LEXLIB)
 libbalancemq_startup_settings_la_LDFLAGS = $(LIB_LDFLAGS)

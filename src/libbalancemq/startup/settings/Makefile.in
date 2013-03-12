@@ -69,7 +69,8 @@ CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libbalancemq_startup_settings_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
-am_libbalancemq_startup_settings_la_OBJECTS = balancemq_settings.lo
+am_libbalancemq_startup_settings_la_OBJECTS = settings.lo \
+	balancemq_settings.lo
 libbalancemq_startup_settings_la_OBJECTS =  \
 	$(am_libbalancemq_startup_settings_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -256,7 +257,7 @@ INCLUDES = \
            -I$(top_srcdir)/src/libbalancemq/settings
 
 noinst_LTLIBRARIES = libbalancemq_startup_settings.la
-libbalancemq_startup_settings_la_SOURCES = balancemq_settings.y
+libbalancemq_startup_settings_la_SOURCES = settings.c balancemq_settings.y
 libbalancemq_startup_settings_la_LIBADD = $(LEXLIB)
 libbalancemq_startup_settings_la_LDFLAGS = $(LIB_LDFLAGS)
 all: $(BUILT_SOURCES)
@@ -317,6 +318,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/balancemq_settings.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/settings.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

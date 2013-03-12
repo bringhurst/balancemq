@@ -12,27 +12,19 @@
 }
 
 %code requires {
-  #include "settings_private.h"
+  #include "settings.h"
   #include "balancemq_settings.h"
   #include "../../common/list.h"
 }
 
 %code provides {
- void balancemq_settings_yyerror(const char *str) {
-     fprintf(stderr,"error: %s\n",str);
- }
- 
- int balancemq_settings_yywrap() {
-     return 1;
- }
-
  extern int balancemq_settings_yylex(void);
 }
 
 %union {
-    const char* string_value;
-    float       double_value;
-    int         integer_value;
+    char* string_value;
+    float double_value;
+    int   integer_value;
 
     BALANCEMQ_settings_value_t*    balance_value;
     BALANCEMQ_settings_variable_t* variable_value;
@@ -41,9 +33,9 @@
     BALANCEMQ_list_t*              list_value;
 }
 
-%token <string>        T_IDENTIFIER T_LBRACE T_RBRACE
-%token <double_type>   T_DOUBLE
-%token <integer_type>  T_INTEGER
+%token <string_value>  T_IDENTIFIER T_LBRACE T_RBRACE
+%token <double_value>  T_DOUBLE
+%token <integer_value> T_INTEGER
 
 %type <balance_value>  value
 %type <variable_value> var_decl
@@ -93,7 +85,7 @@ var_decls : var_decl {
           ;
 
 /* Build BALANCEMQ_settings_variable_t */
-var_decl  : T_IDENTIFIER[key] value { $$ = balancemq_settings_create_variable($key, $value); }
+var_decl  : T_IDENTIFIER[key] value { $$ = BALANCEMQ_settings_create_variable($key, $value); }
           ;
 
 /* Build BALANCEMQ_settings_value_t */
