@@ -417,16 +417,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  6
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   10
+#define YYLAST   21
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  8
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  7
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  12
+#define YYNRULES  13
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  17
+#define YYNSTATES  20
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
@@ -472,23 +472,24 @@ static const yytype_uint8 yytranslate[] =
    YYRHS.  */
 static const yytype_uint8 yyprhs[] =
 {
-       0,     0,     3,     4,     6,     8,    11,    16,    18,    21,
-      24,    26,    28
+       0,     0,     3,     4,     6,     8,    11,    16,    21,    23,
+      26,    29,    31,    33
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
        9,     0,    -1,    -1,    10,    -1,    11,    -1,    10,    11,
-      -1,     3,     4,    12,     5,    -1,    13,    -1,    12,    13,
-      -1,     3,    14,    -1,     3,    -1,     7,    -1,     6,    -1
+      -1,     3,     4,    12,     5,    -1,     3,     4,    10,     5,
+      -1,    13,    -1,    12,    13,    -1,     3,    14,    -1,     3,
+      -1,     7,    -1,     6,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    53,    53,    56,    63,    67,    73,    80,    84,    90,
-      94,    95,    96
+       0,    53,    53,    56,    63,    67,    73,    77,    84,    88,
+      94,    98,    99,   100
 };
 #endif
 
@@ -515,15 +516,15 @@ static const yytype_uint16 yytoknum[] =
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,     8,     9,     9,    10,    10,    11,    12,    12,    13,
-      14,    14,    14
+       0,     8,     9,     9,    10,    10,    11,    11,    12,    12,
+      13,    14,    14,    14
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     0,     1,     1,     2,     4,     1,     2,     2,
-       1,     1,     1
+       0,     2,     0,     1,     1,     2,     4,     4,     1,     2,
+       2,     1,     1,     1
 };
 
 /* YYDEFACT[STATE-NAME] -- Default reduction number in state STATE-NUM.
@@ -532,13 +533,13 @@ static const yytype_uint8 yyr2[] =
 static const yytype_uint8 yydefact[] =
 {
        2,     0,     0,     3,     4,     0,     1,     5,     0,     0,
-       7,    10,    12,    11,     9,     6,     8
+       0,     8,    11,    13,    12,    10,     7,     0,     6,     9
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,     3,     4,     9,    10,    14
+      -1,     2,     3,     4,    10,    11,    15
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
@@ -546,14 +547,14 @@ static const yytype_int8 yydefgoto[] =
 #define YYPACT_NINF -4
 static const yytype_int8 yypact[] =
 {
-      -2,     4,     6,    -2,    -4,    -1,    -4,    -4,    -3,     2,
-      -4,    -4,    -4,    -4,    -4,    -4,    -4
+       0,     5,     8,     0,    -4,    13,    -4,    -4,    -2,     9,
+      10,    -4,    -4,    -4,    -4,    -4,    -4,     4,    -4,    -4
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -4,    -4,    -4,     7,    -4,     0,    -4
+      -4,    -4,    12,    -3,    -4,    11,    -4
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -562,8 +563,9 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-      11,     1,     8,    12,    13,     8,     6,    15,     5,    16,
-       7
+       7,    12,     5,     1,    13,    14,     7,    12,     6,     5,
+      13,    14,     1,    17,    16,    18,     8,     9,     0,     0,
+       0,    19
 };
 
 #define yypact_value_is_default(Yystate) \
@@ -572,18 +574,19 @@ static const yytype_uint8 yytable[] =
 #define yytable_value_is_error(Yytable_value) \
   YYID (0)
 
-static const yytype_uint8 yycheck[] =
+static const yytype_int8 yycheck[] =
 {
-       3,     3,     3,     6,     7,     3,     0,     5,     4,     9,
-       3
+       3,     3,     4,     3,     6,     7,     9,     3,     0,     4,
+       6,     7,     3,     3,     5,     5,     3,     5,    -1,    -1,
+      -1,    10
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     3,     9,    10,    11,     4,     0,    11,     3,    12,
-      13,     3,     6,     7,    14,     5,    13
+       0,     3,     9,    10,    11,     4,     0,    11,     3,    10,
+      12,    13,     3,     6,     7,    14,     5,     3,     5,    13
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1502,10 +1505,10 @@ yyreduce:
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 80 "balancemq_settings.y"
+#line 77 "balancemq_settings.y"
     {
-                (yyval.list_value) = BALANCEMQ_list_create();
-                BALANCEMQ_list_push((yyval.list_value), (yyvsp[(1) - (1)].variable_value));
+                (yyval.block_value) = BALANCEMQ_settings_create_block((yyvsp[(1) - (4)].string_value));
+                BALANCEMQ_list_push((yyval.block_value)->blocks, (yyvsp[(3) - (4)].list_value));
             }
     break;
 
@@ -1513,37 +1516,46 @@ yyreduce:
 /* Line 1792 of yacc.c  */
 #line 84 "balancemq_settings.y"
     {
-                BALANCEMQ_list_push((yyval.list_value), (yyvsp[(2) - (2)].variable_value));
+                (yyval.list_value) = BALANCEMQ_list_create();
+                BALANCEMQ_list_push((yyval.list_value), (yyvsp[(1) - (1)].variable_value));
             }
     break;
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 90 "balancemq_settings.y"
-    { (yyval.variable_value) = BALANCEMQ_settings_create_variable((yyvsp[(1) - (2)].string_value), (yyvsp[(2) - (2)].balance_value)); }
+#line 88 "balancemq_settings.y"
+    {
+                BALANCEMQ_list_push((yyval.list_value), (yyvsp[(2) - (2)].variable_value));
+            }
     break;
 
   case 10:
 /* Line 1792 of yacc.c  */
 #line 94 "balancemq_settings.y"
-    { (yyval.balance_value) = BALANCEMQ_settings_create_string_value((yyvsp[(1) - (1)].string_value)); }
+    { (yyval.variable_value) = BALANCEMQ_settings_create_variable((yyvsp[(1) - (2)].string_value), (yyvsp[(2) - (2)].balance_value)); }
     break;
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 95 "balancemq_settings.y"
-    { (yyval.balance_value) = BALANCEMQ_settings_create_integer_value((yyvsp[(1) - (1)].integer_value)); }
+#line 98 "balancemq_settings.y"
+    { (yyval.balance_value) = BALANCEMQ_settings_create_string_value((yyvsp[(1) - (1)].string_value)); }
     break;
 
   case 12:
 /* Line 1792 of yacc.c  */
-#line 96 "balancemq_settings.y"
+#line 99 "balancemq_settings.y"
+    { (yyval.balance_value) = BALANCEMQ_settings_create_integer_value((yyvsp[(1) - (1)].integer_value)); }
+    break;
+
+  case 13:
+/* Line 1792 of yacc.c  */
+#line 100 "balancemq_settings.y"
     { (yyval.balance_value) = BALANCEMQ_settings_create_double_value((yyvsp[(1) - (1)].double_value)); }
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 1547 "balancemq_settings.c"
+#line 1559 "balancemq_settings.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1778,5 +1790,5 @@ yypushreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 99 "balancemq_settings.y"
+#line 103 "balancemq_settings.y"
 

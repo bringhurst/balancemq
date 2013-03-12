@@ -74,6 +74,10 @@ block     : T_IDENTIFIER T_LBRACE var_decls T_RBRACE {
                 $$ = BALANCEMQ_settings_create_block($1);
                 BALANCEMQ_list_push($$->variables, $3);
             }
+          | T_IDENTIFIER T_LBRACE blocks T_RBRACE {
+                $$ = BALANCEMQ_settings_create_block($1);
+                BALANCEMQ_list_push($$->blocks, $3);
+            }
           ;
 
 /* Build a BALANCEMQ_list_t for BALANCEMQ_settings_variable_t */
