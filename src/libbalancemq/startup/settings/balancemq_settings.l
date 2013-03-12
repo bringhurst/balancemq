@@ -13,53 +13,36 @@ INTEGER    [0-9]+
 
 %%
 
-WHITESPACE ; /* Ignore this token. */
+WHITESPACE            ; /* Ignore this token. */
 
-"/*"       %{  /* Allow C-style comments. */
-               register int c;
+"/*"                  BEGIN(comment); /* Handle C-style comments. */
+<comment>[^*\n]*      /* Ignore anything that's not a '*'. */
+<comment>"*"+[^*/\n]* /* Ignore '*'s not followed by a '/'. */
+<comment>"*"+"/"      BEGIN(INITIAL);
      
-               for(;;) {
-                   while((c = input()) != '*' && c != EOF)  {
-                       ; /* Do nothing. */
-                   }
-     
-                   if(c == '*') {
-                       while ( (c = input()) == '*' ) {
-                           ; /* Do nothing. */
-                       }
+"{"                   return T_LBRACE;
+"}"                   return T_RBRACE;
+","                   return T_COMMA;
 
-                       if ( c == '/' ) {
-                           break; /* The end of the comment. */
-                       }
-                   }
-     
-                   if(c == EOF) {
-                       error("An EOF was found in a comment.");
-                       break;
-                   }
-               }
-           %}
+IDENTIFIER            %{
+                          balancemq_settings_yylval = balancemq_settings_yytext;
+                          return T_IDENTIFIER;
+                      %}
 
-"{"        return T_LBRACE;
-"}"        return T_RBRACE;
-","        return T_COMMA;
+DOUBLE                %{
+                          balancemq_settings_yylval = atof(balancemq_settings_yytext);
+                          return T_DOUBLE;
+                      %}
 
-IDENTIFIER %{
-               balancemq_settings_yylval = balancemq_settings_yytext;
-               return T_IDENTIFIER;
-           %}
+INTEGER               %{
+                          balancemq_settings_yylval = atoi(balancemq_settings_yytext);
+                          return T_INTEGER;
+                      %}
 
-DOUBLE     %{
-               balancemq_settings_yylval = atof(balancemq_settings_yytext);
-               return T_DOUBLE;
-           %}
-
-INTEGER    %{
-               balancemq_settings_yylval = atoi(balancemq_settings_yytext);
-               return T_INTEGER;
-           %}
-
-.          printf("Unknown token in settings file.\n"); balancemq_settings_yyterminate();
+.                     %{
+                          printf("Unknown token in settings file.\n");
+                          balancemq_settings_yyterminate();
+                      %}
 
 %%
 
