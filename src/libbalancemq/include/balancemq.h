@@ -1,19 +1,7 @@
-#ifndef _BALANCEMQ_H
-#define _BALANCEMQ_H
+#ifndef _BALANCEMQ_BALANCEMQ_H
+#define _BALANCEMQ_BALANCEMQ_H
 
 #include <stdint.h>
-
-/**
- * The various logging levels that libbalancemq will output.
- */
-typedef enum BALANCE_loglevel
-{
-    BALANCE_LOG_FATAL = 1,
-    BALANCE_LOG_ERR   = 2,
-    BALANCE_LOG_WARN  = 3,
-    BALANCE_LOG_INFO  = 4,
-    BALANCE_LOG_DBG   = 5
-} BALANCE_loglevel;
 
 /* An item to be processed. */
 typedef struct {
@@ -82,7 +70,7 @@ int BALANCE_insert(BALANCE_item_t* item);
 void BALANCE_process(BALANCE_cb func);
 
 /**
- * Ensure all work for a specified persistant tagged queue has been completed
+ * Ensure all work for a specified persistent tagged queue has been completed
  * and destroy the tagged queue.
  */
 void BALANCE_finalize_persistant(char* tag);
@@ -102,4 +90,4 @@ void BALANCE_read_config(char* path);
  */
 void BALANCE_setup_log(int fd, enum BALANCE_loglevel level);
 
-#endif /* _BALANCEMQ_H */
+#endif /* _BALANCEMQ_BALANCEMQ_H */
