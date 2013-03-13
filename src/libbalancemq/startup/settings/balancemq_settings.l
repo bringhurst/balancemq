@@ -2,9 +2,11 @@
   /* A lexer for balancemq.conf */
 }
 
+%option 8bit reentrant bison-bridge
+%option warn nodefault
+%option yylineno
+%option outfile="balancemq_settings_scanner.c" header-file="balancemq_settings_scanner.h"
 %option noyywrap nounput
-%option reentrant
-%option bison-bridge
 
 WHITESPACE            [ \t\n]
 IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
@@ -16,9 +18,12 @@ INTEGER               [0-9]+
 WHITESPACE            ; /* Ignore this token. */
 
 "/*"                  BEGIN(comment); /* Handle C-style comments. */
-<comment>[^*\n]*      ; /* Ignore anything that's not a '*'. */
-<comment>"*"+[^*/\n]* ; /* Ignore '*'s not followed by a '/'. */
-<comment>"*"+"/"      BEGIN(INITIAL);
+
+<comment>{
+    [^*\n]*           ; /* Ignore anything that's not a '*'. */
+    "*"+[^*/\n]*      ; /* Ignore '*'s not followed by a '/'. */
+    "*"+"/"           BEGIN(INITIAL);
+}
      
 "{"                   return T_LBRACE;
 "}"                   return T_RBRACE;
