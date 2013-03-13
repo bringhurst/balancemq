@@ -1,5 +1,7 @@
 #include "settings.h"
-#include "balancemq_settings.h"
+
+#include "balancemq_settings.parser.h"
+#include "balancemq_settings.scanner.h"
 
 #include <log.h>
 
@@ -10,19 +12,25 @@
 BALANCEMQ_settings_t* BALANCEMQ_parse_settings(char* path)
 {
     int status;
-    balancemq_settings_yypstate *ps = balancemq_settings_yypstate_new();
+    yyscan_t scanner;
+    balancemq_settings_yypstate *ps = NULL;
+    
+    balancemq_settings_yylex_init(&scanner);
+    ps = balancemq_settings_yypstate_new();
 
-    //balancemq_settings_yyin = fopen(path, "r");
 /*
-    if(balancemq_settings_yyin == NULL) {
+    balancemq_settings_yyset_yyin(fopen(path, "r"));
+    if(balancemq_settings_yyget_yyin() == NULL) {
         LOG("Could not open config file `%s'. %s", path, strerror(errno));
         return NULL;
     }   
 */
+
     do {
         status = balancemq_settings_yypush_parse(ps, balancemq_settings_yylex(), NULL);
     } while (status == YYPUSH_MORE);
 
+    balancemq_settings_yylex_destroy(scanner);
     return NULL;
 }
 

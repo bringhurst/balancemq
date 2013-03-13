@@ -32,6 +32,20 @@ typedef struct {
     BALANCEMQ_list_t* blocks;
 } BALANCEMQ_settings_t;
 
+
+typedef union BALANCEMQ_SETTINGS_YYSTYPE
+{
+    char* string_value;
+    float double_value;
+    int   integer_value;
+
+    BALANCEMQ_settings_value_t*    balance_value;
+    BALANCEMQ_settings_variable_t* variable_value;
+    BALANCEMQ_settings_block_t*    block_value;
+    BALANCEMQ_settings_t*          settings_value;
+    BALANCEMQ_list_t*              list_value;
+} BALANCEMQ_SETTINGS_YYSTYPE;
+
 extern void balancemq_settings_yyerror(const char* msg);
 
 BALANCEMQ_settings_t* BALANCEMQ_settings_create_settings();

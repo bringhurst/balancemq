@@ -1,13 +1,21 @@
 %top {
   /* A lexer for balancemq.conf */
+
+  /* Needed for extra type BALANCEMQ_settings_t and YYSTYPE. */
+  #include "settings.h"
+  #define YYSTYPE BALANCEMQ_SETTINGS_YYSTYPE
+
+  /* Include for token constants. */
+  #include "balancemq_settings.parser.h"
 }
 
-%option 8bit reentrant yylineno warn
-%option bison-bridge bison-locations
-%option align read
+%option 8bit reentrant warn
+%option bison-bridge nounput
+%option align read perf-report
 
-%option prefix="balancemq_settings_yy"
-%option outfile="lex.yy.c"
+%option extra-type="BALANCEMQ_settings_t*"
+%option prefix="BALANCEMQ_SETTINGS_YY"
+%option outfile="balancemq_settings.scanner.c"
 
 WHITESPACE            [ \t\n]
 IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
@@ -33,23 +41,23 @@ WHITESPACE            ; /* Ignore this token. */
 ","                   return T_COMMA;
 
 IDENTIFIER            %{
-                          balancemq_settings_yylval = balancemq_settings_yytext;
+                          yylval = yytext;
                           return T_IDENTIFIER;
                       %}
 
 DOUBLE                %{
-                          balancemq_settings_yylval = atof(balancemq_settings_yytext);
+                          yylval->double_value = atof(yytext);
                           return T_DOUBLE;
                       %}
 
 INTEGER               %{
-                          balancemq_settings_yylval = atoi(balancemq_settings_yytext);
+                          yylval = atoi(yytext);
                           return T_INTEGER;
                       %}
 
 .                     %{
                           printf("Unknown token in settings file.\n");
-                          balancemq_settings_yyterminate();
+                          yyterminate();
                       %}
 
 %%

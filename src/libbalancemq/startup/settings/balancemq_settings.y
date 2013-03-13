@@ -6,6 +6,8 @@
 %define api.pure full
 %define api.push-pull push
 
+%file-prefix "balancemq_settings.parser"
+
 %code top {
   #define _GNU_SOURCE
   #include <stdio.h>
@@ -16,27 +18,9 @@
   #include <xlist.h>
 
   #include "settings.h"
-  #include "balancemq_settings.h"
 }
 
-%code provides {
-  extern int balancemq_settings_yylex(void);
-  extern void balancemq_settings_yyerror(const char* msg);
-}
-
-%union {
-    char* string_value;
-    float double_value;
-    int   integer_value;
-
-    BALANCEMQ_settings_value_t*    balance_value;
-    BALANCEMQ_settings_variable_t* variable_value;
-    BALANCEMQ_settings_block_t*    block_value;
-    BALANCEMQ_settings_t*          settings_value;
-    BALANCEMQ_list_t*              list_value;
-}
-
-%token <string_value>  T_IDENTIFIER T_LBRACE T_RBRACE
+%token <string_value>  T_IDENTIFIER T_LBRACE T_RBRACE T_COMMA
 %token <double_value>  T_DOUBLE
 %token <integer_value> T_INTEGER
 
@@ -45,6 +29,8 @@
 %type <block_value>    block
 %type <settings_value> settings
 %type <list_value>     blocks var_decls
+
+%start settings
 
 /* TODO: define destructors */
 

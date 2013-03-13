@@ -30,8 +30,8 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-#ifndef YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_H_INCLUDED
-# define YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_H_INCLUDED
+#ifndef YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_PARSER_H_INCLUDED
+# define YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_PARSER_H_INCLUDED
 /* Enabling traces.  */
 #ifndef BALANCEMQ_SETTINGS_YYDEBUG
 # if defined YYDEBUG
@@ -49,17 +49,16 @@ extern int balancemq_settings_yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 2058 of yacc.c  */
-#line 14 "balancemq_settings.y"
+#line 16 "balancemq_settings.y"
 
   #include <log.h>
   #include <xlist.h>
 
   #include "settings.h"
-  #include "balancemq_settings.h"
 
 
 /* Line 2058 of yacc.c  */
-#line 63 "balancemq_settings.h"
+#line 62 "balancemq_settings.parser.h"
 
 /* Tokens.  */
 #ifndef BALANCEMQ_SETTINGS_YYTOKENTYPE
@@ -70,40 +69,23 @@ extern int balancemq_settings_yydebug;
      T_IDENTIFIER = 258,
      T_LBRACE = 259,
      T_RBRACE = 260,
-     T_DOUBLE = 261,
-     T_INTEGER = 262
+     T_COMMA = 261,
+     T_DOUBLE = 262,
+     T_INTEGER = 263
    };
 #endif
 /* Tokens.  */
 #define T_IDENTIFIER 258
 #define T_LBRACE 259
 #define T_RBRACE 260
-#define T_DOUBLE 261
-#define T_INTEGER 262
+#define T_COMMA 261
+#define T_DOUBLE 262
+#define T_INTEGER 263
 
 
 
 #if ! defined BALANCEMQ_SETTINGS_YYSTYPE && ! defined BALANCEMQ_SETTINGS_YYSTYPE_IS_DECLARED
-typedef union BALANCEMQ_SETTINGS_YYSTYPE
-{
-/* Line 2058 of yacc.c  */
-#line 27 "balancemq_settings.y"
 
-    char* string_value;
-    float double_value;
-    int   integer_value;
-
-    BALANCEMQ_settings_value_t*    balance_value;
-    BALANCEMQ_settings_variable_t* variable_value;
-    BALANCEMQ_settings_block_t*    block_value;
-    BALANCEMQ_settings_t*          settings_value;
-    BALANCEMQ_list_t*              list_value;
-
-
-/* Line 2058 of yacc.c  */
-#line 105 "balancemq_settings.h"
-} BALANCEMQ_SETTINGS_YYSTYPE;
-# define BALANCEMQ_SETTINGS_YYSTYPE_IS_TRIVIAL 1
 # define balancemq_settings_yystype BALANCEMQ_SETTINGS_YYSTYPE /* obsolescent; will be withdrawn */
 # define BALANCEMQ_SETTINGS_YYSTYPE_IS_DECLARED 1
 #endif
@@ -132,15 +114,5 @@ void balancemq_settings_yypstate_delete (balancemq_settings_yypstate *ps);
 #else
 void balancemq_settings_yypstate_delete ();
 #endif
-/* "%code provides" blocks.  */
-/* Line 2058 of yacc.c  */
-#line 22 "balancemq_settings.y"
 
-  extern int balancemq_settings_yylex(void);
-  extern void balancemq_settings_yyerror(const char* msg);
-
-
-/* Line 2058 of yacc.c  */
-#line 145 "balancemq_settings.h"
-
-#endif /* !YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_H_INCLUDED  */
+#endif /* !YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_PARSER_H_INCLUDED  */
