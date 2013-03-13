@@ -164,7 +164,7 @@ typedef void* yyscan_t;
 #define YY_STATE_EOF(state) (YY_END_OF_BUFFER + state + 1)
 
 /* Special action meaning "start processing a new file". */
-#define YY_NEW_FILE BALANCEMQ_SETTINGS_YYrestart(yyin ,yyscanner )
+#define YY_NEW_FILE balancemq_settings_yyrestart(yyin ,yyscanner )
 
 #define YY_END_OF_BUFFER_CHAR 0
 
@@ -274,7 +274,7 @@ struct yy_buffer_state
 	 * possible backing-up.
 	 *
 	 * When we actually see the EOF, we change the status to "new"
-	 * (via BALANCEMQ_SETTINGS_YYrestart()), so that the user can continue scanning by
+	 * (via balancemq_settings_yyrestart()), so that the user can continue scanning by
 	 * just pointing yyin at a new input file.
 	 */
 #define YY_BUFFER_EOF_PENDING 2
@@ -297,36 +297,36 @@ struct yy_buffer_state
  */
 #define YY_CURRENT_BUFFER_LVALUE yyg->yy_buffer_stack[yyg->yy_buffer_stack_top]
 
-void BALANCEMQ_SETTINGS_YYrestart (FILE *input_file ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YY_switch_to_buffer (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_create_buffer (FILE *file,int size ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YY_delete_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YY_flush_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YYpush_buffer_state (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YYpop_buffer_state (yyscan_t yyscanner );
+void balancemq_settings_yyrestart (FILE *input_file ,yyscan_t yyscanner );
+void balancemq_settings_yy_switch_to_buffer (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
+YY_BUFFER_STATE balancemq_settings_yy_create_buffer (FILE *file,int size ,yyscan_t yyscanner );
+void balancemq_settings_yy_delete_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
+void balancemq_settings_yy_flush_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
+void balancemq_settings_yypush_buffer_state (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
+void balancemq_settings_yypop_buffer_state (yyscan_t yyscanner );
 
-static void BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscan_t yyscanner );
-static void BALANCEMQ_SETTINGS_YY_load_buffer_state (yyscan_t yyscanner );
-static void BALANCEMQ_SETTINGS_YY_init_buffer (YY_BUFFER_STATE b,FILE *file ,yyscan_t yyscanner );
+static void balancemq_settings_yyensure_buffer_stack (yyscan_t yyscanner );
+static void balancemq_settings_yy_load_buffer_state (yyscan_t yyscanner );
+static void balancemq_settings_yy_init_buffer (YY_BUFFER_STATE b,FILE *file ,yyscan_t yyscanner );
 
-#define YY_FLUSH_BUFFER BALANCEMQ_SETTINGS_YY_flush_buffer(YY_CURRENT_BUFFER ,yyscanner)
+#define YY_FLUSH_BUFFER balancemq_settings_yy_flush_buffer(YY_CURRENT_BUFFER ,yyscanner)
 
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_buffer (char *base,yy_size_t size ,yyscan_t yyscanner );
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_string (yyconst char *yy_str ,yyscan_t yyscanner );
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_bytes (yyconst char *bytes,int len ,yyscan_t yyscanner );
+YY_BUFFER_STATE balancemq_settings_yy_scan_buffer (char *base,yy_size_t size ,yyscan_t yyscanner );
+YY_BUFFER_STATE balancemq_settings_yy_scan_string (yyconst char *yy_str ,yyscan_t yyscanner );
+YY_BUFFER_STATE balancemq_settings_yy_scan_bytes (yyconst char *bytes,int len ,yyscan_t yyscanner );
 
-void *BALANCEMQ_SETTINGS_YYalloc (yy_size_t ,yyscan_t yyscanner );
-void *BALANCEMQ_SETTINGS_YYrealloc (void *,yy_size_t ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YYfree (void * ,yyscan_t yyscanner );
+void *balancemq_settings_yyalloc (yy_size_t ,yyscan_t yyscanner );
+void *balancemq_settings_yyrealloc (void *,yy_size_t ,yyscan_t yyscanner );
+void balancemq_settings_yyfree (void * ,yyscan_t yyscanner );
 
-#define yy_new_buffer BALANCEMQ_SETTINGS_YY_create_buffer
+#define yy_new_buffer balancemq_settings_yy_create_buffer
 
 #define yy_set_interactive(is_interactive) \
 	{ \
 	if ( ! YY_CURRENT_BUFFER ){ \
-        BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscanner); \
+        balancemq_settings_yyensure_buffer_stack (yyscanner); \
 		YY_CURRENT_BUFFER_LVALUE =    \
-            BALANCEMQ_SETTINGS_YY_create_buffer(yyin,YY_BUF_SIZE ,yyscanner); \
+            balancemq_settings_yy_create_buffer(yyin,YY_BUF_SIZE ,yyscanner); \
 	} \
 	YY_CURRENT_BUFFER_LVALUE->yy_is_interactive = is_interactive; \
 	}
@@ -334,9 +334,9 @@ void BALANCEMQ_SETTINGS_YYfree (void * ,yyscan_t yyscanner );
 #define yy_set_bol(at_bol) \
 	{ \
 	if ( ! YY_CURRENT_BUFFER ){\
-        BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscanner); \
+        balancemq_settings_yyensure_buffer_stack (yyscanner); \
 		YY_CURRENT_BUFFER_LVALUE =    \
-            BALANCEMQ_SETTINGS_YY_create_buffer(yyin,YY_BUF_SIZE ,yyscanner); \
+            balancemq_settings_yy_create_buffer(yyin,YY_BUF_SIZE ,yyscanner); \
 	} \
 	YY_CURRENT_BUFFER_LVALUE->yy_at_bol = at_bol; \
 	}
@@ -1071,42 +1071,42 @@ static int yy_init_globals (yyscan_t yyscanner );
      * from bison output in section 1.*/
     #    define yylval yyg->yylval_r
     
-int BALANCEMQ_SETTINGS_YYlex_init (yyscan_t* scanner);
+int balancemq_settings_yylex_init (yyscan_t* scanner);
 
-int BALANCEMQ_SETTINGS_YYlex_init_extra (YY_EXTRA_TYPE user_defined,yyscan_t* scanner);
+int balancemq_settings_yylex_init_extra (YY_EXTRA_TYPE user_defined,yyscan_t* scanner);
 
 /* Accessor methods to globals.
    These are made visible to non-reentrant scanners for convenience. */
 
-int BALANCEMQ_SETTINGS_YYlex_destroy (yyscan_t yyscanner );
+int balancemq_settings_yylex_destroy (yyscan_t yyscanner );
 
-int BALANCEMQ_SETTINGS_YYget_debug (yyscan_t yyscanner );
+int balancemq_settings_yyget_debug (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_debug (int debug_flag ,yyscan_t yyscanner );
+void balancemq_settings_yyset_debug (int debug_flag ,yyscan_t yyscanner );
 
-YY_EXTRA_TYPE BALANCEMQ_SETTINGS_YYget_extra (yyscan_t yyscanner );
+YY_EXTRA_TYPE balancemq_settings_yyget_extra (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_extra (YY_EXTRA_TYPE user_defined ,yyscan_t yyscanner );
+void balancemq_settings_yyset_extra (YY_EXTRA_TYPE user_defined ,yyscan_t yyscanner );
 
-FILE *BALANCEMQ_SETTINGS_YYget_in (yyscan_t yyscanner );
+FILE *balancemq_settings_yyget_in (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_in  (FILE * in_str ,yyscan_t yyscanner );
+void balancemq_settings_yyset_in  (FILE * in_str ,yyscan_t yyscanner );
 
-FILE *BALANCEMQ_SETTINGS_YYget_out (yyscan_t yyscanner );
+FILE *balancemq_settings_yyget_out (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_out  (FILE * out_str ,yyscan_t yyscanner );
+void balancemq_settings_yyset_out  (FILE * out_str ,yyscan_t yyscanner );
 
-int BALANCEMQ_SETTINGS_YYget_leng (yyscan_t yyscanner );
+int balancemq_settings_yyget_leng (yyscan_t yyscanner );
 
-char *BALANCEMQ_SETTINGS_YYget_text (yyscan_t yyscanner );
+char *balancemq_settings_yyget_text (yyscan_t yyscanner );
 
-int BALANCEMQ_SETTINGS_YYget_lineno (yyscan_t yyscanner );
+int balancemq_settings_yyget_lineno (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_lineno (int line_number ,yyscan_t yyscanner );
+void balancemq_settings_yyset_lineno (int line_number ,yyscan_t yyscanner );
 
-YYSTYPE * BALANCEMQ_SETTINGS_YYget_lval (yyscan_t yyscanner );
+YYSTYPE * balancemq_settings_yyget_lval (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_lval (YYSTYPE * yylval_param ,yyscan_t yyscanner );
+void balancemq_settings_yyset_lval (YYSTYPE * yylval_param ,yyscan_t yyscanner );
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -1114,9 +1114,9 @@ void BALANCEMQ_SETTINGS_YYset_lval (YYSTYPE * yylval_param ,yyscan_t yyscanner )
 
 #ifndef YY_SKIP_YYWRAP
 #ifdef __cplusplus
-extern "C" int BALANCEMQ_SETTINGS_YYwrap (yyscan_t yyscanner );
+extern "C" int balancemq_settings_yywrap (yyscan_t yyscanner );
 #else
-extern int BALANCEMQ_SETTINGS_YYwrap (yyscan_t yyscanner );
+extern int balancemq_settings_yywrap (yyscan_t yyscanner );
 #endif
 #endif
 
@@ -1202,10 +1202,10 @@ static int input (yyscan_t yyscanner );
 #ifndef YY_DECL
 #define YY_DECL_IS_OURS 1
 
-extern int BALANCEMQ_SETTINGS_YYlex \
+extern int balancemq_settings_yylex \
                (YYSTYPE * yylval_param ,yyscan_t yyscanner);
 
-#define YY_DECL int BALANCEMQ_SETTINGS_YYlex \
+#define YY_DECL int balancemq_settings_yylex \
                (YYSTYPE * yylval_param , yyscan_t yyscanner)
 #endif /* !YY_DECL */
 
@@ -1233,10 +1233,14 @@ YY_DECL
 	register int yy_act;
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
-#line 27 "balancemq_settings.l"
+#line 28 "balancemq_settings.l"
 
 
-#line 1240 "balancemq_settings.scanner.c"
+
+  BALANCEMQ_settings_t* settings_tree = yyextra;
+
+
+#line 1244 "balancemq_settings.scanner.c"
 
     yylval = yylval_param;
 
@@ -1258,12 +1262,12 @@ YY_DECL
 			yyout = stdout;
 
 		if ( ! YY_CURRENT_BUFFER ) {
-			BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscanner);
+			balancemq_settings_yyensure_buffer_stack (yyscanner);
 			YY_CURRENT_BUFFER_LVALUE =
-				BALANCEMQ_SETTINGS_YY_create_buffer(yyin,YY_BUF_SIZE ,yyscanner);
+				balancemq_settings_yy_create_buffer(yyin,YY_BUF_SIZE ,yyscanner);
 		}
 
-		BALANCEMQ_SETTINGS_YY_load_buffer_state(yyscanner );
+		balancemq_settings_yy_load_buffer_state(yyscanner );
 		}
 
 	while ( 1 )		/* loops until end-of-file is reached */
@@ -1318,57 +1322,57 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 29 "balancemq_settings.l"
+#line 34 "balancemq_settings.l"
 ; /* Ignore this token. */
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 31 "balancemq_settings.l"
+#line 36 "balancemq_settings.l"
 BEGIN(comment); /* Handle C-style comments. */
 	YY_BREAK
 
 case 3:
 YY_RULE_SETUP
-#line 34 "balancemq_settings.l"
+#line 39 "balancemq_settings.l"
 ; /* Ignore anything that's not a '*'. */
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 35 "balancemq_settings.l"
+#line 40 "balancemq_settings.l"
 ; /* Ignore '*'s not followed by a '/'. */
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 36 "balancemq_settings.l"
+#line 41 "balancemq_settings.l"
 BEGIN(INITIAL);
 	YY_BREAK
 
 case 6:
 YY_RULE_SETUP
-#line 39 "balancemq_settings.l"
+#line 44 "balancemq_settings.l"
 return T_LBRACE;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 40 "balancemq_settings.l"
+#line 45 "balancemq_settings.l"
 return T_RBRACE;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 41 "balancemq_settings.l"
+#line 46 "balancemq_settings.l"
 return T_COMMA;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 43 "balancemq_settings.l"
+#line 48 "balancemq_settings.l"
 
-                          yylval = yytext;
+                          yylval->string_value = yytext;
                           return T_IDENTIFIER;
 
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 48 "balancemq_settings.l"
+#line 53 "balancemq_settings.l"
 
                           yylval->double_value = atof(yytext);
                           return T_DOUBLE;
@@ -1376,15 +1380,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 53 "balancemq_settings.l"
+#line 58 "balancemq_settings.l"
 
-                          yylval = atoi(yytext);
+                          yylval->integer_value = atoi(yytext);
                           return T_INTEGER;
 
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 58 "balancemq_settings.l"
+#line 63 "balancemq_settings.l"
 
                           printf("Unknown token in settings file.\n");
                           yyterminate();
@@ -1392,10 +1396,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 63 "balancemq_settings.l"
+#line 68 "balancemq_settings.l"
 ECHO;
 	YY_BREAK
-#line 1399 "balancemq_settings.scanner.c"
+#line 1403 "balancemq_settings.scanner.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(comment):
 	yyterminate();
@@ -1414,7 +1418,7 @@ case YY_STATE_EOF(comment):
 			/* We're scanning a new file or input source.  It's
 			 * possible that this happened because the user
 			 * just pointed yyin at a new source and called
-			 * BALANCEMQ_SETTINGS_YYlex().  If so, then we have to assure
+			 * balancemq_settings_yylex().  If so, then we have to assure
 			 * consistency between YY_CURRENT_BUFFER and our
 			 * globals.  Here is the right place to do so, because
 			 * this is the first action (other than possibly a
@@ -1474,7 +1478,7 @@ case YY_STATE_EOF(comment):
 				{
 				yyg->yy_did_buffer_switch_on_eof = 0;
 
-				if ( BALANCEMQ_SETTINGS_YYwrap(yyscanner ) )
+				if ( balancemq_settings_yywrap(yyscanner ) )
 					{
 					/* Note: because we've taken care in
 					 * yy_get_next_buffer() to have set up
@@ -1527,7 +1531,7 @@ case YY_STATE_EOF(comment):
 			"fatal flex scanner internal error--no action found" );
 	} /* end of action switch */
 		} /* end of scanning one token */
-} /* end of BALANCEMQ_SETTINGS_YYlex */
+} /* end of balancemq_settings_yylex */
 
 /* yy_get_next_buffer - try to read in a new buffer
  *
@@ -1606,7 +1610,7 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 
 				b->yy_ch_buf = (char *)
 					/* Include room in for 2 EOB chars. */
-					BALANCEMQ_SETTINGS_YYrealloc((void *) b->yy_ch_buf,b->yy_buf_size + 2 ,yyscanner );
+					balancemq_settings_yyrealloc((void *) b->yy_ch_buf,b->yy_buf_size + 2 ,yyscanner );
 				}
 			else
 				/* Can't grow it, we don't own it. */
@@ -1638,7 +1642,7 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 		if ( number_to_move == YY_MORE_ADJ )
 			{
 			ret_val = EOB_ACT_END_OF_FILE;
-			BALANCEMQ_SETTINGS_YYrestart(yyin  ,yyscanner);
+			balancemq_settings_yyrestart(yyin  ,yyscanner);
 			}
 
 		else
@@ -1655,7 +1659,7 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 	if ((yy_size_t) (yyg->yy_n_chars + number_to_move) > YY_CURRENT_BUFFER_LVALUE->yy_buf_size) {
 		/* Extend the array by 50%, plus the number we really need. */
 		yy_size_t new_size = yyg->yy_n_chars + number_to_move + (yyg->yy_n_chars >> 1);
-		YY_CURRENT_BUFFER_LVALUE->yy_ch_buf = (char *) BALANCEMQ_SETTINGS_YYrealloc((void *) YY_CURRENT_BUFFER_LVALUE->yy_ch_buf,new_size ,yyscanner );
+		YY_CURRENT_BUFFER_LVALUE->yy_ch_buf = (char *) balancemq_settings_yyrealloc((void *) YY_CURRENT_BUFFER_LVALUE->yy_ch_buf,new_size ,yyscanner );
 		if ( ! YY_CURRENT_BUFFER_LVALUE->yy_ch_buf )
 			YY_FATAL_ERROR( "out of dynamic memory in yy_get_next_buffer()" );
 	}
@@ -1764,13 +1768,13 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 					 */
 
 					/* Reset buffer status. */
-					BALANCEMQ_SETTINGS_YYrestart(yyin ,yyscanner);
+					balancemq_settings_yyrestart(yyin ,yyscanner);
 
 					/*FALLTHROUGH*/
 
 				case EOB_ACT_END_OF_FILE:
 					{
-					if ( BALANCEMQ_SETTINGS_YYwrap(yyscanner ) )
+					if ( balancemq_settings_yywrap(yyscanner ) )
 						return EOF;
 
 					if ( ! yyg->yy_did_buffer_switch_on_eof )
@@ -1802,34 +1806,34 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
  * @param yyscanner The scanner object.
  * @note This function does not reset the start condition to @c INITIAL .
  */
-    void BALANCEMQ_SETTINGS_YYrestart  (FILE * input_file , yyscan_t yyscanner)
+    void balancemq_settings_yyrestart  (FILE * input_file , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
 	if ( ! YY_CURRENT_BUFFER ){
-        BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscanner);
+        balancemq_settings_yyensure_buffer_stack (yyscanner);
 		YY_CURRENT_BUFFER_LVALUE =
-            BALANCEMQ_SETTINGS_YY_create_buffer(yyin,YY_BUF_SIZE ,yyscanner);
+            balancemq_settings_yy_create_buffer(yyin,YY_BUF_SIZE ,yyscanner);
 	}
 
-	BALANCEMQ_SETTINGS_YY_init_buffer(YY_CURRENT_BUFFER,input_file ,yyscanner);
-	BALANCEMQ_SETTINGS_YY_load_buffer_state(yyscanner );
+	balancemq_settings_yy_init_buffer(YY_CURRENT_BUFFER,input_file ,yyscanner);
+	balancemq_settings_yy_load_buffer_state(yyscanner );
 }
 
 /** Switch to a different input buffer.
  * @param new_buffer The new input buffer.
  * @param yyscanner The scanner object.
  */
-    void BALANCEMQ_SETTINGS_YY_switch_to_buffer  (YY_BUFFER_STATE  new_buffer , yyscan_t yyscanner)
+    void balancemq_settings_yy_switch_to_buffer  (YY_BUFFER_STATE  new_buffer , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
 	/* TODO. We should be able to replace this entire function body
 	 * with
-	 *		BALANCEMQ_SETTINGS_YYpop_buffer_state();
-	 *		BALANCEMQ_SETTINGS_YYpush_buffer_state(new_buffer);
+	 *		balancemq_settings_yypop_buffer_state();
+	 *		balancemq_settings_yypush_buffer_state(new_buffer);
      */
-	BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscanner);
+	balancemq_settings_yyensure_buffer_stack (yyscanner);
 	if ( YY_CURRENT_BUFFER == new_buffer )
 		return;
 
@@ -1842,17 +1846,17 @@ static int yy_get_next_buffer (yyscan_t yyscanner)
 		}
 
 	YY_CURRENT_BUFFER_LVALUE = new_buffer;
-	BALANCEMQ_SETTINGS_YY_load_buffer_state(yyscanner );
+	balancemq_settings_yy_load_buffer_state(yyscanner );
 
 	/* We don't actually know whether we did this switch during
-	 * EOF (BALANCEMQ_SETTINGS_YYwrap()) processing, but the only time this flag
-	 * is looked at is after BALANCEMQ_SETTINGS_YYwrap() is called, so it's safe
+	 * EOF (balancemq_settings_yywrap()) processing, but the only time this flag
+	 * is looked at is after balancemq_settings_yywrap() is called, so it's safe
 	 * to go ahead and always set it.
 	 */
 	yyg->yy_did_buffer_switch_on_eof = 1;
 }
 
-static void BALANCEMQ_SETTINGS_YY_load_buffer_state  (yyscan_t yyscanner)
+static void balancemq_settings_yy_load_buffer_state  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 	yyg->yy_n_chars = YY_CURRENT_BUFFER_LVALUE->yy_n_chars;
@@ -1867,35 +1871,35 @@ static void BALANCEMQ_SETTINGS_YY_load_buffer_state  (yyscan_t yyscanner)
  * @param yyscanner The scanner object.
  * @return the allocated buffer state.
  */
-    YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_create_buffer  (FILE * file, int  size , yyscan_t yyscanner)
+    YY_BUFFER_STATE balancemq_settings_yy_create_buffer  (FILE * file, int  size , yyscan_t yyscanner)
 {
 	YY_BUFFER_STATE b;
     
-	b = (YY_BUFFER_STATE) BALANCEMQ_SETTINGS_YYalloc(sizeof( struct yy_buffer_state ) ,yyscanner );
+	b = (YY_BUFFER_STATE) balancemq_settings_yyalloc(sizeof( struct yy_buffer_state ) ,yyscanner );
 	if ( ! b )
-		YY_FATAL_ERROR( "out of dynamic memory in BALANCEMQ_SETTINGS_YY_create_buffer()" );
+		YY_FATAL_ERROR( "out of dynamic memory in balancemq_settings_yy_create_buffer()" );
 
 	b->yy_buf_size = size;
 
 	/* yy_ch_buf has to be 2 characters longer than the size given because
 	 * we need to put in 2 end-of-buffer characters.
 	 */
-	b->yy_ch_buf = (char *) BALANCEMQ_SETTINGS_YYalloc(b->yy_buf_size + 2 ,yyscanner );
+	b->yy_ch_buf = (char *) balancemq_settings_yyalloc(b->yy_buf_size + 2 ,yyscanner );
 	if ( ! b->yy_ch_buf )
-		YY_FATAL_ERROR( "out of dynamic memory in BALANCEMQ_SETTINGS_YY_create_buffer()" );
+		YY_FATAL_ERROR( "out of dynamic memory in balancemq_settings_yy_create_buffer()" );
 
 	b->yy_is_our_buffer = 1;
 
-	BALANCEMQ_SETTINGS_YY_init_buffer(b,file ,yyscanner);
+	balancemq_settings_yy_init_buffer(b,file ,yyscanner);
 
 	return b;
 }
 
 /** Destroy the buffer.
- * @param b a buffer created with BALANCEMQ_SETTINGS_YY_create_buffer()
+ * @param b a buffer created with balancemq_settings_yy_create_buffer()
  * @param yyscanner The scanner object.
  */
-    void BALANCEMQ_SETTINGS_YY_delete_buffer (YY_BUFFER_STATE  b , yyscan_t yyscanner)
+    void balancemq_settings_yy_delete_buffer (YY_BUFFER_STATE  b , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
@@ -1906,9 +1910,9 @@ static void BALANCEMQ_SETTINGS_YY_load_buffer_state  (yyscan_t yyscanner)
 		YY_CURRENT_BUFFER_LVALUE = (YY_BUFFER_STATE) 0;
 
 	if ( b->yy_is_our_buffer )
-		BALANCEMQ_SETTINGS_YYfree((void *) b->yy_ch_buf ,yyscanner );
+		balancemq_settings_yyfree((void *) b->yy_ch_buf ,yyscanner );
 
-	BALANCEMQ_SETTINGS_YYfree((void *) b ,yyscanner );
+	balancemq_settings_yyfree((void *) b ,yyscanner );
 }
 
 #ifndef __cplusplus
@@ -1917,21 +1921,21 @@ extern int isatty (int );
     
 /* Initializes or reinitializes a buffer.
  * This function is sometimes called more than once on the same buffer,
- * such as during a BALANCEMQ_SETTINGS_YYrestart() or at EOF.
+ * such as during a balancemq_settings_yyrestart() or at EOF.
  */
-    static void BALANCEMQ_SETTINGS_YY_init_buffer  (YY_BUFFER_STATE  b, FILE * file , yyscan_t yyscanner)
+    static void balancemq_settings_yy_init_buffer  (YY_BUFFER_STATE  b, FILE * file , yyscan_t yyscanner)
 
 {
 	int oerrno = errno;
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
-	BALANCEMQ_SETTINGS_YY_flush_buffer(b ,yyscanner);
+	balancemq_settings_yy_flush_buffer(b ,yyscanner);
 
 	b->yy_input_file = file;
 	b->yy_fill_buffer = 1;
 
-    /* If b is the current buffer, then BALANCEMQ_SETTINGS_YY_init_buffer was _probably_
-     * called from BALANCEMQ_SETTINGS_YYrestart() or through yy_get_next_buffer.
+    /* If b is the current buffer, then balancemq_settings_yy_init_buffer was _probably_
+     * called from balancemq_settings_yyrestart() or through yy_get_next_buffer.
      * In that case, we don't want to reset the lineno or column.
      */
     if (b != YY_CURRENT_BUFFER){
@@ -1948,7 +1952,7 @@ extern int isatty (int );
  * @param b the buffer state to be flushed, usually @c YY_CURRENT_BUFFER.
  * @param yyscanner The scanner object.
  */
-    void BALANCEMQ_SETTINGS_YY_flush_buffer (YY_BUFFER_STATE  b , yyscan_t yyscanner)
+    void balancemq_settings_yy_flush_buffer (YY_BUFFER_STATE  b , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 	if ( ! b )
@@ -1969,7 +1973,7 @@ extern int isatty (int );
 	b->yy_buffer_status = YY_BUFFER_NEW;
 
 	if ( b == YY_CURRENT_BUFFER )
-		BALANCEMQ_SETTINGS_YY_load_buffer_state(yyscanner );
+		balancemq_settings_yy_load_buffer_state(yyscanner );
 }
 
 /** Pushes the new state onto the stack. The new state becomes
@@ -1978,15 +1982,15 @@ extern int isatty (int );
  *  @param new_buffer The new state.
  *  @param yyscanner The scanner object.
  */
-void BALANCEMQ_SETTINGS_YYpush_buffer_state (YY_BUFFER_STATE new_buffer , yyscan_t yyscanner)
+void balancemq_settings_yypush_buffer_state (YY_BUFFER_STATE new_buffer , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 	if (new_buffer == NULL)
 		return;
 
-	BALANCEMQ_SETTINGS_YYensure_buffer_stack(yyscanner);
+	balancemq_settings_yyensure_buffer_stack(yyscanner);
 
-	/* This block is copied from BALANCEMQ_SETTINGS_YY_switch_to_buffer. */
+	/* This block is copied from balancemq_settings_yy_switch_to_buffer. */
 	if ( YY_CURRENT_BUFFER )
 		{
 		/* Flush out information for old buffer. */
@@ -2000,8 +2004,8 @@ void BALANCEMQ_SETTINGS_YYpush_buffer_state (YY_BUFFER_STATE new_buffer , yyscan
 		yyg->yy_buffer_stack_top++;
 	YY_CURRENT_BUFFER_LVALUE = new_buffer;
 
-	/* copied from BALANCEMQ_SETTINGS_YY_switch_to_buffer. */
-	BALANCEMQ_SETTINGS_YY_load_buffer_state(yyscanner );
+	/* copied from balancemq_settings_yy_switch_to_buffer. */
+	balancemq_settings_yy_load_buffer_state(yyscanner );
 	yyg->yy_did_buffer_switch_on_eof = 1;
 }
 
@@ -2009,19 +2013,19 @@ void BALANCEMQ_SETTINGS_YYpush_buffer_state (YY_BUFFER_STATE new_buffer , yyscan
  *  The next element becomes the new top.
  *  @param yyscanner The scanner object.
  */
-void BALANCEMQ_SETTINGS_YYpop_buffer_state (yyscan_t yyscanner)
+void balancemq_settings_yypop_buffer_state (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 	if (!YY_CURRENT_BUFFER)
 		return;
 
-	BALANCEMQ_SETTINGS_YY_delete_buffer(YY_CURRENT_BUFFER ,yyscanner);
+	balancemq_settings_yy_delete_buffer(YY_CURRENT_BUFFER ,yyscanner);
 	YY_CURRENT_BUFFER_LVALUE = NULL;
 	if (yyg->yy_buffer_stack_top > 0)
 		--yyg->yy_buffer_stack_top;
 
 	if (YY_CURRENT_BUFFER) {
-		BALANCEMQ_SETTINGS_YY_load_buffer_state(yyscanner );
+		balancemq_settings_yy_load_buffer_state(yyscanner );
 		yyg->yy_did_buffer_switch_on_eof = 1;
 	}
 }
@@ -2029,7 +2033,7 @@ void BALANCEMQ_SETTINGS_YYpop_buffer_state (yyscan_t yyscanner)
 /* Allocates the stack if it does not exist.
  *  Guarantees space for at least one push.
  */
-static void BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscan_t yyscanner)
+static void balancemq_settings_yyensure_buffer_stack (yyscan_t yyscanner)
 {
 	int num_to_alloc;
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
@@ -2041,11 +2045,11 @@ static void BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscan_t yyscanner)
 		 * immediate realloc on the next call.
          */
 		num_to_alloc = 1;
-		yyg->yy_buffer_stack = (struct yy_buffer_state**)BALANCEMQ_SETTINGS_YYalloc
+		yyg->yy_buffer_stack = (struct yy_buffer_state**)balancemq_settings_yyalloc
 								(num_to_alloc * sizeof(struct yy_buffer_state*)
 								, yyscanner);
 		if ( ! yyg->yy_buffer_stack )
-			YY_FATAL_ERROR( "out of dynamic memory in BALANCEMQ_SETTINGS_YYensure_buffer_stack()" );
+			YY_FATAL_ERROR( "out of dynamic memory in balancemq_settings_yyensure_buffer_stack()" );
 								  
 		memset(yyg->yy_buffer_stack, 0, num_to_alloc * sizeof(struct yy_buffer_state*));
 				
@@ -2060,12 +2064,12 @@ static void BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscan_t yyscanner)
 		int grow_size = 8 /* arbitrary grow size */;
 
 		num_to_alloc = yyg->yy_buffer_stack_max + grow_size;
-		yyg->yy_buffer_stack = (struct yy_buffer_state**)BALANCEMQ_SETTINGS_YYrealloc
+		yyg->yy_buffer_stack = (struct yy_buffer_state**)balancemq_settings_yyrealloc
 								(yyg->yy_buffer_stack,
 								num_to_alloc * sizeof(struct yy_buffer_state*)
 								, yyscanner);
 		if ( ! yyg->yy_buffer_stack )
-			YY_FATAL_ERROR( "out of dynamic memory in BALANCEMQ_SETTINGS_YYensure_buffer_stack()" );
+			YY_FATAL_ERROR( "out of dynamic memory in balancemq_settings_yyensure_buffer_stack()" );
 
 		/* zero only the new slots.*/
 		memset(yyg->yy_buffer_stack + yyg->yy_buffer_stack_max, 0, grow_size * sizeof(struct yy_buffer_state*));
@@ -2079,7 +2083,7 @@ static void BALANCEMQ_SETTINGS_YYensure_buffer_stack (yyscan_t yyscanner)
  * @param yyscanner The scanner object.
  * @return the newly allocated buffer state object. 
  */
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_buffer  (char * base, yy_size_t  size , yyscan_t yyscanner)
+YY_BUFFER_STATE balancemq_settings_yy_scan_buffer  (char * base, yy_size_t  size , yyscan_t yyscanner)
 {
 	YY_BUFFER_STATE b;
     
@@ -2089,9 +2093,9 @@ YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_buffer  (char * base, yy_size_t  size
 		/* They forgot to leave room for the EOB's. */
 		return 0;
 
-	b = (YY_BUFFER_STATE) BALANCEMQ_SETTINGS_YYalloc(sizeof( struct yy_buffer_state ) ,yyscanner );
+	b = (YY_BUFFER_STATE) balancemq_settings_yyalloc(sizeof( struct yy_buffer_state ) ,yyscanner );
 	if ( ! b )
-		YY_FATAL_ERROR( "out of dynamic memory in BALANCEMQ_SETTINGS_YY_scan_buffer()" );
+		YY_FATAL_ERROR( "out of dynamic memory in balancemq_settings_yy_scan_buffer()" );
 
 	b->yy_buf_size = size - 2;	/* "- 2" to take care of EOB's */
 	b->yy_buf_pos = b->yy_ch_buf = base;
@@ -2103,33 +2107,33 @@ YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_buffer  (char * base, yy_size_t  size
 	b->yy_fill_buffer = 0;
 	b->yy_buffer_status = YY_BUFFER_NEW;
 
-	BALANCEMQ_SETTINGS_YY_switch_to_buffer(b ,yyscanner );
+	balancemq_settings_yy_switch_to_buffer(b ,yyscanner );
 
 	return b;
 }
 
-/** Setup the input buffer state to scan a string. The next call to BALANCEMQ_SETTINGS_YYlex() will
+/** Setup the input buffer state to scan a string. The next call to balancemq_settings_yylex() will
  * scan from a @e copy of @a str.
  * @param yystr a NUL-terminated string to scan
  * @param yyscanner The scanner object.
  * @return the newly allocated buffer state object.
  * @note If you want to scan bytes that may contain NUL values, then use
- *       BALANCEMQ_SETTINGS_YY_scan_bytes() instead.
+ *       balancemq_settings_yy_scan_bytes() instead.
  */
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_string (yyconst char * yystr , yyscan_t yyscanner)
+YY_BUFFER_STATE balancemq_settings_yy_scan_string (yyconst char * yystr , yyscan_t yyscanner)
 {
     
-	return BALANCEMQ_SETTINGS_YY_scan_bytes(yystr,strlen(yystr) ,yyscanner);
+	return balancemq_settings_yy_scan_bytes(yystr,strlen(yystr) ,yyscanner);
 }
 
-/** Setup the input buffer state to scan the given bytes. The next call to BALANCEMQ_SETTINGS_YYlex() will
+/** Setup the input buffer state to scan the given bytes. The next call to balancemq_settings_yylex() will
  * scan from a @e copy of @a bytes.
  * @param yybytes the byte buffer to scan
  * @param _yybytes_len the number of bytes in the buffer pointed to by @a bytes.
  * @param yyscanner The scanner object.
  * @return the newly allocated buffer state object.
  */
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_bytes  (yyconst char * yybytes, int  _yybytes_len , yyscan_t yyscanner)
+YY_BUFFER_STATE balancemq_settings_yy_scan_bytes  (yyconst char * yybytes, int  _yybytes_len , yyscan_t yyscanner)
 {
 	YY_BUFFER_STATE b;
 	char *buf;
@@ -2138,18 +2142,18 @@ YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_bytes  (yyconst char * yybytes, int  
     
 	/* Get memory for full buffer, including space for trailing EOB's. */
 	n = _yybytes_len + 2;
-	buf = (char *) BALANCEMQ_SETTINGS_YYalloc(n ,yyscanner );
+	buf = (char *) balancemq_settings_yyalloc(n ,yyscanner );
 	if ( ! buf )
-		YY_FATAL_ERROR( "out of dynamic memory in BALANCEMQ_SETTINGS_YY_scan_bytes()" );
+		YY_FATAL_ERROR( "out of dynamic memory in balancemq_settings_yy_scan_bytes()" );
 
 	for ( i = 0; i < _yybytes_len; ++i )
 		buf[i] = yybytes[i];
 
 	buf[_yybytes_len] = buf[_yybytes_len+1] = YY_END_OF_BUFFER_CHAR;
 
-	b = BALANCEMQ_SETTINGS_YY_scan_buffer(buf,n ,yyscanner);
+	b = balancemq_settings_yy_scan_buffer(buf,n ,yyscanner);
 	if ( ! b )
-		YY_FATAL_ERROR( "bad buffer in BALANCEMQ_SETTINGS_YY_scan_bytes()" );
+		YY_FATAL_ERROR( "bad buffer in balancemq_settings_yy_scan_bytes()" );
 
 	/* It's okay to grow etc. this buffer, and we should throw it
 	 * away when we're done.
@@ -2191,7 +2195,7 @@ static void yy_fatal_error (yyconst char* msg , yyscan_t yyscanner)
 /** Get the user-defined data for this scanner.
  * @param yyscanner The scanner object.
  */
-YY_EXTRA_TYPE BALANCEMQ_SETTINGS_YYget_extra  (yyscan_t yyscanner)
+YY_EXTRA_TYPE balancemq_settings_yyget_extra  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yyextra;
@@ -2200,7 +2204,7 @@ YY_EXTRA_TYPE BALANCEMQ_SETTINGS_YYget_extra  (yyscan_t yyscanner)
 /** Get the current line number.
  * @param yyscanner The scanner object.
  */
-int BALANCEMQ_SETTINGS_YYget_lineno  (yyscan_t yyscanner)
+int balancemq_settings_yyget_lineno  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     
@@ -2213,7 +2217,7 @@ int BALANCEMQ_SETTINGS_YYget_lineno  (yyscan_t yyscanner)
 /** Get the current column number.
  * @param yyscanner The scanner object.
  */
-int BALANCEMQ_SETTINGS_YYget_column  (yyscan_t yyscanner)
+int balancemq_settings_yyget_column  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     
@@ -2226,7 +2230,7 @@ int BALANCEMQ_SETTINGS_YYget_column  (yyscan_t yyscanner)
 /** Get the input stream.
  * @param yyscanner The scanner object.
  */
-FILE *BALANCEMQ_SETTINGS_YYget_in  (yyscan_t yyscanner)
+FILE *balancemq_settings_yyget_in  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yyin;
@@ -2235,7 +2239,7 @@ FILE *BALANCEMQ_SETTINGS_YYget_in  (yyscan_t yyscanner)
 /** Get the output stream.
  * @param yyscanner The scanner object.
  */
-FILE *BALANCEMQ_SETTINGS_YYget_out  (yyscan_t yyscanner)
+FILE *balancemq_settings_yyget_out  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yyout;
@@ -2244,7 +2248,7 @@ FILE *BALANCEMQ_SETTINGS_YYget_out  (yyscan_t yyscanner)
 /** Get the length of the current token.
  * @param yyscanner The scanner object.
  */
-int BALANCEMQ_SETTINGS_YYget_leng  (yyscan_t yyscanner)
+int balancemq_settings_yyget_leng  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yyleng;
@@ -2254,7 +2258,7 @@ int BALANCEMQ_SETTINGS_YYget_leng  (yyscan_t yyscanner)
  * @param yyscanner The scanner object.
  */
 
-char *BALANCEMQ_SETTINGS_YYget_text  (yyscan_t yyscanner)
+char *balancemq_settings_yyget_text  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yytext;
@@ -2264,7 +2268,7 @@ char *BALANCEMQ_SETTINGS_YYget_text  (yyscan_t yyscanner)
  * @param user_defined The data to be associated with this scanner.
  * @param yyscanner The scanner object.
  */
-void BALANCEMQ_SETTINGS_YYset_extra (YY_EXTRA_TYPE  user_defined , yyscan_t yyscanner)
+void balancemq_settings_yyset_extra (YY_EXTRA_TYPE  user_defined , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     yyextra = user_defined ;
@@ -2274,13 +2278,13 @@ void BALANCEMQ_SETTINGS_YYset_extra (YY_EXTRA_TYPE  user_defined , yyscan_t yysc
  * @param line_number
  * @param yyscanner The scanner object.
  */
-void BALANCEMQ_SETTINGS_YYset_lineno (int  line_number , yyscan_t yyscanner)
+void balancemq_settings_yyset_lineno (int  line_number , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
         /* lineno is only valid if an input buffer exists. */
         if (! YY_CURRENT_BUFFER )
-           yy_fatal_error( "BALANCEMQ_SETTINGS_YYset_lineno called with no buffer" , yyscanner); 
+           yy_fatal_error( "balancemq_settings_yyset_lineno called with no buffer" , yyscanner); 
     
     yylineno = line_number;
 }
@@ -2289,13 +2293,13 @@ void BALANCEMQ_SETTINGS_YYset_lineno (int  line_number , yyscan_t yyscanner)
  * @param line_number
  * @param yyscanner The scanner object.
  */
-void BALANCEMQ_SETTINGS_YYset_column (int  column_no , yyscan_t yyscanner)
+void balancemq_settings_yyset_column (int  column_no , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
         /* column is only valid if an input buffer exists. */
         if (! YY_CURRENT_BUFFER )
-           yy_fatal_error( "BALANCEMQ_SETTINGS_YYset_column called with no buffer" , yyscanner); 
+           yy_fatal_error( "balancemq_settings_yyset_column called with no buffer" , yyscanner); 
     
     yycolumn = column_no;
 }
@@ -2304,27 +2308,27 @@ void BALANCEMQ_SETTINGS_YYset_column (int  column_no , yyscan_t yyscanner)
  * input buffer.
  * @param in_str A readable stream.
  * @param yyscanner The scanner object.
- * @see BALANCEMQ_SETTINGS_YY_switch_to_buffer
+ * @see balancemq_settings_yy_switch_to_buffer
  */
-void BALANCEMQ_SETTINGS_YYset_in (FILE *  in_str , yyscan_t yyscanner)
+void balancemq_settings_yyset_in (FILE *  in_str , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     yyin = in_str ;
 }
 
-void BALANCEMQ_SETTINGS_YYset_out (FILE *  out_str , yyscan_t yyscanner)
+void balancemq_settings_yyset_out (FILE *  out_str , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     yyout = out_str ;
 }
 
-int BALANCEMQ_SETTINGS_YYget_debug  (yyscan_t yyscanner)
+int balancemq_settings_yyget_debug  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yy_flex_debug;
 }
 
-void BALANCEMQ_SETTINGS_YYset_debug (int  bdebug , yyscan_t yyscanner)
+void balancemq_settings_yyset_debug (int  bdebug , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     yy_flex_debug = bdebug ;
@@ -2332,13 +2336,13 @@ void BALANCEMQ_SETTINGS_YYset_debug (int  bdebug , yyscan_t yyscanner)
 
 /* Accessor methods for yylval and yylloc */
 
-YYSTYPE * BALANCEMQ_SETTINGS_YYget_lval  (yyscan_t yyscanner)
+YYSTYPE * balancemq_settings_yyget_lval  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     return yylval;
 }
 
-void BALANCEMQ_SETTINGS_YYset_lval (YYSTYPE *  yylval_param , yyscan_t yyscanner)
+void balancemq_settings_yyset_lval (YYSTYPE *  yylval_param , yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     yylval = yylval_param;
@@ -2346,12 +2350,12 @@ void BALANCEMQ_SETTINGS_YYset_lval (YYSTYPE *  yylval_param , yyscan_t yyscanner
 
 /* User-visible API */
 
-/* BALANCEMQ_SETTINGS_YYlex_init is special because it creates the scanner itself, so it is
+/* balancemq_settings_yylex_init is special because it creates the scanner itself, so it is
  * the ONLY reentrant function that doesn't take the scanner as the last argument.
  * That's why we explicitly handle the declaration, instead of using our macros.
  */
 
-int BALANCEMQ_SETTINGS_YYlex_init(yyscan_t* ptr_yy_globals)
+int balancemq_settings_yylex_init(yyscan_t* ptr_yy_globals)
 
 {
     if (ptr_yy_globals == NULL){
@@ -2359,7 +2363,7 @@ int BALANCEMQ_SETTINGS_YYlex_init(yyscan_t* ptr_yy_globals)
         return 1;
     }
 
-    *ptr_yy_globals = (yyscan_t) BALANCEMQ_SETTINGS_YYalloc ( sizeof( struct yyguts_t ), NULL );
+    *ptr_yy_globals = (yyscan_t) balancemq_settings_yyalloc ( sizeof( struct yyguts_t ), NULL );
 
     if (*ptr_yy_globals == NULL){
         errno = ENOMEM;
@@ -2372,27 +2376,27 @@ int BALANCEMQ_SETTINGS_YYlex_init(yyscan_t* ptr_yy_globals)
     return yy_init_globals ( *ptr_yy_globals );
 }
 
-/* BALANCEMQ_SETTINGS_YYlex_init_extra has the same functionality as BALANCEMQ_SETTINGS_YYlex_init, but follows the
+/* balancemq_settings_yylex_init_extra has the same functionality as balancemq_settings_yylex_init, but follows the
  * convention of taking the scanner as the last argument. Note however, that
  * this is a *pointer* to a scanner, as it will be allocated by this call (and
  * is the reason, too, why this function also must handle its own declaration).
- * The user defined value in the first argument will be available to BALANCEMQ_SETTINGS_YYalloc in
+ * The user defined value in the first argument will be available to balancemq_settings_yyalloc in
  * the yyextra field.
  */
 
-int BALANCEMQ_SETTINGS_YYlex_init_extra(YY_EXTRA_TYPE yy_user_defined,yyscan_t* ptr_yy_globals )
+int balancemq_settings_yylex_init_extra(YY_EXTRA_TYPE yy_user_defined,yyscan_t* ptr_yy_globals )
 
 {
     struct yyguts_t dummy_yyguts;
 
-    BALANCEMQ_SETTINGS_YYset_extra (yy_user_defined, &dummy_yyguts);
+    balancemq_settings_yyset_extra (yy_user_defined, &dummy_yyguts);
 
     if (ptr_yy_globals == NULL){
         errno = EINVAL;
         return 1;
     }
 	
-    *ptr_yy_globals = (yyscan_t) BALANCEMQ_SETTINGS_YYalloc ( sizeof( struct yyguts_t ), &dummy_yyguts );
+    *ptr_yy_globals = (yyscan_t) balancemq_settings_yyalloc ( sizeof( struct yyguts_t ), &dummy_yyguts );
 	
     if (*ptr_yy_globals == NULL){
         errno = ENOMEM;
@@ -2403,7 +2407,7 @@ int BALANCEMQ_SETTINGS_YYlex_init_extra(YY_EXTRA_TYPE yy_user_defined,yyscan_t* 
     yy_init_globals. Leave at 0x00 for releases. */
     memset(*ptr_yy_globals,0x00,sizeof(struct yyguts_t));
     
-    BALANCEMQ_SETTINGS_YYset_extra (yy_user_defined, *ptr_yy_globals);
+    balancemq_settings_yyset_extra (yy_user_defined, *ptr_yy_globals);
     
     return yy_init_globals ( *ptr_yy_globals );
 }
@@ -2412,7 +2416,7 @@ static int yy_init_globals (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
     /* Initialization is the same as for the non-reentrant scanner.
-     * This function is called from BALANCEMQ_SETTINGS_YYlex_destroy(), so don't allocate here.
+     * This function is called from balancemq_settings_yylex_destroy(), so don't allocate here.
      */
 
     yyg->yy_buffer_stack = 0;
@@ -2436,37 +2440,37 @@ static int yy_init_globals (yyscan_t yyscanner)
 #endif
 
     /* For future reference: Set errno on error, since we are called by
-     * BALANCEMQ_SETTINGS_YYlex_init()
+     * balancemq_settings_yylex_init()
      */
     return 0;
 }
 
-/* BALANCEMQ_SETTINGS_YYlex_destroy is for both reentrant and non-reentrant scanners. */
-int BALANCEMQ_SETTINGS_YYlex_destroy  (yyscan_t yyscanner)
+/* balancemq_settings_yylex_destroy is for both reentrant and non-reentrant scanners. */
+int balancemq_settings_yylex_destroy  (yyscan_t yyscanner)
 {
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
     /* Pop the buffer stack, destroying each element. */
 	while(YY_CURRENT_BUFFER){
-		BALANCEMQ_SETTINGS_YY_delete_buffer(YY_CURRENT_BUFFER ,yyscanner );
+		balancemq_settings_yy_delete_buffer(YY_CURRENT_BUFFER ,yyscanner );
 		YY_CURRENT_BUFFER_LVALUE = NULL;
-		BALANCEMQ_SETTINGS_YYpop_buffer_state(yyscanner);
+		balancemq_settings_yypop_buffer_state(yyscanner);
 	}
 
 	/* Destroy the stack itself. */
-	BALANCEMQ_SETTINGS_YYfree(yyg->yy_buffer_stack ,yyscanner);
+	balancemq_settings_yyfree(yyg->yy_buffer_stack ,yyscanner);
 	yyg->yy_buffer_stack = NULL;
 
     /* Destroy the start condition stack. */
-        BALANCEMQ_SETTINGS_YYfree(yyg->yy_start_stack ,yyscanner );
+        balancemq_settings_yyfree(yyg->yy_start_stack ,yyscanner );
         yyg->yy_start_stack = NULL;
 
     /* Reset the globals. This is important in a non-reentrant scanner so the next time
-     * BALANCEMQ_SETTINGS_YYlex() is called, initialization will occur. */
+     * balancemq_settings_yylex() is called, initialization will occur. */
     yy_init_globals( yyscanner);
 
     /* Destroy the main struct (reentrant only). */
-    BALANCEMQ_SETTINGS_YYfree ( yyscanner , yyscanner );
+    balancemq_settings_yyfree ( yyscanner , yyscanner );
     yyscanner = NULL;
     return 0;
 }
@@ -2495,12 +2499,12 @@ static int yy_flex_strlen (yyconst char * s , yyscan_t yyscanner)
 }
 #endif
 
-void *BALANCEMQ_SETTINGS_YYalloc (yy_size_t  size , yyscan_t yyscanner)
+void *balancemq_settings_yyalloc (yy_size_t  size , yyscan_t yyscanner)
 {
 	return (void *) malloc( size );
 }
 
-void *BALANCEMQ_SETTINGS_YYrealloc  (void * ptr, yy_size_t  size , yyscan_t yyscanner)
+void *balancemq_settings_yyrealloc  (void * ptr, yy_size_t  size , yyscan_t yyscanner)
 {
 	/* The cast to (char *) in the following accommodates both
 	 * implementations that use char* generic pointers, and those
@@ -2512,14 +2516,14 @@ void *BALANCEMQ_SETTINGS_YYrealloc  (void * ptr, yy_size_t  size , yyscan_t yysc
 	return (void *) realloc( (char *) ptr, size );
 }
 
-void BALANCEMQ_SETTINGS_YYfree (void * ptr , yyscan_t yyscanner)
+void balancemq_settings_yyfree (void * ptr , yyscan_t yyscanner)
 {
-	free( (char *) ptr );	/* see BALANCEMQ_SETTINGS_YYrealloc() for (char *) cast */
+	free( (char *) ptr );	/* see balancemq_settings_yyrealloc() for (char *) cast */
 }
 
 #define YYTABLES_NAME "yytables"
 
-#line 63 "balancemq_settings.l"
+#line 68 "balancemq_settings.l"
 
 
 

@@ -46,8 +46,6 @@ typedef union BALANCEMQ_SETTINGS_YYSTYPE
     BALANCEMQ_list_t*              list_value;
 } BALANCEMQ_SETTINGS_YYSTYPE;
 
-extern void balancemq_settings_yyerror(const char* msg);
-
 BALANCEMQ_settings_t* BALANCEMQ_settings_create_settings();
 BALANCEMQ_settings_block_t* BALANCEMQ_settings_create_block();
 BALANCEMQ_settings_variable_t* BALANCEMQ_settings_create_variable();

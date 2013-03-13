@@ -50,17 +50,17 @@
 #define YYSKELETON_NAME "yacc.c"
 
 /* Pure parsers.  */
-#define YYPURE 2
+#define YYPURE 1
 
 /* Push parsers.  */
-#define YYPUSH 1
+#define YYPUSH 0
 
 /* Pull parsers.  */
-#define YYPULL 0
+#define YYPULL 1
 
 /* "%code top" blocks.  */
 /* Line 349 of yacc.c  */
-#line 11 "balancemq_settings.y"
+#line 12 "balancemq_settings.y"
 
   #define _GNU_SOURCE
   #include <stdio.h>
@@ -71,10 +71,7 @@
 /* Substitute the type names.  */
 #define YYSTYPE         BALANCEMQ_SETTINGS_YYSTYPE
 /* Substitute the variable and function names.  */
-#define yypush_parse    balancemq_settings_yypush_parse
-#define yypstate_new    balancemq_settings_yypstate_new
-#define yypstate_delete balancemq_settings_yypstate_delete
-#define yypstate        balancemq_settings_yypstate
+#define yyparse         balancemq_settings_yyparse
 #define yylex           balancemq_settings_yylex
 #define yyerror         balancemq_settings_yyerror
 #define yylval          balancemq_settings_yylval
@@ -85,7 +82,7 @@
 /* Copy the first part of user declarations.  */
 
 /* Line 371 of yacc.c  */
-#line 89 "balancemq_settings.parser.c"
+#line 86 "balancemq_settings.parser.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -124,7 +121,7 @@ extern int balancemq_settings_yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 387 of yacc.c  */
-#line 16 "balancemq_settings.y"
+#line 17 "balancemq_settings.y"
 
   #include <log.h>
   #include <xlist.h>
@@ -133,7 +130,7 @@ extern int balancemq_settings_yydebug;
 
 
 /* Line 387 of yacc.c  */
-#line 137 "balancemq_settings.parser.c"
+#line 134 "balancemq_settings.parser.c"
 
 /* Tokens.  */
 #ifndef BALANCEMQ_SETTINGS_YYTOKENTYPE
@@ -166,36 +163,26 @@ extern int balancemq_settings_yydebug;
 #endif
 
 
-#ifndef YYPUSH_MORE_DEFINED
-# define YYPUSH_MORE_DEFINED
-enum { YYPUSH_MORE = 4 };
-#endif
-
-typedef struct balancemq_settings_yypstate balancemq_settings_yypstate;
-
+#ifdef YYPARSE_PARAM
 #if defined __STDC__ || defined __cplusplus
-int balancemq_settings_yypush_parse (balancemq_settings_yypstate *ps, int pushed_char, BALANCEMQ_SETTINGS_YYSTYPE const *pushed_val);
+int balancemq_settings_yyparse (void *YYPARSE_PARAM);
 #else
-int balancemq_settings_yypush_parse ();
+int balancemq_settings_yyparse ();
 #endif
-
+#else /* ! YYPARSE_PARAM */
 #if defined __STDC__ || defined __cplusplus
-balancemq_settings_yypstate * balancemq_settings_yypstate_new (void);
+int balancemq_settings_yyparse (BALANCEMQ_settings_t* settings_tree);
 #else
-balancemq_settings_yypstate * balancemq_settings_yypstate_new ();
+int balancemq_settings_yyparse ();
 #endif
-#if defined __STDC__ || defined __cplusplus
-void balancemq_settings_yypstate_delete (balancemq_settings_yypstate *ps);
-#else
-void balancemq_settings_yypstate_delete ();
-#endif
+#endif /* ! YYPARSE_PARAM */
 
 #endif /* !YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_PARSER_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 199 "balancemq_settings.parser.c"
+#line 186 "balancemq_settings.parser.c"
 
 #ifdef short
 # undef short
@@ -284,6 +271,31 @@ YYID (yyi)
 #if ! defined yyoverflow || YYERROR_VERBOSE
 
 /* The parser invokes alloca or malloc; define the necessary symbols.  */
+
+# ifdef YYSTACK_USE_ALLOCA
+#  if YYSTACK_USE_ALLOCA
+#   ifdef __GNUC__
+#    define YYSTACK_ALLOC __builtin_alloca
+#   elif defined __BUILTIN_VA_ARG_INCR
+#    include <alloca.h> /* INFRINGES ON USER NAME SPACE */
+#   elif defined _AIX
+#    define YYSTACK_ALLOC __alloca
+#   elif defined _MSC_VER
+#    include <malloc.h> /* INFRINGES ON USER NAME SPACE */
+#    define alloca _alloca
+#   else
+#    define YYSTACK_ALLOC alloca
+#    if ! defined _ALLOCA_H && ! defined EXIT_SUCCESS && (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+#     include <stdlib.h> /* INFRINGES ON USER NAME SPACE */
+      /* Use EXIT_SUCCESS as a witness for stdlib.h.  */
+#     ifndef EXIT_SUCCESS
+#      define EXIT_SUCCESS 0
+#     endif
+#    endif
+#   endif
+#  endif
+# endif
 
 # ifdef YYSTACK_ALLOC
    /* Pacify GCC's `empty if-body' warning.  */
@@ -461,8 +473,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    40,    40,    43,    50,    54,    60,    64,    71,    75,
-      81,    85,    86,    87
+       0,    41,    41,    44,    51,    55,    61,    65,    72,    76,
+      82,    86,    87,    88
 };
 #endif
 
@@ -601,7 +613,7 @@ do                                                              \
     }                                                           \
   else                                                          \
     {                                                           \
-      yyerror (YY_("syntax error: cannot back up")); \
+      yyerror (settings_tree, YY_("syntax error: cannot back up")); \
       YYERROR;							\
     }								\
 while (YYID (0))
@@ -644,7 +656,7 @@ do {									  \
     {									  \
       YYFPRINTF (stderr, "%s ", Title);					  \
       yy_symbol_print (stderr,						  \
-		  Type, Value); \
+		  Type, Value, settings_tree); \
       YYFPRINTF (stderr, "\n");						  \
     }									  \
 } while (YYID (0))
@@ -658,19 +670,21 @@ do {									  \
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
+yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, BALANCEMQ_settings_t* settings_tree)
 #else
 static void
-yy_symbol_value_print (yyoutput, yytype, yyvaluep)
+yy_symbol_value_print (yyoutput, yytype, yyvaluep, settings_tree)
     FILE *yyoutput;
     int yytype;
     YYSTYPE const * const yyvaluep;
+    BALANCEMQ_settings_t* settings_tree;
 #endif
 {
   FILE *yyo = yyoutput;
   YYUSE (yyo);
   if (!yyvaluep)
     return;
+  YYUSE (settings_tree);
 # ifdef YYPRINT
   if (yytype < YYNTOKENS)
     YYPRINT (yyoutput, yytoknum[yytype], *yyvaluep);
@@ -692,13 +706,14 @@ yy_symbol_value_print (yyoutput, yytype, yyvaluep)
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep)
+yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, BALANCEMQ_settings_t* settings_tree)
 #else
 static void
-yy_symbol_print (yyoutput, yytype, yyvaluep)
+yy_symbol_print (yyoutput, yytype, yyvaluep, settings_tree)
     FILE *yyoutput;
     int yytype;
     YYSTYPE const * const yyvaluep;
+    BALANCEMQ_settings_t* settings_tree;
 #endif
 {
   if (yytype < YYNTOKENS)
@@ -706,7 +721,7 @@ yy_symbol_print (yyoutput, yytype, yyvaluep)
   else
     YYFPRINTF (yyoutput, "nterm %s (", yytname[yytype]);
 
-  yy_symbol_value_print (yyoutput, yytype, yyvaluep);
+  yy_symbol_value_print (yyoutput, yytype, yyvaluep, settings_tree);
   YYFPRINTF (yyoutput, ")");
 }
 
@@ -749,12 +764,13 @@ do {								\
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_reduce_print (YYSTYPE *yyvsp, int yyrule)
+yy_reduce_print (YYSTYPE *yyvsp, int yyrule, BALANCEMQ_settings_t* settings_tree)
 #else
 static void
-yy_reduce_print (yyvsp, yyrule)
+yy_reduce_print (yyvsp, yyrule, settings_tree)
     YYSTYPE *yyvsp;
     int yyrule;
+    BALANCEMQ_settings_t* settings_tree;
 #endif
 {
   int yynrhs = yyr2[yyrule];
@@ -768,7 +784,7 @@ yy_reduce_print (yyvsp, yyrule)
       YYFPRINTF (stderr, "   $%d = ", yyi + 1);
       yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],
 		       &(yyvsp[(yyi + 1) - (yynrhs)])
-		       		       );
+		       		       , settings_tree);
       YYFPRINTF (stderr, "\n");
     }
 }
@@ -776,7 +792,7 @@ yy_reduce_print (yyvsp, yyrule)
 # define YY_REDUCE_PRINT(Rule)		\
 do {					\
   if (yydebug)				\
-    yy_reduce_print (yyvsp, Rule); \
+    yy_reduce_print (yyvsp, Rule, settings_tree); \
 } while (YYID (0))
 
 /* Nonzero means print parse trace.  It is left uninitialized so that
@@ -1056,16 +1072,18 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep)
+yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, BALANCEMQ_settings_t* settings_tree)
 #else
 static void
-yydestruct (yymsg, yytype, yyvaluep)
+yydestruct (yymsg, yytype, yyvaluep, settings_tree)
     const char *yymsg;
     int yytype;
     YYSTYPE *yyvaluep;
+    BALANCEMQ_settings_t* settings_tree;
 #endif
 {
   YYUSE (yyvaluep);
+  YYUSE (settings_tree);
 
   if (!yymsg)
     yymsg = "Deleting";
@@ -1081,102 +1099,31 @@ yydestruct (yymsg, yytype, yyvaluep)
 
 
 
-struct yypstate
-  {
-    /* Number of syntax errors so far.  */
-    int yynerrs;
 
-    int yystate;
-    /* Number of tokens to shift before error messages enabled.  */
-    int yyerrstatus;
+/*----------.
+| yyparse.  |
+`----------*/
 
-    /* The stacks and their tools:
-       `yyss': related to states.
-       `yyvs': related to semantic values.
-
-       Refer to the stacks through separate pointers, to allow yyoverflow
-       to reallocate them elsewhere.  */
-
-    /* The state stack.  */
-    yytype_int16 yyssa[YYINITDEPTH];
-    yytype_int16 *yyss;
-    yytype_int16 *yyssp;
-
-    /* The semantic value stack.  */
-    YYSTYPE yyvsa[YYINITDEPTH];
-    YYSTYPE *yyvs;
-    YYSTYPE *yyvsp;
-
-    YYSIZE_T yystacksize;
-    /* Used to determine if this is the first time this instance has
-       been used.  */
-    int yynew;
-  };
-
-/* Initialize the parser data structure.  */
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
-yypstate *
-yypstate_new (void)
-#else
-yypstate *
-yypstate_new ()
-
-#endif
-{
-  yypstate *yyps;
-  yyps = (yypstate *) malloc (sizeof *yyps);
-  if (!yyps)
-    return YY_NULL;
-  yyps->yynew = 1;
-  return yyps;
-}
-
-#if (defined __STDC__ || defined __C99__FUNC__ \
-     || defined __cplusplus || defined _MSC_VER)
-void
-yypstate_delete (yypstate *yyps)
-#else
-void
-yypstate_delete (yyps)
-    yypstate *yyps;
-#endif
-{
-#ifndef yyoverflow
-  /* If the stack was reallocated but the parse did not complete, then the
-     stack still needs to be freed.  */
-  if (!yyps->yynew && yyps->yyss != yyps->yyssa)
-    YYSTACK_FREE (yyps->yyss);
-#endif
-  free (yyps);
-}
-
-#define balancemq_settings_yynerrs yyps->balancemq_settings_yynerrs
-#define yystate yyps->yystate
-#define yyerrstatus yyps->yyerrstatus
-#define yyssa yyps->yyssa
-#define yyss yyps->yyss
-#define yyssp yyps->yyssp
-#define yyvsa yyps->yyvsa
-#define yyvs yyps->yyvs
-#define yyvsp yyps->yyvsp
-#define yystacksize yyps->yystacksize
-
-
-/*---------------.
-| yypush_parse.  |
-`---------------*/
-
+#ifdef YYPARSE_PARAM
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 int
-yypush_parse (yypstate *yyps, int yypushed_char, YYSTYPE const *yypushed_val)
+yyparse (void *YYPARSE_PARAM)
 #else
 int
-yypush_parse (yyps, yypushed_char, yypushed_val)
-    yypstate *yyps;
-    int yypushed_char;
-    YYSTYPE const *yypushed_val;
+yyparse (YYPARSE_PARAM)
+    void *YYPARSE_PARAM;
+#endif
+#else /* ! YYPARSE_PARAM */
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+int
+yyparse (BALANCEMQ_settings_t* settings_tree)
+#else
+int
+yyparse (settings_tree)
+    BALANCEMQ_settings_t* settings_tree;
+#endif
 #endif
 {
 /* The lookahead symbol.  */
@@ -1208,6 +1155,32 @@ static YYSTYPE yyval_default;
 /* The semantic value of the lookahead symbol.  */
 YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
 
+    /* Number of syntax errors so far.  */
+    int yynerrs;
+
+    int yystate;
+    /* Number of tokens to shift before error messages enabled.  */
+    int yyerrstatus;
+
+    /* The stacks and their tools:
+       `yyss': related to states.
+       `yyvs': related to semantic values.
+
+       Refer to the stacks through separate pointers, to allow yyoverflow
+       to reallocate them elsewhere.  */
+
+    /* The state stack.  */
+    yytype_int16 yyssa[YYINITDEPTH];
+    yytype_int16 *yyss;
+    yytype_int16 *yyssp;
+
+    /* The semantic value stack.  */
+    YYSTYPE yyvsa[YYINITDEPTH];
+    YYSTYPE *yyvs;
+    YYSTYPE *yyvsp;
+
+    YYSIZE_T yystacksize;
+
   int yyn;
   int yyresult;
   /* Lookahead token as an internal (translated) token number.  */
@@ -1228,12 +1201,6 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
   /* The number of symbols on the RHS of the reduced rule.
      Keep to zero when no symbol should be popped.  */
   int yylen = 0;
-
-  if (!yyps->yynew)
-    {
-      yyn = yypact[yystate];
-      goto yyread_pushed_token;
-    }
 
   yyssp = yyss = yyssa;
   yyvsp = yyvs = yyvsa;
@@ -1344,18 +1311,8 @@ yybackup:
   /* YYCHAR is either YYEMPTY or YYEOF or a valid lookahead symbol.  */
   if (yychar == YYEMPTY)
     {
-      if (!yyps->yynew)
-        {
-          YYDPRINTF ((stderr, "Return for a new token:\n"));
-          yyresult = YYPUSH_MORE;
-          goto yypushreturn;
-        }
-      yyps->yynew = 0;
-yyread_pushed_token:
       YYDPRINTF ((stderr, "Reading a token: "));
-      yychar = yypushed_char;
-      if (yypushed_val)
-        yylval = *yypushed_val;
+      yychar = YYLEX;
     }
 
   if (yychar <= YYEOF)
@@ -1435,7 +1392,7 @@ yyreduce:
     {
         case 2:
 /* Line 1792 of yacc.c  */
-#line 40 "balancemq_settings.y"
+#line 41 "balancemq_settings.y"
     {
                 (yyval.settings_value) = (BALANCEMQ_settings_t*) NULL;
             }
@@ -1443,7 +1400,7 @@ yyreduce:
 
   case 3:
 /* Line 1792 of yacc.c  */
-#line 43 "balancemq_settings.y"
+#line 44 "balancemq_settings.y"
     {
                 (yyval.settings_value) = BALANCEMQ_settings_create_settings();
                 BALANCEMQ_list_push((yyval.settings_value)->blocks, (yyvsp[(1) - (1)].list_value));
@@ -1452,7 +1409,7 @@ yyreduce:
 
   case 4:
 /* Line 1792 of yacc.c  */
-#line 50 "balancemq_settings.y"
+#line 51 "balancemq_settings.y"
     {
                 (yyval.list_value) = BALANCEMQ_list_create();
                 BALANCEMQ_list_push((yyval.list_value), (yyvsp[(1) - (1)].block_value));
@@ -1461,7 +1418,7 @@ yyreduce:
 
   case 5:
 /* Line 1792 of yacc.c  */
-#line 54 "balancemq_settings.y"
+#line 55 "balancemq_settings.y"
     {
                 BALANCEMQ_list_push((yyval.list_value), (yyvsp[(2) - (2)].block_value));
             }
@@ -1469,7 +1426,7 @@ yyreduce:
 
   case 6:
 /* Line 1792 of yacc.c  */
-#line 60 "balancemq_settings.y"
+#line 61 "balancemq_settings.y"
     {
                 (yyval.block_value) = BALANCEMQ_settings_create_block((yyvsp[(1) - (4)].string_value));
                 BALANCEMQ_list_push((yyval.block_value)->variables, (yyvsp[(3) - (4)].list_value));
@@ -1478,7 +1435,7 @@ yyreduce:
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 64 "balancemq_settings.y"
+#line 65 "balancemq_settings.y"
     {
                 (yyval.block_value) = BALANCEMQ_settings_create_block((yyvsp[(1) - (4)].string_value));
                 BALANCEMQ_list_push((yyval.block_value)->blocks, (yyvsp[(3) - (4)].list_value));
@@ -1487,7 +1444,7 @@ yyreduce:
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 71 "balancemq_settings.y"
+#line 72 "balancemq_settings.y"
     {
                 (yyval.list_value) = BALANCEMQ_list_create();
                 BALANCEMQ_list_push((yyval.list_value), (yyvsp[(1) - (1)].variable_value));
@@ -1496,7 +1453,7 @@ yyreduce:
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 75 "balancemq_settings.y"
+#line 76 "balancemq_settings.y"
     {
                 BALANCEMQ_list_push((yyval.list_value), (yyvsp[(2) - (2)].variable_value));
             }
@@ -1504,31 +1461,31 @@ yyreduce:
 
   case 10:
 /* Line 1792 of yacc.c  */
-#line 81 "balancemq_settings.y"
+#line 82 "balancemq_settings.y"
     { (yyval.variable_value) = BALANCEMQ_settings_create_variable((yyvsp[(1) - (2)].string_value), (yyvsp[(2) - (2)].balance_value)); }
     break;
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 85 "balancemq_settings.y"
+#line 86 "balancemq_settings.y"
     { (yyval.balance_value) = BALANCEMQ_settings_create_string_value((yyvsp[(1) - (1)].string_value)); }
     break;
 
   case 12:
 /* Line 1792 of yacc.c  */
-#line 86 "balancemq_settings.y"
+#line 87 "balancemq_settings.y"
     { (yyval.balance_value) = BALANCEMQ_settings_create_integer_value((yyvsp[(1) - (1)].integer_value)); }
     break;
 
   case 13:
 /* Line 1792 of yacc.c  */
-#line 87 "balancemq_settings.y"
+#line 88 "balancemq_settings.y"
     { (yyval.balance_value) = BALANCEMQ_settings_create_double_value((yyvsp[(1) - (1)].double_value)); }
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 1532 "balancemq_settings.parser.c"
+#line 1489 "balancemq_settings.parser.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1578,7 +1535,7 @@ yyerrlab:
     {
       ++yynerrs;
 #if ! YYERROR_VERBOSE
-      yyerror (YY_("syntax error"));
+      yyerror (settings_tree, YY_("syntax error"));
 #else
 # define YYSYNTAX_ERROR yysyntax_error (&yymsg_alloc, &yymsg, \
                                         yyssp, yytoken)
@@ -1605,7 +1562,7 @@ yyerrlab:
                 yymsgp = yymsg;
               }
           }
-        yyerror (yymsgp);
+        yyerror (settings_tree, yymsgp);
         if (yysyntax_error_status == 2)
           goto yyexhaustedlab;
       }
@@ -1629,7 +1586,7 @@ yyerrlab:
       else
 	{
 	  yydestruct ("Error: discarding",
-		      yytoken, &yylval);
+		      yytoken, &yylval, settings_tree);
 	  yychar = YYEMPTY;
 	}
     }
@@ -1685,7 +1642,7 @@ yyerrlab1:
 
 
       yydestruct ("Error: popping",
-		  yystos[yystate], yyvsp);
+		  yystos[yystate], yyvsp, settings_tree);
       YYPOPSTACK (1);
       yystate = *yyssp;
       YY_STACK_PRINT (yyss, yyssp);
@@ -1722,7 +1679,7 @@ yyabortlab:
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
 yyexhaustedlab:
-  yyerror (YY_("memory exhausted"));
+  yyerror (settings_tree, YY_("memory exhausted"));
   yyresult = 2;
   /* Fall through.  */
 #endif
@@ -1734,7 +1691,7 @@ yyreturn:
          user semantic actions for why this is necessary.  */
       yytoken = YYTRANSLATE (yychar);
       yydestruct ("Cleanup: discarding lookahead",
-                  yytoken, &yylval);
+                  yytoken, &yylval, settings_tree);
     }
   /* Do not reclaim the symbols of the rule which action triggered
      this YYABORT or YYACCEPT.  */
@@ -1743,16 +1700,13 @@ yyreturn:
   while (yyssp != yyss)
     {
       yydestruct ("Cleanup: popping",
-		  yystos[*yyssp], yyvsp);
+		  yystos[*yyssp], yyvsp, settings_tree);
       YYPOPSTACK (1);
     }
 #ifndef yyoverflow
   if (yyss != yyssa)
     YYSTACK_FREE (yyss);
 #endif
-  yyps->yynew = 1;
-
-yypushreturn:
 #if YYERROR_VERBOSE
   if (yymsg != yymsgbuf)
     YYSTACK_FREE (yymsg);
@@ -1763,7 +1717,7 @@ yypushreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 90 "balancemq_settings.y"
+#line 91 "balancemq_settings.y"
 
 
 /* EOF */

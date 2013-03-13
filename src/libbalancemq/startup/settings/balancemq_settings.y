@@ -3,10 +3,11 @@
 %require "2.7"
 
 %define api.prefix balancemq_settings_yy
-%define api.pure full
-%define api.push-pull push
+%define api.pure
 
 %file-prefix "balancemq_settings.parser"
+
+%parse-param { BALANCEMQ_settings_t* settings_tree }
 
 %code top {
   #define _GNU_SOURCE

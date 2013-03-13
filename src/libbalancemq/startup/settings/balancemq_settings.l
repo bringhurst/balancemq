@@ -13,9 +13,10 @@
 %option bison-bridge nounput
 %option align read perf-report
 
-%option extra-type="BALANCEMQ_settings_t*"
-%option prefix="BALANCEMQ_SETTINGS_YY"
+%option prefix="balancemq_settings_yy"
 %option outfile="balancemq_settings.scanner.c"
+
+%option extra-type="BALANCEMQ_settings_t*"
 
 WHITESPACE            [ \t\n]
 IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
@@ -25,6 +26,10 @@ INTEGER               [0-9]+
 %x                    comment
 
 %%
+
+%{
+  BALANCEMQ_settings_t* settings_tree = yyextra;
+%}
 
 WHITESPACE            ; /* Ignore this token. */
 

@@ -1,6 +1,6 @@
-#ifndef BALANCEMQ_SETTINGS_YYHEADER_H
-#define BALANCEMQ_SETTINGS_YYHEADER_H 1
-#define BALANCEMQ_SETTINGS_YYIN_HEADER 1
+#ifndef balancemq_settings_yyHEADER_H
+#define balancemq_settings_yyHEADER_H 1
+#define balancemq_settings_yyIN_HEADER 1
 
 #line 6 "balancemq_settings.scanner.h"
 #line 2 "balancemq_settings.l"
@@ -215,21 +215,21 @@ struct yy_buffer_state
 	};
 #endif /* !YY_STRUCT_YY_BUFFER_STATE */
 
-void BALANCEMQ_SETTINGS_YYrestart (FILE *input_file ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YY_switch_to_buffer (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_create_buffer (FILE *file,int size ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YY_delete_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YY_flush_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YYpush_buffer_state (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YYpop_buffer_state (yyscan_t yyscanner );
+void balancemq_settings_yyrestart (FILE *input_file ,yyscan_t yyscanner );
+void balancemq_settings_yy_switch_to_buffer (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
+YY_BUFFER_STATE balancemq_settings_yy_create_buffer (FILE *file,int size ,yyscan_t yyscanner );
+void balancemq_settings_yy_delete_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
+void balancemq_settings_yy_flush_buffer (YY_BUFFER_STATE b ,yyscan_t yyscanner );
+void balancemq_settings_yypush_buffer_state (YY_BUFFER_STATE new_buffer ,yyscan_t yyscanner );
+void balancemq_settings_yypop_buffer_state (yyscan_t yyscanner );
 
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_buffer (char *base,yy_size_t size ,yyscan_t yyscanner );
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_string (yyconst char *yy_str ,yyscan_t yyscanner );
-YY_BUFFER_STATE BALANCEMQ_SETTINGS_YY_scan_bytes (yyconst char *bytes,int len ,yyscan_t yyscanner );
+YY_BUFFER_STATE balancemq_settings_yy_scan_buffer (char *base,yy_size_t size ,yyscan_t yyscanner );
+YY_BUFFER_STATE balancemq_settings_yy_scan_string (yyconst char *yy_str ,yyscan_t yyscanner );
+YY_BUFFER_STATE balancemq_settings_yy_scan_bytes (yyconst char *bytes,int len ,yyscan_t yyscanner );
 
-void *BALANCEMQ_SETTINGS_YYalloc (yy_size_t ,yyscan_t yyscanner );
-void *BALANCEMQ_SETTINGS_YYrealloc (void *,yy_size_t ,yyscan_t yyscanner );
-void BALANCEMQ_SETTINGS_YYfree (void * ,yyscan_t yyscanner );
+void *balancemq_settings_yyalloc (yy_size_t ,yyscan_t yyscanner );
+void *balancemq_settings_yyrealloc (void *,yy_size_t ,yyscan_t yyscanner );
+void balancemq_settings_yyfree (void * ,yyscan_t yyscanner );
 
 /* Begin user sect3 */
 
@@ -251,42 +251,42 @@ void BALANCEMQ_SETTINGS_YYfree (void * ,yyscan_t yyscanner );
 
 #define YY_EXTRA_TYPE BALANCEMQ_settings_t*
 
-int BALANCEMQ_SETTINGS_YYlex_init (yyscan_t* scanner);
+int balancemq_settings_yylex_init (yyscan_t* scanner);
 
-int BALANCEMQ_SETTINGS_YYlex_init_extra (YY_EXTRA_TYPE user_defined,yyscan_t* scanner);
+int balancemq_settings_yylex_init_extra (YY_EXTRA_TYPE user_defined,yyscan_t* scanner);
 
 /* Accessor methods to globals.
    These are made visible to non-reentrant scanners for convenience. */
 
-int BALANCEMQ_SETTINGS_YYlex_destroy (yyscan_t yyscanner );
+int balancemq_settings_yylex_destroy (yyscan_t yyscanner );
 
-int BALANCEMQ_SETTINGS_YYget_debug (yyscan_t yyscanner );
+int balancemq_settings_yyget_debug (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_debug (int debug_flag ,yyscan_t yyscanner );
+void balancemq_settings_yyset_debug (int debug_flag ,yyscan_t yyscanner );
 
-YY_EXTRA_TYPE BALANCEMQ_SETTINGS_YYget_extra (yyscan_t yyscanner );
+YY_EXTRA_TYPE balancemq_settings_yyget_extra (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_extra (YY_EXTRA_TYPE user_defined ,yyscan_t yyscanner );
+void balancemq_settings_yyset_extra (YY_EXTRA_TYPE user_defined ,yyscan_t yyscanner );
 
-FILE *BALANCEMQ_SETTINGS_YYget_in (yyscan_t yyscanner );
+FILE *balancemq_settings_yyget_in (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_in  (FILE * in_str ,yyscan_t yyscanner );
+void balancemq_settings_yyset_in  (FILE * in_str ,yyscan_t yyscanner );
 
-FILE *BALANCEMQ_SETTINGS_YYget_out (yyscan_t yyscanner );
+FILE *balancemq_settings_yyget_out (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_out  (FILE * out_str ,yyscan_t yyscanner );
+void balancemq_settings_yyset_out  (FILE * out_str ,yyscan_t yyscanner );
 
-int BALANCEMQ_SETTINGS_YYget_leng (yyscan_t yyscanner );
+int balancemq_settings_yyget_leng (yyscan_t yyscanner );
 
-char *BALANCEMQ_SETTINGS_YYget_text (yyscan_t yyscanner );
+char *balancemq_settings_yyget_text (yyscan_t yyscanner );
 
-int BALANCEMQ_SETTINGS_YYget_lineno (yyscan_t yyscanner );
+int balancemq_settings_yyget_lineno (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_lineno (int line_number ,yyscan_t yyscanner );
+void balancemq_settings_yyset_lineno (int line_number ,yyscan_t yyscanner );
 
-YYSTYPE * BALANCEMQ_SETTINGS_YYget_lval (yyscan_t yyscanner );
+YYSTYPE * balancemq_settings_yyget_lval (yyscan_t yyscanner );
 
-void BALANCEMQ_SETTINGS_YYset_lval (YYSTYPE * yylval_param ,yyscan_t yyscanner );
+void balancemq_settings_yyset_lval (YYSTYPE * yylval_param ,yyscan_t yyscanner );
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -294,9 +294,9 @@ void BALANCEMQ_SETTINGS_YYset_lval (YYSTYPE * yylval_param ,yyscan_t yyscanner )
 
 #ifndef YY_SKIP_YYWRAP
 #ifdef __cplusplus
-extern "C" int BALANCEMQ_SETTINGS_YYwrap (yyscan_t yyscanner );
+extern "C" int balancemq_settings_yywrap (yyscan_t yyscanner );
 #else
-extern int BALANCEMQ_SETTINGS_YYwrap (yyscan_t yyscanner );
+extern int balancemq_settings_yywrap (yyscan_t yyscanner );
 #endif
 #endif
 
@@ -333,10 +333,10 @@ static int yy_flex_strlen (yyconst char * ,yyscan_t yyscanner);
 #ifndef YY_DECL
 #define YY_DECL_IS_OURS 1
 
-extern int BALANCEMQ_SETTINGS_YYlex \
+extern int balancemq_settings_yylex \
                (YYSTYPE * yylval_param ,yyscan_t yyscanner);
 
-#define YY_DECL int BALANCEMQ_SETTINGS_YYlex \
+#define YY_DECL int balancemq_settings_yylex \
                (YYSTYPE * yylval_param , yyscan_t yyscanner)
 #endif /* !YY_DECL */
 
@@ -354,9 +354,9 @@ extern int BALANCEMQ_SETTINGS_YYlex \
 #undef YY_DECL
 #endif
 
-#line 63 "balancemq_settings.l"
+#line 68 "balancemq_settings.l"
 
 
 #line 361 "balancemq_settings.scanner.h"
-#undef BALANCEMQ_SETTINGS_YYIN_HEADER
-#endif /* BALANCEMQ_SETTINGS_YYHEADER_H */
+#undef balancemq_settings_yyIN_HEADER
+#endif /* balancemq_settings_yyHEADER_H */

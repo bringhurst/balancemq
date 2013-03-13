@@ -49,7 +49,7 @@ extern int balancemq_settings_yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 2058 of yacc.c  */
-#line 16 "balancemq_settings.y"
+#line 17 "balancemq_settings.y"
 
   #include <log.h>
   #include <xlist.h>
@@ -91,28 +91,18 @@ extern int balancemq_settings_yydebug;
 #endif
 
 
-#ifndef YYPUSH_MORE_DEFINED
-# define YYPUSH_MORE_DEFINED
-enum { YYPUSH_MORE = 4 };
-#endif
-
-typedef struct balancemq_settings_yypstate balancemq_settings_yypstate;
-
+#ifdef YYPARSE_PARAM
 #if defined __STDC__ || defined __cplusplus
-int balancemq_settings_yypush_parse (balancemq_settings_yypstate *ps, int pushed_char, BALANCEMQ_SETTINGS_YYSTYPE const *pushed_val);
+int balancemq_settings_yyparse (void *YYPARSE_PARAM);
 #else
-int balancemq_settings_yypush_parse ();
+int balancemq_settings_yyparse ();
 #endif
-
+#else /* ! YYPARSE_PARAM */
 #if defined __STDC__ || defined __cplusplus
-balancemq_settings_yypstate * balancemq_settings_yypstate_new (void);
+int balancemq_settings_yyparse (BALANCEMQ_settings_t* settings_tree);
 #else
-balancemq_settings_yypstate * balancemq_settings_yypstate_new ();
+int balancemq_settings_yyparse ();
 #endif
-#if defined __STDC__ || defined __cplusplus
-void balancemq_settings_yypstate_delete (balancemq_settings_yypstate *ps);
-#else
-void balancemq_settings_yypstate_delete ();
-#endif
+#endif /* ! YYPARSE_PARAM */
 
 #endif /* !YY_BALANCEMQ_SETTINGS_YY_BALANCEMQ_SETTINGS_PARSER_H_INCLUDED  */
