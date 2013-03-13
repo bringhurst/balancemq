@@ -3,6 +3,7 @@ include $(top_srcdir)/common.mk
 BUILT_SOURCES = balancemq_settings.h
 
 AM_YFLAGS = -d
+AM_LFLAGS = -CFa
 
 INCLUDES = \
            -I$(top_srcdir) \

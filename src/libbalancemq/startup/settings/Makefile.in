@@ -246,6 +246,7 @@ top_srcdir = @top_srcdir@
 AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra -Wshadow
 BUILT_SOURCES = balancemq_settings.h
 AM_YFLAGS = -d
+AM_LFLAGS = -CFa
 INCLUDES = \
            -I$(top_srcdir) \
            -I$(top_srcdir)/src/libbalancemq/common \

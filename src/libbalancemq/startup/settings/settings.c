@@ -12,7 +12,6 @@ BALANCEMQ_settings_t* BALANCEMQ_parse_settings(char* path)
     int status;
     balancemq_settings_yypstate *ps = balancemq_settings_yypstate_new();
 
-
     //balancemq_settings_yyin = fopen(path, "r");
 /*
     if(balancemq_settings_yyin == NULL) {

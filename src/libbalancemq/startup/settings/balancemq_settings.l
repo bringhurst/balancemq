@@ -2,8 +2,9 @@
   /* A lexer for balancemq.conf */
 }
 
-%option 8bit reentrant bison-bridge warn
-%option yylineno
+%option 8bit reentrant yylineno warn
+%option bison-bridge bison-locations
+%option align read
 
 %option prefix="balancemq_settings_yy"
 %option outfile="lex.yy.c"
