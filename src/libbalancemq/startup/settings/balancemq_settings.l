@@ -41,7 +41,7 @@ WHITESPACE            ; /* Ignore this token. */
 ","                   return T_COMMA;
 
 IDENTIFIER            %{
-                          yylval = yytext;
+                          yylval->string_value = yytext;
                           return T_IDENTIFIER;
                       %}
 
@@ -51,7 +51,7 @@ DOUBLE                %{
                       %}
 
 INTEGER               %{
-                          yylval = atoi(yytext);
+                          yylval->integer_value = atoi(yytext);
                           return T_INTEGER;
                       %}
 
