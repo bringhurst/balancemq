@@ -2,16 +2,18 @@
   /* A lexer for balancemq.conf */
 }
 
-%option 8bit reentrant bison-bridge
-%option warn nodefault
+%option 8bit reentrant bison-bridge warn
 %option yylineno
-%option outfile="balancemq_settings_scanner.c" header-file="balancemq_settings_scanner.h"
-%option noyywrap nounput
+
+%option prefix="balancemq_settings_yy"
+%option outfile="lex.yy.c"
 
 WHITESPACE            [ \t\n]
 IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
 DOUBLE                [0-9]+\.[0-9]*
 INTEGER               [0-9]+
+
+%x                    comment
 
 %%
 

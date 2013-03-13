@@ -63,12 +63,11 @@
 #line 9 "balancemq_settings.y"
 
   #define _GNU_SOURCE
-
   #include <stdio.h>
 
 
 /* Line 349 of yacc.c  */
-#line 72 "balancemq_settings.c"
+#line 71 "balancemq_settings.c"
 /* Substitute the type names.  */
 #define YYSTYPE         BALANCEMQ_SETTINGS_YYSTYPE
 /* Substitute the variable and function names.  */
@@ -86,7 +85,7 @@
 /* Copy the first part of user declarations.  */
 
 /* Line 371 of yacc.c  */
-#line 90 "balancemq_settings.c"
+#line 89 "balancemq_settings.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -125,7 +124,7 @@ extern int balancemq_settings_yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 387 of yacc.c  */
-#line 15 "balancemq_settings.y"
+#line 14 "balancemq_settings.y"
 
   #include <log.h>
   #include <xlist.h>
@@ -135,7 +134,7 @@ extern int balancemq_settings_yydebug;
 
 
 /* Line 387 of yacc.c  */
-#line 139 "balancemq_settings.c"
+#line 138 "balancemq_settings.c"
 
 /* Tokens.  */
 #ifndef BALANCEMQ_SETTINGS_YYTOKENTYPE
@@ -163,7 +162,7 @@ extern int balancemq_settings_yydebug;
 typedef union BALANCEMQ_SETTINGS_YYSTYPE
 {
 /* Line 387 of yacc.c  */
-#line 28 "balancemq_settings.y"
+#line 27 "balancemq_settings.y"
 
     char* string_value;
     float double_value;
@@ -177,7 +176,7 @@ typedef union BALANCEMQ_SETTINGS_YYSTYPE
 
 
 /* Line 387 of yacc.c  */
-#line 181 "balancemq_settings.c"
+#line 180 "balancemq_settings.c"
 } BALANCEMQ_SETTINGS_YYSTYPE;
 # define BALANCEMQ_SETTINGS_YYSTYPE_IS_TRIVIAL 1
 # define balancemq_settings_yystype BALANCEMQ_SETTINGS_YYSTYPE /* obsolescent; will be withdrawn */
@@ -210,21 +209,21 @@ void balancemq_settings_yypstate_delete ();
 #endif
 /* "%code provides" blocks.  */
 /* Line 387 of yacc.c  */
-#line 23 "balancemq_settings.y"
+#line 22 "balancemq_settings.y"
 
   extern int balancemq_settings_yylex(void);
   extern void balancemq_settings_yyerror(const char* msg);
 
 
 /* Line 387 of yacc.c  */
-#line 221 "balancemq_settings.c"
+#line 220 "balancemq_settings.c"
 
 #endif /* !YY_BALANCEMQ_SETTINGS_YY_Y_TAB_H_INCLUDED  */
 
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 228 "balancemq_settings.c"
+#line 227 "balancemq_settings.c"
 
 #ifdef short
 # undef short
@@ -490,8 +489,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    55,    55,    58,    65,    69,    75,    79,    86,    90,
-      96,   100,   101,   102
+       0,    54,    54,    57,    64,    68,    74,    78,    85,    89,
+      95,    99,   100,   101
 };
 #endif
 
@@ -1464,7 +1463,7 @@ yyreduce:
     {
         case 2:
 /* Line 1792 of yacc.c  */
-#line 55 "balancemq_settings.y"
+#line 54 "balancemq_settings.y"
     {
                 (yyval.settings_value) = (BALANCEMQ_settings_t*) NULL;
             }
@@ -1472,7 +1471,7 @@ yyreduce:
 
   case 3:
 /* Line 1792 of yacc.c  */
-#line 58 "balancemq_settings.y"
+#line 57 "balancemq_settings.y"
     {
                 (yyval.settings_value) = BALANCEMQ_settings_create_settings();
                 BALANCEMQ_list_push((yyval.settings_value)->blocks, (yyvsp[(1) - (1)].list_value));
@@ -1481,7 +1480,7 @@ yyreduce:
 
   case 4:
 /* Line 1792 of yacc.c  */
-#line 65 "balancemq_settings.y"
+#line 64 "balancemq_settings.y"
     {
                 (yyval.list_value) = BALANCEMQ_list_create();
                 BALANCEMQ_list_push((yyval.list_value), (yyvsp[(1) - (1)].block_value));
@@ -1490,7 +1489,7 @@ yyreduce:
 
   case 5:
 /* Line 1792 of yacc.c  */
-#line 69 "balancemq_settings.y"
+#line 68 "balancemq_settings.y"
     {
                 BALANCEMQ_list_push((yyval.list_value), (yyvsp[(2) - (2)].block_value));
             }
@@ -1498,7 +1497,7 @@ yyreduce:
 
   case 6:
 /* Line 1792 of yacc.c  */
-#line 75 "balancemq_settings.y"
+#line 74 "balancemq_settings.y"
     {
                 (yyval.block_value) = BALANCEMQ_settings_create_block((yyvsp[(1) - (4)].string_value));
                 BALANCEMQ_list_push((yyval.block_value)->variables, (yyvsp[(3) - (4)].list_value));
@@ -1507,7 +1506,7 @@ yyreduce:
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 79 "balancemq_settings.y"
+#line 78 "balancemq_settings.y"
     {
                 (yyval.block_value) = BALANCEMQ_settings_create_block((yyvsp[(1) - (4)].string_value));
                 BALANCEMQ_list_push((yyval.block_value)->blocks, (yyvsp[(3) - (4)].list_value));
@@ -1516,7 +1515,7 @@ yyreduce:
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 86 "balancemq_settings.y"
+#line 85 "balancemq_settings.y"
     {
                 (yyval.list_value) = BALANCEMQ_list_create();
                 BALANCEMQ_list_push((yyval.list_value), (yyvsp[(1) - (1)].variable_value));
@@ -1525,7 +1524,7 @@ yyreduce:
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 90 "balancemq_settings.y"
+#line 89 "balancemq_settings.y"
     {
                 BALANCEMQ_list_push((yyval.list_value), (yyvsp[(2) - (2)].variable_value));
             }
@@ -1533,31 +1532,31 @@ yyreduce:
 
   case 10:
 /* Line 1792 of yacc.c  */
-#line 96 "balancemq_settings.y"
+#line 95 "balancemq_settings.y"
     { (yyval.variable_value) = BALANCEMQ_settings_create_variable((yyvsp[(1) - (2)].string_value), (yyvsp[(2) - (2)].balance_value)); }
     break;
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 100 "balancemq_settings.y"
+#line 99 "balancemq_settings.y"
     { (yyval.balance_value) = BALANCEMQ_settings_create_string_value((yyvsp[(1) - (1)].string_value)); }
     break;
 
   case 12:
 /* Line 1792 of yacc.c  */
-#line 101 "balancemq_settings.y"
+#line 100 "balancemq_settings.y"
     { (yyval.balance_value) = BALANCEMQ_settings_create_integer_value((yyvsp[(1) - (1)].integer_value)); }
     break;
 
   case 13:
 /* Line 1792 of yacc.c  */
-#line 102 "balancemq_settings.y"
+#line 101 "balancemq_settings.y"
     { (yyval.balance_value) = BALANCEMQ_settings_create_double_value((yyvsp[(1) - (1)].double_value)); }
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 1561 "balancemq_settings.c"
+#line 1560 "balancemq_settings.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1792,7 +1791,7 @@ yypushreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 105 "balancemq_settings.y"
+#line 104 "balancemq_settings.y"
 
 
 /* EOF */

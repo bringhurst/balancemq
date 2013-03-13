@@ -52,7 +52,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(top_srcdir)/common.mk
+	$(top_srcdir)/common.mk balancemq_settings.c \
+	balancemq_settings.h
 subdir = src/libbalancemq/startup/settings
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
@@ -68,7 +69,8 @@ CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 libbalancemq_startup_settings_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
-am_libbalancemq_startup_settings_la_OBJECTS = settings.lo
+am_libbalancemq_startup_settings_la_OBJECTS = balancemq_settings.lo \
+	settings.lo
 libbalancemq_startup_settings_la_OBJECTS =  \
 	$(am_libbalancemq_startup_settings_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -101,6 +103,13 @@ LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD  " $@;
+YACCCOMPILE = $(YACC) $(AM_YFLAGS) $(YFLAGS)
+LTYACCCOMPILE = $(LIBTOOL) $(AM_V_lt) $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=compile $(YACC) $(AM_YFLAGS) $(YFLAGS)
+AM_V_YACC = $(am__v_YACC_@AM_V@)
+am__v_YACC_ = $(am__v_YACC_@AM_DEFAULT_V@)
+am__v_YACC_0 = @echo "  YACC  " $@;
+YLWRAP = $(top_srcdir)/auxdir/ylwrap
 AM_V_GEN = $(am__v_GEN_@AM_V@)
 am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
 am__v_GEN_0 = @echo "  GEN   " $@;
@@ -236,7 +245,6 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra -Wshadow
 BUILT_SOURCES = balancemq_settings.h
-PARSER = balancemq_settings.y balancemq_settings.l
 AM_YFLAGS = -d
 INCLUDES = \
            -I$(top_srcdir) \
@@ -245,6 +253,7 @@ INCLUDES = \
 
 noinst_LTLIBRARIES = libbalancemq_startup_settings.la
 libbalancemq_startup_settings_la_SOURCES = \
+                                           balancemq_settings.y \
 										   settings.c
 
 libbalancemq_startup_settings_la_LIBADD = $(LEXLIB)
@@ -253,7 +262,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
+.SUFFIXES: .c .lo .o .obj .y
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/common.mk $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -294,6 +303,9 @@ clean-noinstLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+balancemq_settings.h: balancemq_settings.c
+	@if test ! -f $@; then rm -f balancemq_settings.c; else :; fi
+	@if test ! -f $@; then $(MAKE) $(AM_MAKEFLAGS) balancemq_settings.c; else :; fi
 libbalancemq_startup_settings.la: $(libbalancemq_startup_settings_la_OBJECTS) $(libbalancemq_startup_settings_la_DEPENDENCIES) $(EXTRA_libbalancemq_startup_settings_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libbalancemq_startup_settings_la_LINK)  $(libbalancemq_startup_settings_la_OBJECTS) $(libbalancemq_startup_settings_la_LIBADD) $(LIBS)
 
@@ -303,6 +315,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/balancemq_settings.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/settings.Plo@am__quote@
 
 .c.o:
@@ -325,6 +338,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
+
+.y.c:
+	$(AM_V_YACC)$(am__skipyacc) $(SHELL) $(YLWRAP) $< y.tab.c $@ y.tab.h $*.h y.output $*.output -- $(YACCCOMPILE)
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -450,6 +466,8 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-rm -f balancemq_settings.c
+	-rm -f balancemq_settings.h
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
