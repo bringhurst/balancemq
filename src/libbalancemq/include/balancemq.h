@@ -111,8 +111,9 @@ typedef struct {
 
 /**
  * Create a transient channel using default settings, the specified process
- * callback, and an initial seed item. If an application requires additional
- * options to be set, this function should not be used.
+ * callback, and an initial seed item. This function is a wrapper for several
+ * API function calls. If an application requires additional options to be set,
+ * this function should not be used.
  */
 int BALANCE_simple_startup(BALANCE_cb process_callback, \
                            BALANCE_item_t* seed_item);
