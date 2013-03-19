@@ -2,21 +2,25 @@
 #define _BALANCEMQ_BALANCEMQ_H
 
 #include <stdint.h>
+#include <sys/types.h>
+
+#define BALANCE_ERR -1
+#define BALANCE_OK  0
+
+/** Permission denied error. */
+#define BALANCE_ERR_PERM 2
 
 /* An item to be processed. */
 typedef struct {
 
-    /* The tag the user specified for this queue. */
-    char* tag;
-
-    /* The user specified options for this queue. */
-    uint16_t options;
+    /* The name of a channel this item will be sent to. */
+    char* channel_name;
 
     /* The priority of this item (lower value is processed first). */
-    uint16_t priority;
+    int8_t priority;
 
     /* The data size. */
-    uint32_t data_size;
+    int32_t data_size;
 
     /* The actual data. */
     void* data;
@@ -24,70 +28,148 @@ typedef struct {
 } BALANCE_item_t;
 
 /**
- * The interface to the work queue. This can be accessed from within the
- * process work callback.
+ * The interface to the local work queue. This is passed to appropriate
+ * context callbacks.
  */
 typedef struct {
 
     /* Enqueue an item. */
-    int8_t (*enqueue)(BALANCE_item_t* item);
+    int (*enqueue)(BALANCE_item_t* item);
 
     /* Dequeue an item. */
-    int8_t (*dequeue)(BALANCE_item_t* item);
+    int (*dequeue)(BALANCE_item_t* item);
 
     /* Get the size of the local queue structure. */
-    uint32_t (*internal_queue_size)();
+    int32_t (*internal_queue_size)();
 
-} BALANCE_handle;
+} BALANCE_handle_t;
 
 /**
  * The type for defining callbacks for processing.
  */
-typedef void (*BALANCE_cb)(BALANCE_handle *handle);
+typedef void (*BALANCE_cb)(BALANCE_handle_t *handle);
 
 /**
- * Begin accepting work requests. If requests are already being accepted,
- * this will be a no-op.
+ * The definition of a channel.
  */
-void BALANCE_accept(void);
+typedef struct {
+
+    /** The user who has full permissions to this channel. */
+    uid_t user_owner;
+
+    /** The group who has full permissions to this channel. */
+    gid_t group_owner;
+
+    char* name;
+    char* description;
+
+    /** The behavior of termination. */
+    int type;
+
+} BALANCE_channel_t;
+
+/**
+ * The description of how a group of channels are created and destroyed.
+ */
+typedef struct {
+
+    /** The last reported error code. */
+    int err;
+
+    /** If available, a string representation of the error code. */
+    char* errstr;
+
+    /** The file descriptor to log errors to. */
+    int log_fd;
+
+    /** The log level to report. */
+    int log_level;
+
+    /** Context specific configuration settings. */
+    BALANCE_settings_t settings;
+
+    /** A list of channels to listen for. */
+    BALANCE_channel_t** channels;
+
+    struct {
+
+        /** Callback performed for when a queue is created. */
+        BALANCE_cb startup_func;
+
+        /** Callback performed for each queue work item. */
+        BALANCE_cb process_func;
+
+        /** Callback performed before termination when the local queue is empty. */
+        BALANCE_cb empty_func;
+
+        /** A callback performed after successful termination detection. */
+        BALANCE_cb terminate_func;
+
+    } events;
+
+} BALANCE_context_t;
+
+/**
+ * Begin accepting new work requests for channels specified by context. If
+ * items do not exist for a transient channel, the channel will immediately
+ * terminate.
+ */
+int BALANCE_accept(BALANCE_context_t* context);
 
 /**
  * Reject all new work and ensure all current work on this node has been
- * completed or passed to other workers.
+ * completed or passed to other workers for the specified channels.
  */
-void BALANCE_shutdown(void);
+int BALANCE_shutdown_local(BALANCE_channel_t** channels);
 
 /**
- * If not already accepting work, begin accepting new work items. Also, create
- * a new tagged queue with the specified item or, if the tagged queue already
- * exists, insert the item for processing.
+ * Perform an expensive broadcast operation to obtain a global list of all
+ * active channels.
+ */
+int BALANCE_query_channel_list(BALANCE_channel_t** channels);
+
+/**
+ * Insert an item into the local queue to be processed by a callback
+ * registered to the appropriate channel.
  */
 int BALANCE_insert(BALANCE_item_t* item);
 
 /**
- * The callback that allows work to be processed.
+ * Permanently enable distributed termination detection on the specified
+ * persistent channel, effectively turning it into a transient channel.
  */
-void BALANCE_process(BALANCE_cb func);
+int BALANCE_enable_termination(BALANCE_channel_t* channel);
 
 /**
- * Ensure all work for a specified persistent tagged queue has been completed
- * and destroy the tagged queue.
+ * Set the context configuration to the file specified at path.
  */
-void BALANCE_finalize_persistant(char* tag);
+int BALANCE_set_configuration(BALANCE_context_t* context, char* path);
 
 /**
- * Define a callback for when a transient queue has finished.
+ * Set the detail and location for logging for the specified context.
  */
-void BALANCE_finalize_transient(BALANCE_cb func);
+void BALANCE_set_logging(BALANCE_context_t* context, int fd, int level);
 
 /**
- * Read/reread configuration file at the specified path.
+ * Set a callback to be used when the channel is registered.
  */
-void BALANCE_read_config(char* path);
+int BALANCE_set_startup_callback(BALANCE_context_t* context, BALANCE_cb func);
 
 /**
- * Define the detail and location for logging.
+ * Set a callback to be used for processing items.
  */
-void BALANCE_setup_log(int fd, int level);
+int BALANCE_set_process_callback(BALANCE_context_t* context, BALANCE_cb func);
+
+/**
+ * Set a callback to be used for when the local queue is empty, but before the
+ * global termination detection has been performed.
+ */
+int BALANCE_set_empty_callback(BALANCE_context_t* context, BALANCE_cb func);
+
+/**
+ * Set a callback to be used for after the global termination detection
+ * algorithm has determined to terminate the channel.
+ */
+int BALANCE_set_terminate_callback(BALANCE_context_t* context, BALANCE_cb func);
 
 #endif /* _BALANCEMQ_BALANCEMQ_H */
