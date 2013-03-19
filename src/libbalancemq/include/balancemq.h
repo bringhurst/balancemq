@@ -5,7 +5,7 @@
 #include <sys/types.h>
 
 #define BALANCE_ERR -1
-#define BALANCE_OK  0
+#define BALANCE_OK 0
 
 /** Permission denied error. */
 #define BALANCE_ERR_PERM 2
@@ -111,11 +111,11 @@ typedef struct {
 
 /**
  * Create a transient channel using default settings, the specified process
- * callback, and the initial seed item (with a proper channel name specified).
+ * callback, and an initial seed item. If an application requires additional
+ * options to be set, this function should not be used.
  */
-int BALANCE_simple_startup(BALANCE_context_t* context, \
-                           BALANCE_cb process, \
-                           BALANCE_item_t* initial);
+int BALANCE_simple_startup(BALANCE_cb process_callback, \
+                           BALANCE_item_t* seed_item);
 
 /**
  * Begin accepting new work requests for channels using the options specified
