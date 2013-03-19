@@ -71,6 +71,7 @@ AC_CONFIG_FILES([Makefile                                              \
                  src/libbalancemq/Makefile                             \
                  src/libbalancemq/common/Makefile                      \
                  src/libbalancemq/include/Makefile                     \
+                 src/libbalancemq/include/balancemq/Makefile                     \
                  src/libbalancemq/plugins/Makefile                     \
                  src/libbalancemq/plugins/auth/Makefile                \
                  src/libbalancemq/plugins/auth/munge/Makefile          \

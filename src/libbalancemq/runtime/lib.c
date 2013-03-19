@@ -1,82 +1,84 @@
 /* This is the internal implementation of each api hook. */
 
-#include <balancemq.h>
+#include <balancemq/balancemq.h>
 #include <stdio.h>
 
-/**
- * Begin accepting workload requests.
- */
-void BALANCE_accept(void)
+int BALANCE_simple_startup(BALANCE_cb process_callback, \
+                           BALANCE_item_t* seed_item)
 {
-    printf("BalanceMQ BALANCE_accept is not implemented yet.");
-    return;
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
+} 
+
+int BALANCE_accept(BALANCE_context_t* context, \
+                   BALANCE_channel_t** channels)
+{
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
 }
 
-/**
- * If not already accepting work, begin accepting new work items. Also, create
- * a new tagged queue with the specified item or, if the tagged queue already
- * exists, insert the item for processing.
- */
-int BALANCE_insert(BALANCE_item_t* item)
+int BALANCE_query_channels(BALANCE_context_t* context, \
+                           BALANCE_channel_t** channels)
 {
-    printf("BalanceMQ BALANCE_insert is not implemented yet.");
-    return -1;
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
 }
 
-/**
- * The callback that allows work to be processed.
- */
-void BALANCE_process(BALANCE_cb func)
+int BALANCE_insert(BALANCE_context_t* context, \
+                   BALANCE_item_t* item)
 {
-    printf("BalanceMQ BALANCE_process is not implemented yet.");
-    return;
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
 }
 
-/**
- * Ensure all work for a specified persistant tagged queue has been completed
- * and destroy the tagged queue.
- */
-void BALANCE_finalize_persistant(char* tag)
+int BALANCE_enable_termination(BALANCE_context_t* context, \
+                               char* channel_name)
 {
-    printf("BalanceMQ BALANCE_finalize_persistant is not implemented yet.");
-    return;
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
 }
 
-/**
- * Define a callback for when a transient queue has finished.
- */
-void BALANCE_finalize_transient(BALANCE_cb func)
+int BALANCE_set_configuration(BALANCE_context_t* context, \
+                              char* path)
 {
-    printf("BalanceMQ BALANCE_finalize_transient is not implemented yet.");
-    return;
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
 }
 
-/**
- * Reject all new work and ensure all current work on this node has been
- * completed or passed to other workers.
- */
-void BALANCE_shutdown(void)
+void BALANCE_set_logging(BALANCE_context_t* context, \
+                         int fd, \
+                         int level)
 {
-    printf("BalanceMQ BALANCE_shutdown is not implemented yet.");
-    return;
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
 }
 
-/**
- * Read/reread configuration file at the specified path.
- */
-void BALANCE_read_config(char* path)
+int BALANCE_set_startup_callback(BALANCE_context_t* context, \
+                                 BALANCE_cb func)
 {
-    printf("BalanceMQ BALANCE_read_config is not implemented yet.");
-    return;
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
 }
 
-/**
- * Define the detail and location for logging.
- */
-void BALANCE_setup_log(int fd, int level)
+int BALANCE_set_process_callback(BALANCE_context_t* context, \
+                                 BALANCE_cb func)
 {
-    printf("BalanceMQ BALANCE_setup_log is not implemented yet.");
-    return;
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
+}
+
+int BALANCE_set_empty_callback(BALANCE_context_t* context, \
+                               BALANCE_cb func)
+{
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
+}
+
+int BALANCE_set_terminate_callback(BALANCE_context_t* context, \
+                                   BALANCE_cb func)
+{
+    /* TODO; not implemented yet */
+    return BALANCE_ERR;
 }
 
 /* EOF */
