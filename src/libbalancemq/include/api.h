@@ -1,5 +1,7 @@
-#ifndef _BALANCEMQ_BALANCEMQ_H
-#define _BALANCEMQ_BALANCEMQ_H
+#ifndef _BALANCEMQ_API_H
+#define _BALANCEMQ_API_H
+
+#include <balancemq/settings.h>
 
 #include <stdint.h>
 #include <sys/types.h>
@@ -186,4 +188,4 @@ int BALANCE_set_empty_callback(BALANCE_context_t* context, \
 int BALANCE_set_terminate_callback(BALANCE_context_t* context, \
                                    BALANCE_cb func);
 
-#endif /* _BALANCEMQ_BALANCEMQ_H */
+#endif /* _BALANCEMQ_API_H */
