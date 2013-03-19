@@ -110,12 +110,12 @@ typedef struct {
 } BALANCE_context_t;
 
 /**
- * Create a context using default settings, the specified process callback,
- * and the initial seed item (with a proper channel name specified).
+ * Create a transient channel using default settings, the specified process
+ * callback, and the initial seed item (with a proper channel name specified).
  */
-int BALANCE_create_simple_context(BALANCE_context_t* context, \
-                                  BALANCE_cb process, \
-                                  BALANCE_item_t* initial);
+int BALANCE_simple_startup(BALANCE_context_t* context, \
+                           BALANCE_cb process, \
+                           BALANCE_item_t* initial);
 
 /**
  * Begin accepting new work requests for channels using the options specified
