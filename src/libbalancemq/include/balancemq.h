@@ -10,19 +10,22 @@
 /** Permission denied error. */
 #define BALANCE_ERR_PERM 2
 
-/* An item to be processed. */
+/** An item to be processed. */
 typedef struct {
 
-    /* The name of a channel this item will be sent to. */
+    /** The name of the channel this item will be sent to. */
     char* channel_name;
 
-    /* The priority of this item (lower value is processed first). */
+    /**
+     * The priority of this item relative to others in the same channel (lower
+     * value is processed first).
+     */
     int8_t priority;
 
-    /* The data size. */
-    int32_t data_size;
+    /** The data size. */
+    size_t data_size;
 
-    /* The actual data. */
+    /** The actual data. */
     void* data;
 
 } BALANCE_item_t;
@@ -40,7 +43,7 @@ typedef struct {
     int (*dequeue)(BALANCE_item_t* item);
 
     /* Get the size of the local queue structure. */
-    int32_t (*internal_queue_size)();
+    int (*size)(size_t* size);
 
 } BALANCE_handle_t;
 
@@ -107,60 +110,79 @@ typedef struct {
 } BALANCE_context_t;
 
 /**
+ * Create a context using default settings, the specified process callback,
+ * and the initial seed item (with a proper channel name specified).
+ */
+int BALANCE_create_simple_context(BALANCE_context_t* context, \
+                                  BALANCE_cb process, \
+                                  BALANCE_item_t* initial);
+
+/**
  * Begin accepting new work requests for channels using the options specified
  * by context. If items do not already exist for a transient channel, the
  * channel will immediately terminate.
  */
-int BALANCE_accept(BALANCE_context_t* context, BALANCE_channel_t** channels);
+int BALANCE_accept(BALANCE_context_t* context, \
+                   BALANCE_channel_t** channels);
 
 /**
  * Perform an expensive broadcast operation to obtain a global list of all
  * active channels.
  */
-int BALANCE_query_channels(BALANCE_context_t* context, BALANCE_channel_t** channels);
+int BALANCE_query_channels(BALANCE_context_t* context, \
+                           BALANCE_channel_t** channels);
 
 /**
  * Insert an item into the local queue to be processed by a callback
  * registered to the appropriate channel.
  */
-int BALANCE_insert(BALANCE_context_t* context, BALANCE_item_t* item);
+int BALANCE_insert(BALANCE_context_t* context, \
+                   BALANCE_item_t* item);
 
 /**
  * Permanently enable distributed termination detection on the specified
  * persistent channel name, effectively turning it into a transient channel.
  */
-int BALANCE_enable_termination(BALANCE_context_t* context, char* channel_name);
+int BALANCE_enable_termination(BALANCE_context_t* context, \
+                               char* channel_name);
 
 /**
  * Set the context configuration to the file specified at path.
  */
-int BALANCE_set_configuration(BALANCE_context_t* context, char* path);
+int BALANCE_set_configuration(BALANCE_context_t* context, \
+                              char* path);
 
 /**
  * Set the detail and location for logging for the specified context.
  */
-void BALANCE_set_logging(BALANCE_context_t* context, int fd, int level);
+void BALANCE_set_logging(BALANCE_context_t* context, \
+                         int fd, \
+                         int level);
 
 /**
  * Set a callback to be used when the channel is registered.
  */
-int BALANCE_set_startup_callback(BALANCE_context_t* context, BALANCE_cb func);
+int BALANCE_set_startup_callback(BALANCE_context_t* context, \
+                                 BALANCE_cb func);
 
 /**
  * Set a callback to be used for processing items.
  */
-int BALANCE_set_process_callback(BALANCE_context_t* context, BALANCE_cb func);
+int BALANCE_set_process_callback(BALANCE_context_t* context, \
+                                 BALANCE_cb func);
 
 /**
  * Set a callback to be used for when the local queue is empty, but before the
  * global termination detection has been performed.
  */
-int BALANCE_set_empty_callback(BALANCE_context_t* context, BALANCE_cb func);
+int BALANCE_set_empty_callback(BALANCE_context_t* context, \
+                               BALANCE_cb func);
 
 /**
  * Set a callback to be used after the global termination detection algorithm
  * has determined the channel will be terminated.
  */
-int BALANCE_set_terminate_callback(BALANCE_context_t* context, BALANCE_cb func);
+int BALANCE_set_terminate_callback(BALANCE_context_t* context, \
+                                   BALANCE_cb func);
 
 #endif /* _BALANCEMQ_BALANCEMQ_H */
