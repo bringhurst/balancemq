@@ -5,11 +5,18 @@
 #include <stdint.h>
 #include <time.h>
 
-#define BALANCE_LOG_DBG   5
-#define BALANCE_LOG_INFO  4
-#define BALANCE_LOG_WARN  3
-#define BALANCE_LOG_ERR   2
-#define BALANCE_LOG_FATAL 1
+typedef enum {
+    BALANCE_LOG_DBG = 5,
+#define BALANCE_LOG_DBG BALANCE_LOG_DBG
+    BALANCE_LOG_INFO = 4,
+#define BALANCE_LOG_INFO BALANCE_LOG_INFO
+    BALANCE_LOG_WARN = 3,
+#define BALANCE_LOG_WARN BALANCE_LOG_WARN
+    BALANCE_LOG_ERR = 2,
+#define BALANCE_LOG_ERR BALANCE_LOG_ERR
+    BALANCE_LOG_FATAL = 1,
+#define BALANCE_LOG_FATAL BALANCE_LOG_FATAL
+} BALANCE_loglevel;
 
 #define LOG(level, ...) do {  \
         if (level <= BALANCE_debug_level) { \
@@ -20,8 +27,5 @@
             fflush(BALANCE_debug_stream); \
         } \
     } while (0)
-
-extern FILE* BALANCE_debug_stream;
-extern int   BALANCE_debug_level;
 
 #endif /* _BALANCEMQ_LOG_H */
