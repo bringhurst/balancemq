@@ -1,7 +1,7 @@
-#include "settings.h"
+#include <balancemq/settings.h>
 
-#include "balancemq_settings.scanner.h"
-#include "balancemq_settings.parser.h"
+#include "balance_settings.scanner.h"
+#include "balance_settings.parser.h"
 
 #include <log.h>
 
@@ -9,14 +9,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-BALANCEMQ_settings_t* BALANCEMQ_parse_settings(char* path)
+BALANCE_settings_t* BALANCE_parse_settings(char* path)
 {
     FILE* settings_file;
     yyscan_t scanner;
-    BALANCEMQ_settings_t* settings = NULL;
+    BALANCE_settings_t* settings = NULL;
 
-    balancemq_settings_yylex_init(&scanner);
-    balancemq_settings_yylex_init_extra(settings, &scanner);
+    balance_settings_yylex_init(&scanner);
+    balance_settings_yylex_init_extra(settings, &scanner);
 
     settings_file = fopen(path, "r");
     if(settings_file == NULL) {
@@ -24,37 +24,32 @@ BALANCEMQ_settings_t* BALANCEMQ_parse_settings(char* path)
         return NULL;
     }
 
-    balancemq_settings_yyset_in(settings_file, scanner);
-    balancemq_settings_yylex(NULL, scanner);
-    balancemq_settings_yylex_destroy(scanner);
+    balance_settings_yyset_in(settings_file, scanner);
+    balance_settings_yylex(NULL, scanner);
+    balance_settings_yylex_destroy(scanner);
 
     return NULL;
 }
 
-void balancemq_settings_yyerror(const char* msg)
+void balance_settings_yyerror(const char* msg)
 {
-    LOG(BALANCEMQ_LOG_DBG, "settings yyerror reported `%s'", msg);
+    LOG(BALANCE_LOG_DBG, "settings yyerror reported `%s'", msg);
 }
 
-BALANCEMQ_settings_t* BALANCEMQ_settings_create_settings()
+BALANCE_settings_t* BALANCE_settings_create_settings()
 {
-    BALANCEMQ_settings_t* settings = \
-        (BALANCEMQ_settings_t*) malloc(sizeof(BALANCEMQ_settings_t));
-
-    settings->block_count = 0;
+    BALANCE_settings_t* settings = \
+        (BALANCE_settings_t*) malloc(sizeof(BALANCE_settings_t));
 
     settings->blocks = NULL;
 
     return settings;
 }
 
-BALANCEMQ_settings_block_t* BALANCEMQ_settings_create_block()
+BALANCE_settings_block_t* BALANCE_settings_create_block()
 {
-    BALANCEMQ_settings_block_t* block = \
-        (BALANCEMQ_settings_block_t*) malloc(sizeof(BALANCEMQ_settings_block_t));
-
-    block->block_count = 0;
-    block->variable_count = 0;
+    BALANCE_settings_block_t* block = \
+        (BALANCE_settings_block_t*) malloc(sizeof(BALANCE_settings_block_t));
 
     block->blocks = NULL;
     block->variables = NULL;
@@ -62,48 +57,48 @@ BALANCEMQ_settings_block_t* BALANCEMQ_settings_create_block()
     return block;
 }
 
-BALANCEMQ_settings_variable_t* BALANCEMQ_settings_create_variable(char* key, BALANCEMQ_settings_value_t* value)
+BALANCE_settings_variable_t* BALANCE_settings_create_variable(char* key, BALANCE_settings_value_t* value)
 {
-    BALANCEMQ_settings_variable_t* variable = \
-        (BALANCEMQ_settings_variable_t*) malloc(sizeof(BALANCEMQ_settings_variable_t));
+    BALANCE_settings_variable_t* variable = \
+        (BALANCE_settings_variable_t*) malloc(sizeof(BALANCE_settings_variable_t));
 
-    variable->key = (char*) malloc(sizeof(char) * BALANCEMQ_SETTINGS_MAX_KEY_LENGTH);
+    variable->key = (char*) malloc(sizeof(char) * BALANCE_SETTINGS_MAX_KEY_LENGTH);
     variable->value = value;
 
-    strncpy(variable->key, key, BALANCEMQ_SETTINGS_MAX_KEY_LENGTH);
-    variable->key[BALANCEMQ_SETTINGS_MAX_KEY_LENGTH - 1] = '\0';
+    strncpy(variable->key, key, BALANCE_SETTINGS_MAX_KEY_LENGTH);
+    variable->key[BALANCE_SETTINGS_MAX_KEY_LENGTH - 1] = '\0';
 
     return variable;
 }
 
-BALANCEMQ_settings_value_t* BALANCEMQ_settings_create_string_value(char* value)
+BALANCE_settings_value_t* BALANCE_settings_create_string_value(char* value)
 {
-    BALANCEMQ_settings_value_t* settings_value = \
-        (BALANCEMQ_settings_value_t*) malloc(sizeof(BALANCEMQ_settings_value_t));
+    BALANCE_settings_value_t* settings_value = \
+        (BALANCE_settings_value_t*) malloc(sizeof(BALANCE_settings_value_t));
 
-    settings_value->type = BALANCEMQ_SETTINGS_STRING;
+    settings_value->type = BALANCE_SETTINGS_STRING;
     settings_value->u.sval = value;
 
     return settings_value;
 }
 
-BALANCEMQ_settings_value_t* BALANCEMQ_settings_create_integer_value(int value)
+BALANCE_settings_value_t* BALANCE_settings_create_integer_value(int value)
 {
-    BALANCEMQ_settings_value_t* settings_value = \
-        (BALANCEMQ_settings_value_t*) malloc(sizeof(BALANCEMQ_settings_value_t));
+    BALANCE_settings_value_t* settings_value = \
+        (BALANCE_settings_value_t*) malloc(sizeof(BALANCE_settings_value_t));
 
-    settings_value->type = BALANCEMQ_SETTINGS_INTEGER;
+    settings_value->type = BALANCE_SETTINGS_INTEGER;
     settings_value->u.ival = value;
 
     return settings_value;
 }
 
-BALANCEMQ_settings_value_t* BALANCEMQ_settings_create_double_value(double value)
+BALANCE_settings_value_t* BALANCE_settings_create_double_value(double value)
 {
-    BALANCEMQ_settings_value_t* settings_value = \
-        (BALANCEMQ_settings_value_t*) malloc(sizeof(BALANCEMQ_settings_value_t));
+    BALANCE_settings_value_t* settings_value = \
+        (BALANCE_settings_value_t*) malloc(sizeof(BALANCE_settings_value_t));
 
-    settings_value->type = BALANCEMQ_SETTINGS_DOUBLE;
+    settings_value->type = BALANCE_SETTINGS_DOUBLE;
     settings_value->u.dval = value;
 
     return settings_value;

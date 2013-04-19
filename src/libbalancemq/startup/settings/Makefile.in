@@ -539,10 +539,10 @@ uninstall-am:
 	pdf pdf-am ps ps-am tags uninstall uninstall-am
 
 
-balancemq_settings.parser.c : balance_settings.y
+balance_settings.parser.c : balance_settings.y
 	$(YACC) $(YFLAGS) $(AM_YFLAGS) $< -o $@
 
-balancemq_settings.scanner.c : balance_settings.l balance_settings.parser.h
+balance_settings.scanner.c : balance_settings.l balance_settings.parser.h
 	$(LEX) $(LFLAGS) $(AM_LFLAGS) -o$@ $<
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

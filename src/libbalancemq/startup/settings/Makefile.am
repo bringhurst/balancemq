@@ -8,10 +8,10 @@ INCLUDES = \
            -I$(top_srcdir)/src/libbalancemq/include/ \
            -I$(top_srcdir)/src/libbalancemq/common/
 
-balancemq_settings.parser.c : balance_settings.y
+balance_settings.parser.c : balance_settings.y
 	$(YACC) $(YFLAGS) $(AM_YFLAGS) $< -o $@
 
-balancemq_settings.scanner.c : balance_settings.l balance_settings.parser.h
+balance_settings.scanner.c : balance_settings.l balance_settings.parser.h
 	$(LEX) $(LFLAGS) $(AM_LFLAGS) -o$@ $<
 
 noinst_LTLIBRARIES = libbalancemq_startup_settings.la

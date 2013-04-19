@@ -6,7 +6,7 @@
   #define YYSTYPE BALANCE_SETTINGS_YYSTYPE
 
   /* Include for token constants. */
-  #include "balancemq_settings.parser.h"
+  #include "balance_settings.parser.h"
 }
 
 %option 8bit reentrant warn
