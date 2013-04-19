@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#include "../../../loader/balancemq_plugin.h"
-
 /* The basic node of the protocol AST. */
 typedef struct stomp_node_t {
 
