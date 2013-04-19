@@ -1,1 +1,1 @@
-sysconf_DATA = balancemq.conf
+SUBDIRS = balancemq
