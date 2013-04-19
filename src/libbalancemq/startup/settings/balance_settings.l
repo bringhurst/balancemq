@@ -1,9 +1,9 @@
 %top {
   /* A lexer for balancemq.conf */
 
-  /* Needed for extra type BALANCEMQ_settings_t and YYSTYPE. */
-  #include "settings.h"
-  #define YYSTYPE BALANCEMQ_SETTINGS_YYSTYPE
+  /* Needed for extra type BALANCE_settings_t and YYSTYPE. */
+  #include "balancemq/settings.h"
+  #define YYSTYPE BALANCE_SETTINGS_YYSTYPE
 
   /* Include for token constants. */
   #include "balancemq_settings.parser.h"
@@ -13,10 +13,10 @@
 %option bison-bridge nounput
 %option align read perf-report
 
-%option prefix="balancemq_settings_yy"
-%option outfile="balancemq_settings.scanner.c"
+%option prefix="balance_settings_yy"
+%option outfile="balance_settings.scanner.c"
 
-%option extra-type="BALANCEMQ_settings_t*"
+%option extra-type="BALANCE_settings_t*"
 
 WHITESPACE            [ \t\n]
 IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
@@ -28,7 +28,7 @@ INTEGER               [0-9]+
 %%
 
 %{
-  BALANCEMQ_settings_t* settings_tree = yyextra;
+  BALANCE_settings_t* settings_tree = yyextra;
 %}
 
 WHITESPACE            ; /* Ignore this token. */

@@ -1,13 +1,11 @@
-#ifndef _BALANCEMQ_SETTINGS_H
-#define _BALANCEMQ_SETTINGS_H
+#ifndef _BALANCE_SETTINGS_H
+#define _BALANCE_SETTINGS_H
 
-#include <xlist.h>
+#define BALANCE_SETTINGS_STRING  2
+#define BALANCE_SETTINGS_INTEGER 4
+#define BALANCE_SETTINGS_DOUBLE  8
 
-#define BALANCEMQ_SETTINGS_STRING  2
-#define BALANCEMQ_SETTINGS_INTEGER 4
-#define BALANCEMQ_SETTINGS_DOUBLE  8
-
-#define BALANCEMQ_SETTINGS_MAX_KEY_LENGTH 128
+#define BALANCE_SETTINGS_MAX_KEY_LENGTH 128
 
 typedef struct {
   int type;
@@ -16,42 +14,30 @@ typedef struct {
       double dval;
       char*  sval;
   } u;
-} BALANCEMQ_settings_value_t;
+} BALANCE_settings_value_t;
 
-typedef struct {
+typedef struct BALANCE_settings_variable_t {
     char* key;
-    BALANCEMQ_settings_value_t* value;
-} BALANCEMQ_settings_variable_t;
+    BALANCE_settings_value_t* value;
+    struct BALANCE_settings_variable_t* next;
+} BALANCE_settings_variable_t;
+
+typedef struct BALANCE_settings_block_t {
+    struct BALANCE_settings_block_t* blocks;
+    BALANCE_settings_variable_t* variables;
+    struct BALANCE_settings_block_t* next;
+} BALANCE_settings_block_t;
 
 typedef struct {
-    BALANCEMQ_list_t* blocks;
-    BALANCEMQ_list_t* variables;
-} BALANCEMQ_settings_block_t;
+    BALANCE_settings_block_t* blocks;
+} BALANCE_settings_t;
 
-typedef struct {
-    BALANCEMQ_list_t* blocks;
-} BALANCEMQ_settings_t;
+BALANCE_settings_t* BALANCE_settings_create_settings();
+BALANCE_settings_block_t* BALANCE_settings_create_block();
+BALANCE_settings_variable_t* BALANCE_settings_create_variable();
 
+BALANCE_settings_value_t* BALANCE_settings_create_string_value(char* value);
+BALANCE_settings_value_t* BALANCE_settings_create_integer_value(int value);
+BALANCE_settings_value_t* BALANCE_settings_create_double_value(double value);
 
-typedef union BALANCEMQ_SETTINGS_YYSTYPE
-{
-    char* string_value;
-    float double_value;
-    int   integer_value;
-
-    BALANCEMQ_settings_value_t*    balance_value;
-    BALANCEMQ_settings_variable_t* variable_value;
-    BALANCEMQ_settings_block_t*    block_value;
-    BALANCEMQ_settings_t*          settings_value;
-    BALANCEMQ_list_t*              list_value;
-} BALANCEMQ_SETTINGS_YYSTYPE;
-
-BALANCEMQ_settings_t* BALANCEMQ_settings_create_settings();
-BALANCEMQ_settings_block_t* BALANCEMQ_settings_create_block();
-BALANCEMQ_settings_variable_t* BALANCEMQ_settings_create_variable();
-
-BALANCEMQ_settings_value_t* BALANCEMQ_settings_create_string_value(char* value);
-BALANCEMQ_settings_value_t* BALANCEMQ_settings_create_integer_value(int value);
-BALANCEMQ_settings_value_t* BALANCEMQ_settings_create_double_value(double value);
-
-#endif /* _BALANCEMQ_SETTINGS_H */
+#endif /* _BALANCE_SETTINGS_H */

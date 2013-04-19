@@ -23,11 +23,11 @@ BALANCEMQ_settings_t* BALANCEMQ_parse_settings(char* path)
         LOG("Could not open config file `%s'. %s", path, strerror(errno));
         return NULL;
     }
+
     balancemq_settings_yyset_in(settings_file, scanner);
-
     balancemq_settings_yylex(NULL, scanner);
-
     balancemq_settings_yylex_destroy(scanner);
+
     return NULL;
 }
 
@@ -41,6 +41,10 @@ BALANCEMQ_settings_t* BALANCEMQ_settings_create_settings()
     BALANCEMQ_settings_t* settings = \
         (BALANCEMQ_settings_t*) malloc(sizeof(BALANCEMQ_settings_t));
 
+    settings->block_count = 0;
+
+    settings->blocks = NULL;
+
     return settings;
 }
 
@@ -48,6 +52,12 @@ BALANCEMQ_settings_block_t* BALANCEMQ_settings_create_block()
 {
     BALANCEMQ_settings_block_t* block = \
         (BALANCEMQ_settings_block_t*) malloc(sizeof(BALANCEMQ_settings_block_t));
+
+    block->block_count = 0;
+    block->variable_count = 0;
+
+    block->blocks = NULL;
+    block->variables = NULL;
 
     return block;
 }
