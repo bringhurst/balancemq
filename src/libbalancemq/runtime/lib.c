@@ -1,12 +1,24 @@
 /* This is the internal implementation of each api hook. */
 
-#include <balancemq/balancemq.h>
+#include "balancemq/balancemq.h"
+#include "log.h"
+
 #include <stdio.h>
 
 int BALANCE_init_context(BALANCE_context_t* context)
 {
-    /* TODO: not implemented yet. */
-    return BALANCE_ERR;
+    int ret = BALANCE_OK;
+
+    if(context == NULL) {
+        context = (BALANCE_context_t*) malloc(sizeof(BALANCE_context_t));
+    } else {
+        ret = BALANCE_ERR;
+    }
+
+    context->log_level = BALANCE_LOG_DBG;
+    context->log_stream = stdout;
+
+    return ret;
 }
 
 int BALANCE_free_context(BALANCE_context_t* context)

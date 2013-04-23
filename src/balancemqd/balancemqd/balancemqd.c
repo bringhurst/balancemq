@@ -1,7 +1,9 @@
 #include <config.h>
 
+#include "balancemq/balancemq.h"
+
 #include "balancemqd.h"
-#include <log.h>
+#include "log.h"
 
 #include <getopt.h>
 #include <string.h>
@@ -33,6 +35,7 @@ int main(int argc, \
     int c;
     int option_index = 0;
 
+    BALANCE_context_t* ctx = NULL;
     char* config_file_path = "/etc/balancemq/balancemq.conf";
 
     static struct option long_options[] = {
@@ -86,7 +89,7 @@ int main(int argc, \
     }
 
     /* A context to access logging facilities. */
-    BALANCE_context_t *ctx = BALANCE_init_context();
+    BALANCE_init_context(ctx);
 
     LOG(ctx, BALANCE_LOG_INFO, "[core] Starting up...\n");
     LOG(ctx, BALANCE_LOG_INFO, \

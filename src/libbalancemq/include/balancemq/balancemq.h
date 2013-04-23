@@ -88,7 +88,7 @@ typedef struct {
     char* errstr;
 
     /** The file descriptor to log errors to. */
-    int log_fd;
+    struct FILE* log_stream;
 
     /** The log level to report. */
     int log_level;

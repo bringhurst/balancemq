@@ -1,3 +1,4 @@
+#include <balancemq/balancemq.h>
 #include <balancemq/settings.h>
 
 #include "balance_settings.scanner.h"
@@ -9,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-BALANCE_settings_t* BALANCE_parse_settings(char* path)
+BALANCE_settings_t* BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
 {
     FILE* settings_file;
     yyscan_t scanner;
@@ -20,7 +21,8 @@ BALANCE_settings_t* BALANCE_parse_settings(char* path)
 
     settings_file = fopen(path, "r");
     if(settings_file == NULL) {
-        LOG("Could not open config file `%s'. %s", path, strerror(errno));
+        LOG(ctx, BALANCE_LOG_ERR, "Could not open config file `%s'. %s", \
+                path, strerror(errno));
         return NULL;
     }
 
@@ -33,7 +35,7 @@ BALANCE_settings_t* BALANCE_parse_settings(char* path)
 
 void balance_settings_yyerror(const char* msg)
 {
-    LOG(BALANCE_LOG_DBG, "settings yyerror reported `%s'", msg);
+    fprintf(stderr, "settings yyerror reported `%s'", msg);
 }
 
 BALANCE_settings_t* BALANCE_settings_create_settings()

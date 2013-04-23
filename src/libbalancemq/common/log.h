@@ -20,11 +20,11 @@ typedef enum {
 
 #define LOG(context, level, ...) do {  \
         if (level <= context->log_level) { \
-            fprintf(context->log_fd, "%d:%s:%d:", (int)time(NULL), \
+            fprintf(context->log_stream, "%d:%s:%d:", (int)time(NULL), \
                     __FILE__, __LINE__); \
-            fprintf(context->log_fd, __VA_ARGS__); \
-            fprintf(context->log_fd, "\n"); \
-            fflush(context->log_fd); \
+            fprintf(context->log_stream, __VA_ARGS__); \
+            fprintf(context->log_stream, "\n"); \
+            fflush(context->log_stream); \
         } \
     } while (0)
 
