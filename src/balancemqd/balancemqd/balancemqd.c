@@ -35,9 +35,6 @@ int main(int argc, \
 
     char* config_file_path = "/etc/balancemq/balancemq.conf";
 
-    FILE* BALANCE_debug_stream = stdout;
-    BALANCE_loglevel BALANCE_debug_level = BALANCE_LOG_DBG;
-
     static struct option long_options[] = {
         {"config-file-path"     , required_argument, 0, 'c'},
         {"help"                 , no_argument      , 0, 'h'},
