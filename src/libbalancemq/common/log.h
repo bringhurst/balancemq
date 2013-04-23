@@ -18,13 +18,13 @@ typedef enum {
 #define BALANCE_LOG_FATAL BALANCE_LOG_FATAL
 } BALANCE_loglevel;
 
-#define LOG(level, ...) do {  \
-        if (level <= BALANCE_debug_level) { \
-            fprintf(BALANCE_debug_stream, "%d:%s:%d:", (int)time(NULL), \
+#define LOG(context, level, ...) do {  \
+        if (level <= context->log_level) { \
+            fprintf(context->log_fd, "%d:%s:%d:", (int)time(NULL), \
                     __FILE__, __LINE__); \
-            fprintf(BALANCE_debug_stream, __VA_ARGS__); \
-            fprintf(BALANCE_debug_stream, "\n"); \
-            fflush(BALANCE_debug_stream); \
+            fprintf(context->log_fd, __VA_ARGS__); \
+            fprintf(context->log_fd, "\n"); \
+            fflush(context->log_fd); \
         } \
     } while (0)
 
