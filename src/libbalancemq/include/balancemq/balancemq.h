@@ -81,7 +81,10 @@ typedef struct {
     /** The last reported error code. */
     int err;
 
-    /** If available, a string representation of the error code. */
+    /**
+     * If available, a string representation of the last reported error
+     * code.
+     */
     char* errstr;
 
     /** The file descriptor to log errors to. */
@@ -110,6 +113,17 @@ typedef struct {
     } events;
 
 } BALANCE_context_t;
+
+/**
+ * Initialize a basic context with null callbacks, default logging and
+ * default settings.
+ */
+int BALANCE_init_context(BALANCE_context_t* context);
+
+/**
+ * Free an allocated context structure.
+ */
+int BALANCE_free_context(BALANCE_context_t* context);
 
 /**
  * Create a transient channel using default settings, the specified process

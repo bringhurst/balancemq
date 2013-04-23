@@ -3,6 +3,18 @@
 #include <balancemq/balancemq.h>
 #include <stdio.h>
 
+int BALANCE_init_context(BALANCE_context_t* context)
+{
+    /* TODO: not implemented yet. */
+    return BALANCE_ERR;
+}
+
+int BALANCE_free_context(BALANCE_context_t* context)
+{
+    /* TODO: not implemented yet. */
+    return BALANCE_ERR;
+}
+
 int BALANCE_simple_startup(BALANCE_cb process_callback, \
                            BALANCE_item_t* seed_item)
 {
