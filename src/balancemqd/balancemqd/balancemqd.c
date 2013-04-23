@@ -88,18 +88,31 @@ int main(int argc, \
         }
     }
 
-    LOG(BALANCE_LOG_DBG, "Using config file path of `%s'.", config_file_path);
+    fprintf(stdout, "[core] Starting up...\n");
 
+    fprintf(stdout, " ____        _                      __  __  ___\n" \
+                    "| __ )  __ _| | __ _ _ __   ___ ___|  \\/  |/ _ \\\n" \
+                    "|  _ \\ / _` | |/ _` | '_ \\ / __/ _ \\ |\\/| | | | |\n" \
+                    "| |_) | (_| | | (_| | | | | (__| __/ |  | | |_| |\n" \
+                    "|____/ \\__,_|_|\\__,_|_| |_|\\___\\___|_|  |_|\\__\\_\\\n" \
+                    " A self-stabilizing continuous workload balancer.\n\n");
+
+    fprintf(stdout, "[core] Using configuration file at `%s'.\n", config_file_path);
     /* TODO: config file parser */
 
-    /* TODO: start main libcircle based event loop */
-
+    fprintf(stdout, "[core] Searching for available plugins at `%s'.\n", "TODO");
     /* TODO: plugin loader (based on config file) */
 
+    fprintf(stdout, "[core] Accepting new connections.\n");
+    /* TODO: start main libcircle based event loop */
+
+    fprintf(stdout, "[core] Finalizing existing connections.\n");
     /* TODO: wait for shutdown signal */
 
+    fprintf(stdout, "[core] Cleaning up plugins.\n");
     /* TODO: plugin finalizer */
 
+    fprintf(stdout, "[core] Shutting down.\n");
     exit(EXIT_SUCCESS);
 }
 
