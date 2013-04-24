@@ -106,8 +106,9 @@ int main(int argc, \
         "|____/ \\__,_|_|\\__,_|_| |_|\\___\\___|_|  |_|\\__\\_\\\n" \
         " A self-stabilizing continuous workload balancer.\n\n");
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Using configuration file at `%s'.\n", config_file_path);
-    /* TODO: config file parser */
+    if(BALANCE_parse_settings(ctx, config_file_path) == BALANCE_OK) {
+        LOG(ctx, BALANCE_LOG_INFO, "[core] Using configuration file at `%s'.\n", config_file_path);
+    }
 
     LOG(ctx, BALANCE_LOG_INFO, "[core] Searching for available plugins at `%s'.\n", "TODO");
     /* TODO: plugin loader (based on config file) */

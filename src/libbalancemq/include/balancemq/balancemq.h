@@ -95,7 +95,7 @@ typedef struct {
     int log_level;
 
     /** Context specific configuration settings. */
-    BALANCE_settings_t settings;
+    BALANCE_settings_t* settings;
 
     struct {
 
@@ -125,6 +125,13 @@ int BALANCE_init_context(BALANCE_context_t* context);
  * Free an allocated context structure.
  */
 int BALANCE_free_context(BALANCE_context_t* context);
+
+/**
+ * Update the settings in the specified context to the values specified in the
+ * config file.
+ */
+int BALANCE_parse_settings(BALANCE_context_t* ctx, \
+                           char* config_file_path);
 
 /**
  * Create a transient channel using default settings, the specified process

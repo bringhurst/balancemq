@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-BALANCE_settings_t* BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
+int BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
 {
     FILE* settings_file;
     yyscan_t scanner;
@@ -23,18 +23,21 @@ BALANCE_settings_t* BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
     if(settings_file == NULL) {
         LOG(ctx, BALANCE_LOG_ERR, "Could not open config file `%s'. %s", \
                 path, strerror(errno));
-        return NULL;
+        return BALANCE_ERR;
     }
 
     balance_settings_yyset_in(settings_file, scanner);
     balance_settings_yylex(NULL, scanner);
     balance_settings_yylex_destroy(scanner);
 
-    return NULL;
+    ctx->settings = settings;
+
+    return BALANCE_OK;
 }
 
 void balance_settings_yyerror(BALANCE_settings_t* settings, const char* msg)
 {
+    /* TODO: Use settings somehow? */
     fprintf(stderr, "settings yyerror reported `%s'", msg);
 }
 

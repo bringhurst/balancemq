@@ -1,1 +1,1 @@
-AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra -Wshadow
+AM_CFLAGS = -ggdb -W -Wall -Wextra -Wshadow
