@@ -26,7 +26,7 @@ INTEGER               [0-9]+
 
 %%
 
-WHITESPACE            ; /* Ignore this token. */
+{WHITESPACE}          ; /* Ignore this token. */
 
 "/*"                  { BEGIN(COMMENT); }
 <COMMENT>"*/"         { BEGIN(INITIAL); }
@@ -36,18 +36,18 @@ WHITESPACE            ; /* Ignore this token. */
 "}"                   return T_RBRACE;
 ","                   return T_COMMA;
 
-IDENTIFIER            %{
+{IDENTIFIER}          %{
                           printf("Found identifier: `%s'\n", yytext);
                           yylval->string_value = yytext;
                           return T_IDENTIFIER;
                       %}
 
-DOUBLE                %{
+{DOUBLE}              %{
                           yylval->double_value = atof(yytext);
                           return T_DOUBLE;
                       %}
 
-INTEGER               %{
+{INTEGER}             %{
                           yylval->integer_value = atoi(yytext);
                           return T_INTEGER;
                       %}
