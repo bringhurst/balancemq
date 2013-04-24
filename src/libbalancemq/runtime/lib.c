@@ -10,22 +10,35 @@ int BALANCE_init_context(BALANCE_context_t* context)
 {
     int ret = BALANCE_OK;
 
+    if(context != NULL) {
+        ret = BALANCE_ERR;
+
+        /* Since we don't have a valid context, just log to stderr. */
+        fprintf(stderr, "Attempted to initialize a non-null context. "
+                "Possible bug detected at `%s:%d'.\n",
+                __FILE__, __LINE__);
+    }
+
+    context = (BALANCE_context_t*) malloc(sizeof(BALANCE_context_t));
+
     if(context == NULL) {
-        context = (BALANCE_context_t*) malloc(sizeof(BALANCE_context_t));
-    } else {
+        /* Since we don't have a valid context, just log to stderr. */
+        fprintf(stderr, "Allocating memory for a new context failed. "
+                "Possible bug detected at `%s:%d'.\n",
+                __FILE__, __LINE__);
         ret = BALANCE_ERR;
     }
 
-    context->log_level = BALANCE_LOG_DBG;
-    context->log_file = stdout;
+    ret = BALANCE_set_logging(context, stdout, BALANCE_LOG_DBG);
 
     return ret;
 }
 
 int BALANCE_free_context(BALANCE_context_t* context)
 {
-    /* TODO: not implemented yet. */
-    return BALANCE_ERR;
+    /* TODO: not completely implemented yet? */
+    free(context);
+    return BALANCE_OK;
 }
 
 int BALANCE_simple_startup(BALANCE_cb process_callback, \
@@ -70,12 +83,16 @@ int BALANCE_set_configuration(BALANCE_context_t* context, \
     return BALANCE_ERR;
 }
 
-void BALANCE_set_logging(BALANCE_context_t* context, \
-                         int fd, \
-                         int level)
+int BALANCE_set_logging(BALANCE_context_t* context, \
+                        FILE* file, \
+                        int level)
 {
-    /* TODO; not implemented yet */
-    return BALANCE_ERR;
+    /* TODO: more error checking here. */
+
+    context->log_file = file;
+    context->log_level = level;
+
+    return BALANCE_OK;
 }
 
 int BALANCE_set_startup_callback(BALANCE_context_t* context, \

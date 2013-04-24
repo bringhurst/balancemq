@@ -180,9 +180,9 @@ int BALANCE_set_configuration(BALANCE_context_t* context, \
 /**
  * Set the detail and location for logging for the specified context.
  */
-void BALANCE_set_logging(BALANCE_context_t* context, \
-                         int fd, \
-                         int level);
+int BALANCE_set_logging(BALANCE_context_t* context, \
+                        FILE* file, \
+                        int level);
 
 /**
  * Set a callback to be used when the channel is registered.
