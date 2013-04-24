@@ -19,6 +19,12 @@ typedef enum {
 } BALANCE_loglevel;
 
 #define LOG(context, level, ...) do {  \
+        if(!context) { \
+            fprintf(stderr, "The logging context is invalid. " \
+                    "Possible bug detected at `%s:%d'.\n", \
+                    __FILE__, __LINE__); \
+            break; \
+        } \
         if (level <= context->log_level) { \
             fprintf(context->log_file, "%d:%s:%d:", (int)time(NULL), \
                     __FILE__, __LINE__); \
