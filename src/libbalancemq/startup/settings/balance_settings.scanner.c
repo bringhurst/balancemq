@@ -1251,7 +1251,7 @@ case 7:
 YY_RULE_SETUP
 #line 41 "balance_settings.l"
 
-                         printf("Found block start.\n");
+                         /* printf("Found block start.\n"); */
                          return T_LBRACE;
 
 	YY_BREAK
@@ -1259,7 +1259,7 @@ case 8:
 YY_RULE_SETUP
 #line 46 "balance_settings.l"
 
-                         printf("Found block end.\n");
+                         /* printf("Found block end.\n"); */
                          return T_RBRACE;
 
 	YY_BREAK
@@ -1267,7 +1267,7 @@ case 9:
 YY_RULE_SETUP
 #line 51 "balance_settings.l"
 
-                          printf("Found identifier: `%s'\n", yytext);
+                          /* printf("Found identifier: `%s'\n", yytext); */
                           yylval->string_value = yytext;
                           return T_IDENTIFIER;
 
@@ -1276,7 +1276,7 @@ case 10:
 YY_RULE_SETUP
 #line 57 "balance_settings.l"
 
-                          printf("Found double value of: `%s'\n", yytext);
+                          /* printf("Found double value of: `%s'\n", yytext); */
                           yylval->double_value = atof(yytext);
                           return T_DOUBLE;
 
@@ -1285,7 +1285,7 @@ case 11:
 YY_RULE_SETUP
 #line 63 "balance_settings.l"
 
-                          printf("Found integer value of: `%s'\n", yytext);
+                          /* printf("Found integer value of: `%s'\n", yytext); */
                           yylval->integer_value = atoi(yytext);
                           return T_INTEGER;
 
@@ -1294,15 +1294,16 @@ case 12:
 YY_RULE_SETUP
 #line 69 "balance_settings.l"
 
-                          printf("Unknown character found in configuration file: `%s' at line `%d'\n", yytext, yylineno);
+                          printf("Unknown character found in configuration file: " \
+                                 "`%s' at line `%d'\n", yytext, yylineno);
 
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 73 "balance_settings.l"
+#line 74 "balance_settings.l"
 ECHO;
 	YY_BREAK
-#line 1306 "balance_settings.scanner.c"
+#line 1307 "balance_settings.scanner.c"
 			case YY_STATE_EOF(INITIAL):
 			case YY_STATE_EOF(IN_COMMENT):
 				yyterminate();
@@ -2418,7 +2419,7 @@ void balance_settings_yyfree (void * ptr , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 73 "balance_settings.l"
+#line 74 "balance_settings.l"
 
 
 

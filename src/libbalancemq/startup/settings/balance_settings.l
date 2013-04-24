@@ -39,35 +39,36 @@ INTEGER               [0-9]+
 }
 
 "{"                   %{
-                         printf("Found block start.\n");
+                         /* printf("Found block start.\n"); */
                          return T_LBRACE;
                       %}
 
 "}"                   %{
-                         printf("Found block end.\n");
+                         /* printf("Found block end.\n"); */
                          return T_RBRACE;
                       %}
 
 {IDENTIFIER}          %{
-                          printf("Found identifier: `%s'\n", yytext);
+                          /* printf("Found identifier: `%s'\n", yytext); */
                           yylval->string_value = yytext;
                           return T_IDENTIFIER;
                       %}
 
 {DOUBLE}              %{
-                          printf("Found double value of: `%s'\n", yytext);
+                          /* printf("Found double value of: `%s'\n", yytext); */
                           yylval->double_value = atof(yytext);
                           return T_DOUBLE;
                       %}
 
 {INTEGER}             %{
-                          printf("Found integer value of: `%s'\n", yytext);
+                          /* printf("Found integer value of: `%s'\n", yytext); */
                           yylval->integer_value = atoi(yytext);
                           return T_INTEGER;
                       %}
 
 .                     %{
-                          printf("Unknown character found in configuration file: `%s' at line `%d'\n", yytext, yylineno);
+                          printf("Unknown character found in configuration file: " \
+                                 "`%s' at line `%d'\n", yytext, yylineno);
                       %}
 
 %%
