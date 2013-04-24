@@ -5,8 +5,8 @@ INCLUDES = \
            -I$(top_srcdir)/src/libbalancemq/include/ \
            -I$(top_srcdir)/src/libbalancemq/common/
 
-noinst_LTLIBRARIES = libbalancemq_core.la
+noinst_LTLIBRARIES = libbalancemq_runtime.la
 
-libbalancemq_core_la_SOURCES = lib.c
-libbalancemq_core_la_LIBADD =
-libbalancemq_core_la_LDFLAGS = $(LIB_LDFLAGS)
+libbalancemq_runtime_la_SOURCES = lib.c
+libbalancemq_runtime_la_LIBADD =
+libbalancemq_runtime_la_LDFLAGS = $(LIB_LDFLAGS)

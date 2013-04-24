@@ -66,15 +66,16 @@ CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
-libbalancemq_core_la_DEPENDENCIES =
-am_libbalancemq_core_la_OBJECTS = lib.lo
-libbalancemq_core_la_OBJECTS = $(am_libbalancemq_core_la_OBJECTS)
+libbalancemq_runtime_la_DEPENDENCIES =
+am_libbalancemq_runtime_la_OBJECTS = lib.lo
+libbalancemq_runtime_la_OBJECTS =  \
+	$(am_libbalancemq_runtime_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
-libbalancemq_core_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+libbalancemq_runtime_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(AM_CFLAGS) $(CFLAGS) $(libbalancemq_core_la_LDFLAGS) \
+	$(AM_CFLAGS) $(CFLAGS) $(libbalancemq_runtime_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/auxdir/depcomp
@@ -102,8 +103,8 @@ am__v_CCLD_0 = @echo "  CCLD  " $@;
 AM_V_GEN = $(am__v_GEN_@AM_V@)
 am__v_GEN_ = $(am__v_GEN_@AM_DEFAULT_V@)
 am__v_GEN_0 = @echo "  GEN   " $@;
-SOURCES = $(libbalancemq_core_la_SOURCES)
-DIST_SOURCES = $(libbalancemq_core_la_SOURCES)
+SOURCES = $(libbalancemq_runtime_la_SOURCES)
+DIST_SOURCES = $(libbalancemq_runtime_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -238,10 +239,10 @@ INCLUDES = \
            -I$(top_srcdir)/src/libbalancemq/include/ \
            -I$(top_srcdir)/src/libbalancemq/common/
 
-noinst_LTLIBRARIES = libbalancemq_core.la
-libbalancemq_core_la_SOURCES = lib.c
-libbalancemq_core_la_LIBADD = 
-libbalancemq_core_la_LDFLAGS = $(LIB_LDFLAGS)
+noinst_LTLIBRARIES = libbalancemq_runtime.la
+libbalancemq_runtime_la_SOURCES = lib.c
+libbalancemq_runtime_la_LIBADD = 
+libbalancemq_runtime_la_LDFLAGS = $(LIB_LDFLAGS)
 all: all-am
 
 .SUFFIXES:
@@ -286,8 +287,8 @@ clean-noinstLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libbalancemq_core.la: $(libbalancemq_core_la_OBJECTS) $(libbalancemq_core_la_DEPENDENCIES) $(EXTRA_libbalancemq_core_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(libbalancemq_core_la_LINK)  $(libbalancemq_core_la_OBJECTS) $(libbalancemq_core_la_LIBADD) $(LIBS)
+libbalancemq_runtime.la: $(libbalancemq_runtime_la_OBJECTS) $(libbalancemq_runtime_la_DEPENDENCIES) $(EXTRA_libbalancemq_runtime_la_DEPENDENCIES) 
+	$(AM_V_CCLD)$(libbalancemq_runtime_la_LINK)  $(libbalancemq_runtime_la_OBJECTS) $(libbalancemq_runtime_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
