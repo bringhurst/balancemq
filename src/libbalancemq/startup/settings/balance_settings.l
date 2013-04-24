@@ -12,7 +12,7 @@
 %option 8bit reentrant warn
 %option bison-bridge nounput
 %option align read perf-report
-%option noyywrap
+%option noyywrap yylineno
 
 %option prefix="balance_settings_yy"
 %option outfile="balance_settings.scanner.c"
@@ -54,12 +54,6 @@ INTEGER               %{
                           yylval->integer_value = atoi(yytext);
                           return T_INTEGER;
                       %}
-
-.                     %{
-                          printf("Unknown token in settings file.\n");
-                          yyterminate();
-                      %}
-
 %%
 
 /* EOF */

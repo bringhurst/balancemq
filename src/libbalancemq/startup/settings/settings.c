@@ -27,7 +27,10 @@ int BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
     }
 
     balance_settings_yyset_in(settings_file, scanner);
-    balance_settings_yylex(NULL, scanner);
+
+    balance_settings_yyparse(scanner);
+    //balance_settings_yylex(NULL, scanner);
+
     balance_settings_yylex_destroy(scanner);
 
     ctx->settings = settings;
@@ -38,7 +41,7 @@ int BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
 void balance_settings_yyerror(BALANCE_settings_t* settings, const char* msg)
 {
     /* TODO: Use settings somehow? */
-    fprintf(stderr, "settings yyerror reported `%s'", msg);
+    fprintf(stderr, "Configuration file parse error: `%s'\n", msg);
 }
 
 BALANCE_settings_t* BALANCE_settings_create_settings()

@@ -102,17 +102,21 @@ int main(int argc, \
         exit(EXIT_FAILURE);
     }
 
-    LOG(ctx, BALANCE_LOG_INFO, "Starting up...");
-    LOG(ctx, BALANCE_LOG_INFO, "\n" \
+    LOG(ctx, BALANCE_LOG_INFO, "Starting up... (Build: %s %s)\n" \
         " ____        _                      __  __  ___\n" \
         "| __ )  __ _| | __ _ _ __   ___ ___|  \\/  |/ _ \\\n" \
         "|  _ \\ / _` | |/ _` | '_ \\ / __/ _ \\ |\\/| | | | |\n" \
         "| |_) | (_| | | (_| | | | | (__| __/ |  | | |_| |\n" \
         "|____/ \\__,_|_|\\__,_|_| |_|\\___\\___|_|  |_|\\__\\_\\\n" \
-        " A self-stabilizing continuous workload balancer.");
+        " A self-stabilizing continuous workload balancer.\n", \
+        __DATE__, __TIME__);
+
+    LOG(ctx, BALANCE_LOG_INFO, "Using configuration file at `%s'.", config_file_path);
 
     if(BALANCE_parse_settings(ctx, config_file_path) == BALANCE_OK) {
-        LOG(ctx, BALANCE_LOG_INFO, "Using configuration file at `%s'.", config_file_path);
+        LOG(ctx, BALANCE_LOG_ERR, \
+            "Failed to parse configuration file at `%s'.", config_file_path);
+        exit(EXIT_FAILURE);
     }
 
     LOG(ctx, BALANCE_LOG_INFO, "Searching for available plugins at `%s'.", "TODO");
