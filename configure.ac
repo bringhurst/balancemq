@@ -63,13 +63,12 @@ AC_CONFIG_FILES([Makefile                                              \
                  examples/filesystem_treewalk/c/Makefile               \
                  src/Makefile                                          \
                  src/balancemqd/Makefile                               \
-                 src/balancemqd/balancemqctl/Makefile                  \
-                 src/balancemqd/balancemqd/Makefile                    \
                  src/balancemqd/plugins/Makefile                       \
                  src/balancemqd/plugins/protocol/Makefile              \
                  src/balancemqd/plugins/protocol/posixmq/Makefile      \
                  src/balancemqd/plugins/protocol/stomp/Makefile        \
                  src/balancemqd/plugins/protocol/stomp/parser/Makefile \
+                 src/balancemqctl/Makefile                             \
                  src/libbalancemq/Makefile                             \
                  src/libbalancemq/common/Makefile                      \
                  src/libbalancemq/include/Makefile                     \
