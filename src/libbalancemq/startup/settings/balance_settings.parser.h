@@ -49,7 +49,7 @@ extern int balance_settings_yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 2058 of yacc.c  */
-#line 16 "balance_settings.y"
+#line 17 "balance_settings.y"
 
   #include <balancemq/settings.h>
   #include <log.h>
@@ -68,7 +68,7 @@ extern int balance_settings_yydebug;
   } BALANCE_SETTINGS_YYSTYPE;
 
   int yyerror(BALANCE_settings_t* settings, const char* msg);
-  int yylex(void* scanner);
+//  int yylex(void* scanner);
 
 
 /* Line 2058 of yacc.c  */
@@ -113,7 +113,7 @@ int balance_settings_yyparse ();
 #endif
 #else /* ! YYPARSE_PARAM */
 #if defined __STDC__ || defined __cplusplus
-int balance_settings_yyparse (BALANCE_settings_t* settings_tree);
+int balance_settings_yyparse (void* scanner);
 #else
 int balance_settings_yyparse ();
 #endif

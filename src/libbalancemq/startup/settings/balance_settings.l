@@ -17,7 +17,7 @@
 %option prefix="balance_settings_yy"
 %option outfile="balance_settings.scanner.c"
 
-WHITESPACE            [ \t\n]
+WHITESPACE            [ \t\n]*
 IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
 DOUBLE                [0-9]+\.[0-9]*
 INTEGER               [0-9]+
@@ -26,7 +26,7 @@ INTEGER               [0-9]+
 
 %%
 
-{WHITESPACE}          ; /* Ignore this token. */
+{WHITESPACE}          { }
 
 "/*"                  { BEGIN(COMMENT); }
 <COMMENT>"*/"         { BEGIN(INITIAL); }
