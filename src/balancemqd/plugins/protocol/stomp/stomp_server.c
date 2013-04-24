@@ -15,7 +15,7 @@ void client_protocol_stomp_server_loop(client_protocol_stomp_state_t* state)
     /* Create a server socket. */
     if((state->server_socket = socket(PF_INET, SOCK_STREAM, 0)) < 0) {
         perror("socket error");
-        return -1;
+        return;
     }
 
     bzero(&addr, sizeof(addr));
@@ -31,7 +31,7 @@ void client_protocol_stomp_server_loop(client_protocol_stomp_state_t* state)
     /* Start listening on the socket. */
     if(listen(state->server_socket, 2) < 0) {
         perror("listen error");
-        return -1;
+        return;
     }
 
     /* Initialize and start a libev watcher to accept client requests. */
