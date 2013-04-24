@@ -483,8 +483,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    53,    53,    56,    63,    66,    74,    78,    85,    88,
-      96,   100,   101,   102
+       0,    53,    53,    57,    65,    69,    78,    83,    91,    95,
+     104,   111,   115,   119
 };
 #endif
 
@@ -1404,14 +1404,16 @@ yyreduce:
 /* Line 1792 of yacc.c  */
 #line 53 "balance_settings.y"
     {
+                printf("Creating null settings.\n");
                 (yyval.settings_value) = (BALANCE_settings_t*) NULL;
             }
     break;
 
   case 3:
 /* Line 1792 of yacc.c  */
-#line 56 "balance_settings.y"
+#line 57 "balance_settings.y"
     {
+                printf("Creating settings.\n");
                 (yyval.settings_value) = BALANCE_settings_create_settings();
                 (yyval.settings_value)->blocks = (yyvsp[(1) - (1)].block_value);
             }
@@ -1419,16 +1421,18 @@ yyreduce:
 
   case 4:
 /* Line 1792 of yacc.c  */
-#line 63 "balance_settings.y"
+#line 65 "balance_settings.y"
     {
+                printf("Creating block list.\n");
                 (yyval.block_value) = (yyvsp[(1) - (1)].block_value);
             }
     break;
 
   case 5:
 /* Line 1792 of yacc.c  */
-#line 66 "balance_settings.y"
+#line 69 "balance_settings.y"
     {
+                printf("Appending to block list.\n");
                 BALANCE_settings_block_t* next = (yyvsp[(1) - (2)].block_value)->next;
                 (yyvsp[(2) - (2)].block_value)->next = next;
                 (yyval.block_value)->next = (yyvsp[(2) - (2)].block_value);
@@ -1437,8 +1441,9 @@ yyreduce:
 
   case 6:
 /* Line 1792 of yacc.c  */
-#line 74 "balance_settings.y"
+#line 78 "balance_settings.y"
     {
+                printf("Creating block.\n");
                 (yyval.block_value) = BALANCE_settings_create_block((yyvsp[(1) - (4)].string_value));
                 (yyval.block_value)->variables = (yyvsp[(3) - (4)].variable_value);
             }
@@ -1446,8 +1451,9 @@ yyreduce:
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 78 "balance_settings.y"
+#line 83 "balance_settings.y"
     {
+                printf("Creating subblocks.\n");
                 (yyval.block_value) = BALANCE_settings_create_block((yyvsp[(1) - (4)].string_value));
                 (yyval.block_value)->blocks = (yyvsp[(3) - (4)].block_value);
             }
@@ -1455,16 +1461,18 @@ yyreduce:
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 85 "balance_settings.y"
+#line 91 "balance_settings.y"
     {
+                printf("Creating variable list.\n");
                 (yyval.variable_value) = (yyvsp[(1) - (1)].variable_value);
             }
     break;
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 88 "balance_settings.y"
+#line 95 "balance_settings.y"
     {
+                printf("Appending to variable list.\n");
                 BALANCE_settings_variable_t* next = (yyvsp[(1) - (2)].variable_value)->next;
                 (yyvsp[(2) - (2)].variable_value)->next = next;
                 (yyval.variable_value) = (yyvsp[(2) - (2)].variable_value);
@@ -1473,31 +1481,43 @@ yyreduce:
 
   case 10:
 /* Line 1792 of yacc.c  */
-#line 96 "balance_settings.y"
-    { (yyval.variable_value) = BALANCE_settings_create_variable((yyvsp[(1) - (2)].string_value), (yyvsp[(2) - (2)].balance_value)); }
+#line 104 "balance_settings.y"
+    {
+                printf("Creating variable.\n");
+                (yyval.variable_value) = BALANCE_settings_create_variable((yyvsp[(1) - (2)].string_value), (yyvsp[(2) - (2)].balance_value));
+            }
     break;
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 100 "balance_settings.y"
-    { (yyval.balance_value) = BALANCE_settings_create_string_value((yyvsp[(1) - (1)].string_value)); }
+#line 111 "balance_settings.y"
+    {
+                printf("Creating string variable value.\n");
+                (yyval.balance_value) = BALANCE_settings_create_string_value((yyvsp[(1) - (1)].string_value));
+            }
     break;
 
   case 12:
 /* Line 1792 of yacc.c  */
-#line 101 "balance_settings.y"
-    { (yyval.balance_value) = BALANCE_settings_create_integer_value((yyvsp[(1) - (1)].integer_value)); }
+#line 115 "balance_settings.y"
+    {
+                printf("Creating integer variable value.\n");
+                (yyval.balance_value) = BALANCE_settings_create_integer_value((yyvsp[(1) - (1)].integer_value));
+            }
     break;
 
   case 13:
 /* Line 1792 of yacc.c  */
-#line 102 "balance_settings.y"
-    { (yyval.balance_value) = BALANCE_settings_create_double_value((yyvsp[(1) - (1)].double_value)); }
+#line 119 "balance_settings.y"
+    {
+                printf("Creating double variable value.\n");
+                (yyval.balance_value) = BALANCE_settings_create_double_value((yyvsp[(1) - (1)].double_value));
+             }
     break;
 
 
 /* Line 1792 of yacc.c  */
-#line 1501 "balance_settings.parser.c"
+#line 1521 "balance_settings.parser.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1729,7 +1749,7 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 105 "balance_settings.y"
+#line 125 "balance_settings.y"
 
 
 /* EOF */

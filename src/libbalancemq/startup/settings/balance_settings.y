@@ -51,9 +51,11 @@
 
 /* Build a BALANCE_settings_t */
 settings  : /* nothing */ {
+                printf("Creating null settings.\n");
                 $$ = (BALANCE_settings_t*) NULL;
             }
           | blocks {
+                printf("Creating settings.\n");
                 $$ = BALANCE_settings_create_settings();
                 $$->blocks = $blocks;
             }
@@ -61,9 +63,11 @@ settings  : /* nothing */ {
 
 /* Build list of BALANCE_settings_block_t** */
 blocks    : block {
+                printf("Creating block list.\n");
                 $$ = $block;
             }
           | blocks block {
+                printf("Appending to block list.\n");
                 BALANCE_settings_block_t* next = $1->next;
                 $block->next = next;
                 $$->next = $block;
@@ -72,10 +76,12 @@ blocks    : block {
 
 /* Build a BALANCE_settings_block_t */
 block     : T_IDENTIFIER T_LBRACE var_decls T_RBRACE {
+                printf("Creating block.\n");
                 $$ = BALANCE_settings_create_block($1);
                 $$->variables = $var_decls;
             }
           | T_IDENTIFIER T_LBRACE blocks T_RBRACE {
+                printf("Creating subblocks.\n");
                 $$ = BALANCE_settings_create_block($1);
                 $$->blocks = $blocks;
             }
@@ -83,9 +89,11 @@ block     : T_IDENTIFIER T_LBRACE var_decls T_RBRACE {
 
 /* Build list of BALANCE_settings_variable_t** */
 var_decls : var_decl {
+                printf("Creating variable list.\n");
                 $$ = $var_decl;
             }
           | var_decls var_decl {
+                printf("Appending to variable list.\n");
                 BALANCE_settings_variable_t* next = $1->next;
                 $var_decl->next = next;
                 $$ = $var_decl;
@@ -93,13 +101,25 @@ var_decls : var_decl {
           ;
 
 /* Build BALANCE_settings_variable_t */
-var_decl  : T_IDENTIFIER[key] value { $$ = BALANCE_settings_create_variable($key, $value); }
+var_decl  : T_IDENTIFIER[key] value {
+                printf("Creating variable.\n");
+                $$ = BALANCE_settings_create_variable($key, $value);
+            }
           ;
 
 /* Build BALANCE_settings_value_t */
-value     : T_IDENTIFIER { $$ = BALANCE_settings_create_string_value($1); }
-          | T_INTEGER    { $$ = BALANCE_settings_create_integer_value($1); }
-          | T_DOUBLE     { $$ = BALANCE_settings_create_double_value($1); }
+value     : T_IDENTIFIER {
+                printf("Creating string variable value.\n");
+                $$ = BALANCE_settings_create_string_value($1);
+            }
+          | T_INTEGER    {
+                printf("Creating integer variable value.\n");
+                $$ = BALANCE_settings_create_integer_value($1);
+            }
+          | T_DOUBLE     {
+                printf("Creating double variable value.\n");
+                $$ = BALANCE_settings_create_double_value($1);
+             }
           ;
 
 %%
