@@ -95,7 +95,12 @@ int main(int argc, \
     }
 
     /* A context to access logging facilities. */
-    BALANCE_init_context(ctx);
+    if(BALANCE_init_context(ctx) != BALANCE_OK) {
+        /* Since the log requires a context, just report to stderr and exit. */
+        fprintf(stderr, "Initializing the root context failed. " \
+                "This is either a bug in BalanceMQ, or your OS is out of memory.\n");
+        exit(EXIT_FAILURE);
+    }
 
     LOG(ctx, BALANCE_LOG_INFO, "[core] Starting up...\n");
     LOG(ctx, BALANCE_LOG_INFO, \
