@@ -102,7 +102,7 @@ int main(int argc, \
         exit(EXIT_FAILURE);
     }
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Starting up...");
+    LOG(ctx, BALANCE_LOG_INFO, "Starting up...");
     LOG(ctx, BALANCE_LOG_INFO, "\n" \
         " ____        _                      __  __  ___\n" \
         "| __ )  __ _| | __ _ _ __   ___ ___|  \\/  |/ _ \\\n" \
@@ -112,22 +112,22 @@ int main(int argc, \
         " A self-stabilizing continuous workload balancer.");
 
     if(BALANCE_parse_settings(ctx, config_file_path) == BALANCE_OK) {
-        LOG(ctx, BALANCE_LOG_INFO, "[core] Using configuration file at `%s'.\n", config_file_path);
+        LOG(ctx, BALANCE_LOG_INFO, "Using configuration file at `%s'.\n", config_file_path);
     }
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Searching for available plugins at `%s'.", "TODO");
+    LOG(ctx, BALANCE_LOG_INFO, "Searching for available plugins at `%s'.", "TODO");
     /* TODO: plugin loader (based on config file) */
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Accepting new connections.");
+    LOG(ctx, BALANCE_LOG_INFO, "Accepting new connections.");
     /* TODO: start main libcircle based event loop */
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Finalizing existing connections.");
+    LOG(ctx, BALANCE_LOG_INFO, "Finalizing existing connections.");
     /* TODO: wait for shutdown signal */
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Cleaning up plugins.");
+    LOG(ctx, BALANCE_LOG_INFO, "Cleaning up plugins.");
     /* TODO: plugin finalizer */
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Shutting down.");
+    LOG(ctx, BALANCE_LOG_INFO, "Shutting down.");
     exit(EXIT_SUCCESS);
 }
 
