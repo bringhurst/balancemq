@@ -237,7 +237,7 @@ AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra -Wshadow
 INCLUDES = \
            -I$(top_srcdir) \
            -I$(top_srcdir)/src/libbalancemq/include/ \
-           -I$(top_srcdir)/src/libbalancemq/common/
+           -I$(top_srcdir)/src/common/
 
 noinst_LTLIBRARIES = libbalancemq_runtime.la
 libbalancemq_runtime_la_SOURCES = lib.c

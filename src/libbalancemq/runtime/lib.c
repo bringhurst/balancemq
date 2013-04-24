@@ -3,6 +3,7 @@
 #include "balancemq/balancemq.h"
 #include "log.h"
 
+#include <stdlib.h>
 #include <stdio.h>
 
 int BALANCE_init_context(BALANCE_context_t* context)
@@ -16,7 +17,7 @@ int BALANCE_init_context(BALANCE_context_t* context)
     }
 
     context->log_level = BALANCE_LOG_DBG;
-    context->log_stream = stdout;
+    context->log_file = stdout;
 
     return ret;
 }

@@ -53,7 +53,7 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/common.mk
-subdir = src/libbalancemq/common
+subdir = src/common
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
@@ -230,7 +230,7 @@ top_srcdir = @top_srcdir@
 AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra -Wshadow
 INCLUDES = \
            -I$(top_srcdir) \
-           -I$(top_srcdir)/src/libbalancemq/common
+           -I$(top_srcdir)/src/common
 
 noinst_LTLIBRARIES = libbalancemq_common.la
 libbalancemq_common_la_SOURCES = 
@@ -248,9 +248,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(top_srcdir)/common.mk $(am__conf
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/libbalancemq/common/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign src/common/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign src/libbalancemq/common/Makefile
+	  $(AUTOMAKE) --foreign src/common/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \

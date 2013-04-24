@@ -3,7 +3,7 @@ include $(top_srcdir)/common.mk
 INCLUDES = \
            -I$(top_srcdir) \
            -I$(top_srcdir)/src/libbalancemq/include/ \
-           -I$(top_srcdir)/src/libbalancemq/common/
+           -I$(top_srcdir)/src/common/
 
 noinst_LTLIBRARIES = libbalancemq_runtime.la
 

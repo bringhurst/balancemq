@@ -6,7 +6,7 @@ AM_LFLAGS = -CFa --header-file=balance_settings.scanner.h
 INCLUDES = \
            -I$(top_srcdir) \
            -I$(top_srcdir)/src/libbalancemq/include/ \
-           -I$(top_srcdir)/src/libbalancemq/common/
+           -I$(top_srcdir)/src/common/
 
 balance_settings.parser.c : balance_settings.y
 	$(YACC) $(YFLAGS) $(AM_YFLAGS) $< -o $@

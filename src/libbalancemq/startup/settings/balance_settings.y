@@ -15,7 +15,6 @@
 }
 
 %code requires {
-  #include <log.h>
 
   #include <balancemq/settings.h>
   #include <log.h>

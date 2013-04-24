@@ -1,1 +1,1 @@
-SUBDIRS = libbalancemq
+SUBDIRS = common libbalancemq balancemqd balancemqctl

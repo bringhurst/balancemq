@@ -4,10 +4,12 @@ SUBDIRS = plugins
 
 INCLUDES = \
 		-I$(top_srcdir) \
-		-I$(top_srcdir)/src/libbalancemq/include/ \
-		-I$(top_srcdir)/src/libbalancemq/common/
+		-I$(top_srcdir)/src/libbalancemq/include \
+		-I$(top_srcdir)/src/common
 
 bin_PROGRAMS = balancemqd
 balancemqd_SOURCES = balancemqd.c
-balancemqd_LDADD = 
+balancemqd_LDADD = \
+				   ../common/libbalancemq_common.la \
+				   ../libbalancemq/libbalancemq.la
 balancemqd_CPPFLAGS = 

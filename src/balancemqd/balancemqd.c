@@ -8,8 +8,8 @@
 
 #include "config.h"
 
+#include <log.h>
 #include "balancemqd.h"
-#include "log.h"
 
 #include <getopt.h>
 #include <string.h>

@@ -3,6 +3,7 @@
 
 #include <balancemq/settings.h>
 
+#include <stdio.h>
 #include <stdint.h>
 #include <sys/types.h>
 
@@ -88,7 +89,7 @@ typedef struct {
     char* errstr;
 
     /** The file descriptor to log errors to. */
-    struct FILE* log_stream;
+    FILE* log_file;
 
     /** The log level to report. */
     int log_level;

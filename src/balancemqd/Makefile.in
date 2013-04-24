@@ -70,7 +70,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_balancemqd_OBJECTS = balancemqd-balancemqd.$(OBJEXT)
 balancemqd_OBJECTS = $(am_balancemqd_OBJECTS)
-balancemqd_DEPENDENCIES =
+balancemqd_DEPENDENCIES = ../common/libbalancemq_common.la \
+	../libbalancemq/libbalancemq.la
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -272,11 +273,14 @@ AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wextra -Wshadow
 SUBDIRS = plugins
 INCLUDES = \
 		-I$(top_srcdir) \
-		-I$(top_srcdir)/src/libbalancemq/include/ \
-		-I$(top_srcdir)/src/libbalancemq/common/
+		-I$(top_srcdir)/src/libbalancemq/include \
+		-I$(top_srcdir)/src/common
 
 balancemqd_SOURCES = balancemqd.c
-balancemqd_LDADD = 
+balancemqd_LDADD = \
+				   ../common/libbalancemq_common.la \
+				   ../libbalancemq/libbalancemq.la
+
 balancemqd_CPPFLAGS = 
 all: all-recursive
 
