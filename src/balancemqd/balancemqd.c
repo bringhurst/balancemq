@@ -18,6 +18,17 @@
 #include <ctype.h>
 #include <inttypes.h>
 
+/*
+ * Dump out a settings tree when the log level is set to debug.
+ */
+int BALANCE_dump_settings(BALANCE_settings_t* settings) {
+    if(settings == NULL) {
+        return BALANCE_ERR;
+    }
+
+    return BALANCE_OK;
+}
+
 /**
  * Print the current version.
  */
@@ -42,7 +53,7 @@ int main(int argc, \
     int option_index = 0;
 
     BALANCE_context_t* ctx = NULL;
-    char* config_file_path = "/etc/balancemq/balancemq.conf";
+    char* config_file_path = (char*) "/etc/balancemq/balancemq.conf";
 
     static struct option long_options[] = {
         {"config-file-path"     , required_argument, 0, 'c'},
@@ -94,7 +105,7 @@ int main(int argc, \
         }
     }
 
-    /* A context to access logging facilities. */
+    /* Create a context to access logging facilities. */
     if(BALANCE_init_context(&ctx) != BALANCE_OK) {
         /* Since the log requires a context, just report to stderr and exit. */
         fprintf(stderr, "Initializing the root context failed. " \
@@ -113,10 +124,16 @@ int main(int argc, \
 
     LOG(ctx, BALANCE_LOG_INFO, "Using configuration file at `%s'.", config_file_path);
 
+    /* Lex and parse the settings file. Store the results in context->settings. */
     if(BALANCE_parse_settings(ctx, config_file_path) != BALANCE_OK) {
         LOG(ctx, BALANCE_LOG_ERR, \
             "Failed to parse configuration file at `%s'.", config_file_path);
         exit(EXIT_FAILURE);
+    }
+
+    if(BALANCE_dump_settings(ctx->settings) != BALANCE_OK) {
+        LOG(ctx, BALANCE_LOG_ERR, \
+            "Failed to dump configuration file at `%s'.", config_file_path);
     }
 
     LOG(ctx, BALANCE_LOG_INFO, "Searching for available plugins at `%s'.", "TODO");
