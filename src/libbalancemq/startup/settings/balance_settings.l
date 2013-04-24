@@ -22,25 +22,22 @@ IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
 DOUBLE                [0-9]+\.[0-9]*
 INTEGER               [0-9]+
 
-%x                    comment
+%x                    COMMENT
 
 %%
 
 WHITESPACE            ; /* Ignore this token. */
 
-"/*"                  BEGIN(comment); /* Handle C-style comments. */
+"/*"                  { BEGIN(COMMENT); }
+<COMMENT>"*/"         { BEGIN(INITIAL); }
+<COMMENT>.            { }
 
-<comment>{
-    [^*\n]*           ; /* Ignore anything that's not a '*'. */
-    "*"+[^*/\n]*      ; /* Ignore '*'s not followed by a '/'. */
-    "*"+"/"           BEGIN(INITIAL);
-}
-     
 "{"                   return T_LBRACE;
 "}"                   return T_RBRACE;
 ","                   return T_COMMA;
 
 IDENTIFIER            %{
+                          printf("Found identifier: `%s'\n", yytext);
                           yylval->string_value = yytext;
                           return T_IDENTIFIER;
                       %}
@@ -54,6 +51,11 @@ INTEGER               %{
                           yylval->integer_value = atoi(yytext);
                           return T_INTEGER;
                       %}
+
+.                     %{
+                          printf("Unknown character found in configuration file: `%s'\n", yytext);
+                      %}
+
 %%
 
 /* EOF */
