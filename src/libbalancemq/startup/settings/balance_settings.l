@@ -17,8 +17,6 @@
 %option prefix="balance_settings_yy"
 %option outfile="balance_settings.scanner.c"
 
-%option extra-type="BALANCE_settings_t*"
-
 WHITESPACE            [ \t\n]
 IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
 DOUBLE                [0-9]+\.[0-9]*
@@ -27,10 +25,6 @@ INTEGER               [0-9]+
 %x                    comment
 
 %%
-
-%{
-  BALANCE_settings_t* settings_tree = yyextra;
-%}
 
 WHITESPACE            ; /* Ignore this token. */
 

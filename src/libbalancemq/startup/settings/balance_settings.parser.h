@@ -49,11 +49,11 @@ extern int balance_settings_yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 2058 of yacc.c  */
-#line 17 "balance_settings.y"
-
+#line 16 "balance_settings.y"
 
   #include <balancemq/settings.h>
   #include <log.h>
+  #include <stdio.h>
 
   typedef union BALANCE_SETTINGS_YYSTYPE
   {
@@ -67,9 +67,12 @@ extern int balance_settings_yydebug;
       BALANCE_settings_t*           settings_value;
   } BALANCE_SETTINGS_YYSTYPE;
 
+  int yyerror(BALANCE_settings_t* settings, const char* msg);
+  int yylex(void* scanner);
+
 
 /* Line 2058 of yacc.c  */
-#line 73 "balance_settings.parser.h"
+#line 76 "balance_settings.parser.h"
 
 /* Tokens.  */
 #ifndef BALANCE_SETTINGS_YYTOKENTYPE

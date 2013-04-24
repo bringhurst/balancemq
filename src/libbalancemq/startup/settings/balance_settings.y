@@ -10,14 +10,13 @@
 %parse-param { BALANCE_settings_t* settings_tree }
 
 %code top {
-  #define _GNU_SOURCE
-  #include <stdio.h>
+/*  #define _GNU_SOURCE */
 }
 
 %code requires {
-
   #include <balancemq/settings.h>
   #include <log.h>
+  #include <stdio.h>
 
   typedef union BALANCE_SETTINGS_YYSTYPE
   {
@@ -30,6 +29,9 @@
       BALANCE_settings_block_t*     block_value;
       BALANCE_settings_t*           settings_value;
   } BALANCE_SETTINGS_YYSTYPE;
+
+  int yyerror(BALANCE_settings_t* settings, const char* msg);
+  int yylex(void* scanner);
 }
 
 %token <string_value>  T_IDENTIFIER T_LBRACE T_RBRACE T_COMMA

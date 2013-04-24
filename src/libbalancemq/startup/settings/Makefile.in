@@ -250,7 +250,7 @@ libbalancemq_startup_settings_la_SOURCES = \
 										   balance_settings.scanner.c \
 										   settings.c
 
-libbalancemq_startup_settings_la_LIBADD = $(LEXLIB)
+libbalancemq_startup_settings_la_LIBADD = $(LEXLIB) -lfl
 libbalancemq_startup_settings_la_LDFLAGS = $(LIB_LDFLAGS)
 all: all-am
 
@@ -542,7 +542,7 @@ uninstall-am:
 balance_settings.parser.c : balance_settings.y
 	$(YACC) $(YFLAGS) $(AM_YFLAGS) $< -o $@
 
-balance_settings.scanner.c : balance_settings.l balance_settings.parser.h
+balance_settings.scanner.c : balance_settings.l #balance_settings.parser.h
 	$(LEX) $(LFLAGS) $(AM_LFLAGS) -o$@ $<
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

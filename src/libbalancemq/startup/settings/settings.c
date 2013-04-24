@@ -33,7 +33,7 @@ BALANCE_settings_t* BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
     return NULL;
 }
 
-void balance_settings_yyerror(const char* msg)
+void balance_settings_yyerror(BALANCE_settings_t* settings, const char* msg)
 {
     fprintf(stderr, "settings yyerror reported `%s'", msg);
 }

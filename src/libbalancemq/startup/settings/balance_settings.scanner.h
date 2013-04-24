@@ -252,7 +252,9 @@ void balance_settings_yyfree (void * ,yyscan_t yyscanner );
 #include <unistd.h>
 #endif
 
-#define YY_EXTRA_TYPE BALANCE_settings_t*
+#ifndef YY_EXTRA_TYPE
+#define YY_EXTRA_TYPE void *
+#endif
 
 int balance_settings_yylex_init (yyscan_t* scanner);
 
@@ -357,9 +359,9 @@ extern int balance_settings_yylex \
 #undef YY_DECL
 #endif
 
-#line 69 "balance_settings.l"
+#line 63 "balance_settings.l"
 
 
-#line 364 "balance_settings.scanner.h"
+#line 366 "balance_settings.scanner.h"
 #undef balance_settings_yyIN_HEADER
 #endif /* balance_settings_yyHEADER_H */
