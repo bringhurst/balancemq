@@ -6,32 +6,27 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int BALANCE_init_context(BALANCE_context_t* context)
+int BALANCE_init_context(BALANCE_context_t** context)
 {
-    int ret = BALANCE_OK;
-
-    if(context != NULL) {
-        ret = BALANCE_ERR;
-
+    if(*context != NULL) {
         /* Since we don't have a valid context, just log to stderr. */
         fprintf(stderr, "Attempted to initialize a non-null context. "
                 "Possible bug detected at `%s:%d'.\n",
                 __FILE__, __LINE__);
+        return BALANCE_ERR;
     }
 
-    context = (BALANCE_context_t*) malloc(sizeof(BALANCE_context_t));
+    *context = (BALANCE_context_t*) malloc(sizeof(BALANCE_context_t));
 
-    if(context == NULL) {
+    if(*context == NULL) {
         /* Since we don't have a valid context, just log to stderr. */
         fprintf(stderr, "Allocating memory for a new context failed. "
                 "Possible bug detected at `%s:%d'.\n",
                 __FILE__, __LINE__);
-        ret = BALANCE_ERR;
+        return BALANCE_ERR;
     }
 
-    ret = BALANCE_set_logging(context, stdout, BALANCE_LOG_DBG);
-
-    return ret;
+    return BALANCE_set_logging(*context, stdout, BALANCE_LOG_DBG);
 }
 
 int BALANCE_free_context(BALANCE_context_t* context)

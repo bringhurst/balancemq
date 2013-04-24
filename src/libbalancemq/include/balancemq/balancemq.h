@@ -119,7 +119,7 @@ typedef struct {
  * Initialize a basic context with null callbacks, default logging and
  * default settings.
  */
-int BALANCE_init_context(BALANCE_context_t* context);
+int BALANCE_init_context(BALANCE_context_t** context);
 
 /**
  * Free an allocated context structure.

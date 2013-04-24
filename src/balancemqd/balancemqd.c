@@ -95,7 +95,7 @@ int main(int argc, \
     }
 
     /* A context to access logging facilities. */
-    if(BALANCE_init_context(ctx) != BALANCE_OK) {
+    if(BALANCE_init_context(&ctx) != BALANCE_OK) {
         /* Since the log requires a context, just report to stderr and exit. */
         fprintf(stderr, "Initializing the root context failed. " \
                 "This is either a bug in BalanceMQ, or your OS is out of memory.\n");
@@ -103,31 +103,31 @@ int main(int argc, \
     }
 
     LOG(ctx, BALANCE_LOG_INFO, "[core] Starting up...\n");
-    LOG(ctx, BALANCE_LOG_INFO, \
+    LOG(ctx, BALANCE_LOG_INFO, "\n" \
         " ____        _                      __  __  ___\n" \
         "| __ )  __ _| | __ _ _ __   ___ ___|  \\/  |/ _ \\\n" \
         "|  _ \\ / _` | |/ _` | '_ \\ / __/ _ \\ |\\/| | | | |\n" \
         "| |_) | (_| | | (_| | | | | (__| __/ |  | | |_| |\n" \
         "|____/ \\__,_|_|\\__,_|_| |_|\\___\\___|_|  |_|\\__\\_\\\n" \
-        " A self-stabilizing continuous workload balancer.\n\n");
+        " A self-stabilizing continuous workload balancer.");
 
     if(BALANCE_parse_settings(ctx, config_file_path) == BALANCE_OK) {
         LOG(ctx, BALANCE_LOG_INFO, "[core] Using configuration file at `%s'.\n", config_file_path);
     }
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Searching for available plugins at `%s'.\n", "TODO");
+    LOG(ctx, BALANCE_LOG_INFO, "[core] Searching for available plugins at `%s'.", "TODO");
     /* TODO: plugin loader (based on config file) */
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Accepting new connections.\n");
+    LOG(ctx, BALANCE_LOG_INFO, "[core] Accepting new connections.");
     /* TODO: start main libcircle based event loop */
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Finalizing existing connections.\n");
+    LOG(ctx, BALANCE_LOG_INFO, "[core] Finalizing existing connections.");
     /* TODO: wait for shutdown signal */
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Cleaning up plugins.\n");
+    LOG(ctx, BALANCE_LOG_INFO, "[core] Cleaning up plugins.");
     /* TODO: plugin finalizer */
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Shutting down.\n");
+    LOG(ctx, BALANCE_LOG_INFO, "[core] Shutting down.");
     exit(EXIT_SUCCESS);
 }
 
