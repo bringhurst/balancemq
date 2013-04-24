@@ -113,7 +113,7 @@ int main(int argc, \
 
     LOG(ctx, BALANCE_LOG_INFO, "Using configuration file at `%s'.", config_file_path);
 
-    if(BALANCE_parse_settings(ctx, config_file_path) == BALANCE_OK) {
+    if(BALANCE_parse_settings(ctx, config_file_path) != BALANCE_OK) {
         LOG(ctx, BALANCE_LOG_ERR, \
             "Failed to parse configuration file at `%s'.", config_file_path);
         exit(EXIT_FAILURE);
