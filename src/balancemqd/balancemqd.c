@@ -112,7 +112,7 @@ int main(int argc, \
         " A self-stabilizing continuous workload balancer.");
 
     if(BALANCE_parse_settings(ctx, config_file_path) == BALANCE_OK) {
-        LOG(ctx, BALANCE_LOG_INFO, "Using configuration file at `%s'.\n", config_file_path);
+        LOG(ctx, BALANCE_LOG_INFO, "Using configuration file at `%s'.", config_file_path);
     }
 
     LOG(ctx, BALANCE_LOG_INFO, "Searching for available plugins at `%s'.", "TODO");
