@@ -38,9 +38,15 @@ INTEGER               [0-9]+
 \n                    yylineno++;
 }
 
-"{"                   return T_LBRACE;
-"}"                   return T_RBRACE;
-","                   return T_COMMA;
+"{"                   %{
+                         printf("Found block start.\n");
+                         return T_LBRACE;
+                      %}
+
+"}"                   %{
+                         printf("Found block end.\n");
+                         return T_RBRACE;
+                      %}
 
 {IDENTIFIER}          %{
                           printf("Found identifier: `%s'\n", yytext);
@@ -49,11 +55,13 @@ INTEGER               [0-9]+
                       %}
 
 {DOUBLE}              %{
+                          printf("Found double value of: `%s'\n", yytext);
                           yylval->double_value = atof(yytext);
                           return T_DOUBLE;
                       %}
 
 {INTEGER}             %{
+                          printf("Found integer value of: `%s'\n", yytext);
                           yylval->integer_value = atoi(yytext);
                           return T_INTEGER;
                       %}

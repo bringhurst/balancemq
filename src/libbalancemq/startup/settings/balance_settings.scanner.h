@@ -359,7 +359,7 @@ extern int balance_settings_yylex \
 #undef YY_DECL
 #endif
 
-#line 65 "balance_settings.l"
+#line 73 "balance_settings.l"
 
 
 #line 366 "balance_settings.scanner.h"

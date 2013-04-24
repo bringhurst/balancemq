@@ -34,7 +34,7 @@
   int yyerror(BALANCE_settings_t* settings, const char* msg);
 }
 
-%token <string_value>  T_IDENTIFIER T_LBRACE T_RBRACE T_COMMA
+%token <string_value>  T_IDENTIFIER T_LBRACE T_RBRACE
 %token <double_value>  T_DOUBLE
 %token <integer_value> T_INTEGER
 

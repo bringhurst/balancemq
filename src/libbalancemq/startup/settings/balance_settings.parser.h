@@ -82,18 +82,16 @@ extern int balance_settings_yydebug;
      T_IDENTIFIER = 258,
      T_LBRACE = 259,
      T_RBRACE = 260,
-     T_COMMA = 261,
-     T_DOUBLE = 262,
-     T_INTEGER = 263
+     T_DOUBLE = 261,
+     T_INTEGER = 262
    };
 #endif
 /* Tokens.  */
 #define T_IDENTIFIER 258
 #define T_LBRACE 259
 #define T_RBRACE 260
-#define T_COMMA 261
-#define T_DOUBLE 262
-#define T_INTEGER 263
+#define T_DOUBLE 261
+#define T_INTEGER 262
 
 
 
