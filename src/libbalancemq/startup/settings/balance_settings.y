@@ -7,7 +7,7 @@
 
 %file-prefix "balance_settings.parser"
 
-%lex-param {void* scanner}
+%lex-param { void* scanner }
 %parse-param { void* scanner }
 
 %code top {
@@ -32,7 +32,6 @@
   } BALANCE_SETTINGS_YYSTYPE;
 
   int yyerror(BALANCE_settings_t* settings, const char* msg);
-//  int yylex(void* scanner);
 }
 
 %token <string_value>  T_IDENTIFIER T_LBRACE T_RBRACE T_COMMA

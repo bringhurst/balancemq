@@ -68,11 +68,10 @@ extern int balance_settings_yydebug;
   } BALANCE_SETTINGS_YYSTYPE;
 
   int yyerror(BALANCE_settings_t* settings, const char* msg);
-//  int yylex(void* scanner);
 
 
 /* Line 2058 of yacc.c  */
-#line 76 "balance_settings.parser.h"
+#line 75 "balance_settings.parser.h"
 
 /* Tokens.  */
 #ifndef BALANCE_SETTINGS_YYTOKENTYPE

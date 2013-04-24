@@ -18,19 +18,25 @@
 %option outfile="balance_settings.scanner.c"
 
 WHITESPACE            [ \t\n]*
-IDENTIFIER            [a-zA-Z_][a-zA-Z0-9_]*
+IDENTIFIER            [a-zA-Z_/\.][a-zA-Z0-9_/\.]*
 DOUBLE                [0-9]+\.[0-9]*
 INTEGER               [0-9]+
 
-%x                    COMMENT
+%x                    IN_COMMENT
 
 %%
 
 {WHITESPACE}          { }
 
-"/*"                  { BEGIN(COMMENT); }
-<COMMENT>"*/"         { BEGIN(INITIAL); }
-<COMMENT>.            { }
+<INITIAL>{
+"/*"                  BEGIN(IN_COMMENT);
+}
+<IN_COMMENT>{
+"*/"                  BEGIN(INITIAL);
+[^*\n]+               /* Ignore entire lines at a time. */
+"*"                   /* Ignore solo stars. */
+\n                    yylineno++;
+}
 
 "{"                   return T_LBRACE;
 "}"                   return T_RBRACE;
@@ -53,7 +59,7 @@ INTEGER               [0-9]+
                       %}
 
 .                     %{
-                          printf("Unknown character found in configuration file: `%s'\n", yytext);
+                          printf("Unknown character found in configuration file: `%s' at line `%d'\n", yytext, yylineno);
                       %}
 
 %%
