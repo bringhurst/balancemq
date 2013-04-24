@@ -7,7 +7,7 @@
   /* A lexer for balancemq.conf */
 
   /* Needed for extra type BALANCE_settings_t and YYSTYPE. */
-  #include "balancemq/settings.h"
+  #include <balancemq/settings.h>
   #define YYSTYPE BALANCE_SETTINGS_YYSTYPE
 
   /* Include for token constants. */
@@ -233,6 +233,9 @@ void balance_settings_yyfree (void * ,yyscan_t yyscanner );
 
 /* Begin user sect3 */
 
+#define balance_settings_yywrap(n) 1
+#define YY_SKIP_YYWRAP
+
 #define yytext_ptr yytext_r
 
 #ifdef YY_HEADER_EXPORT_START_CONDITIONS
@@ -354,9 +357,9 @@ extern int balance_settings_yylex \
 #undef YY_DECL
 #endif
 
-#line 68 "balance_settings.l"
+#line 69 "balance_settings.l"
 
 
-#line 361 "balance_settings.scanner.h"
+#line 364 "balance_settings.scanner.h"
 #undef balance_settings_yyIN_HEADER
 #endif /* balance_settings_yyHEADER_H */

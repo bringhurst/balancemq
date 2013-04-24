@@ -2,7 +2,7 @@
   /* A lexer for balancemq.conf */
 
   /* Needed for extra type BALANCE_settings_t and YYSTYPE. */
-  #include "balancemq/settings.h"
+  #include <balancemq/settings.h>
   #define YYSTYPE BALANCE_SETTINGS_YYSTYPE
 
   /* Include for token constants. */
@@ -12,6 +12,7 @@
 %option 8bit reentrant warn
 %option bison-bridge nounput
 %option align read perf-report
+%option noyywrap
 
 %option prefix="balance_settings_yy"
 %option outfile="balance_settings.scanner.c"
