@@ -1,6 +1,12 @@
-#include <config.h>
+/* TODO: file info here. */
 
-#include "balancemq/balancemq.h"
+/*
+ * The public header file MUST be included first. Otherwise, header dependency
+ * bugs may creep in.
+ */
+#include <balancemq/balancemq.h>
+
+#include "config.h"
 
 #include "balancemqd.h"
 #include "log.h"
