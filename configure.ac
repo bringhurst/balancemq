@@ -1,3 +1,4 @@
+AC_PREREQ([2.61])
 AC_INIT([BalanceMQ],[0.0.1],[jon@bringhurst.org],[BalanceMQ],[http://www.balancemq.com/])
 
 AC_LANG_CONFTEST(
@@ -11,23 +12,24 @@ AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([foreign])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
+# Pull in libtool
+LT_PREREQ([2.2])
+LT_INIT([dlopen])
+
 # Check for programs
 AC_PROG_AWK
 AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_LEX
 AC_PROG_MAKE_SET
-AC_PROG_RANLIB
 AC_PROG_YACC
+AC_PROG_CC_C_O
 
 # Needed for docs
 X_AC_BMQ_DOXYGEN
 
 # Needed for tests
 #X_AC_BMQ_CHECK
-
-# Pull in libtool.
-LT_INIT
 
 # Checks for headers.
 AC_CHECK_HEADERS([inttypes.h limits.h stdint.h stdlib.h string.h unistd.h])
