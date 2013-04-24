@@ -102,7 +102,7 @@ int main(int argc, \
         exit(EXIT_FAILURE);
     }
 
-    LOG(ctx, BALANCE_LOG_INFO, "[core] Starting up...\n");
+    LOG(ctx, BALANCE_LOG_INFO, "[core] Starting up...");
     LOG(ctx, BALANCE_LOG_INFO, "\n" \
         " ____        _                      __  __  ___\n" \
         "| __ )  __ _| | __ _ _ __   ___ ___|  \\/  |/ _ \\\n" \
