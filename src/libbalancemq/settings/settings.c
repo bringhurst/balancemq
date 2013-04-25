@@ -13,11 +13,10 @@
 int BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
 {
     FILE* settings_file;
-    yyscan_t scanner;
-    BALANCE_settings_t* settings = NULL;
+    BALANCE_scanner_t* scanner = NULL;
 
     balance_settings_yylex_init(&scanner);
-    balance_settings_yylex_init_extra(settings, &scanner);
+    balance_settings_yylex_init_extra(ctx, &scanner);
 
     settings_file = fopen(path, "r");
     if(settings_file == NULL) {
@@ -31,8 +30,6 @@ int BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
     balance_settings_yylex_destroy(scanner);
 
     fclose(settings_file);
-    ctx->settings = settings;
-
     return BALANCE_OK;
 }
 

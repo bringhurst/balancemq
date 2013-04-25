@@ -3,7 +3,9 @@
 
   /* Needed for extra type BALANCE_settings_t and YYSTYPE. */
   #include <balancemq/settings.h>
+
   #define YYSTYPE BALANCE_SETTINGS_YYSTYPE
+  #define YY_EXTRA_TYPE BALANCE_scanner_t*
 
   /* Include for token constants. */
   #include "balance_settings.parser.h"

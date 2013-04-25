@@ -15,8 +15,10 @@
 }
 
 %code requires {
-  #include <balancemq/settings.h>
   #include <log.h>
+  #include <balancemq/settings.h>
+  #include "private_settings.h"
+
   #include <stdio.h>
 
   typedef union BALANCE_SETTINGS_YYSTYPE

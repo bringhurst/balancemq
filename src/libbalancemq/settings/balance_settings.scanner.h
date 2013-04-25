@@ -8,14 +8,16 @@
 
   /* Needed for extra type BALANCE_settings_t and YYSTYPE. */
   #include <balancemq/settings.h>
+
   #define YYSTYPE BALANCE_SETTINGS_YYSTYPE
+  #define YY_EXTRA_TYPE BALANCE_scanner_t*
 
   /* Include for token constants. */
   #include "balance_settings.parser.h"
 
 
 
-#line 19 "balance_settings.scanner.h"
+#line 21 "balance_settings.scanner.h"
 
 #define  YY_INT_ALIGNED long int
 
@@ -359,9 +361,9 @@ extern int balance_settings_yylex \
 #undef YY_DECL
 #endif
 
-#line 74 "balance_settings.l"
+#line 76 "balance_settings.l"
 
 
-#line 366 "balance_settings.scanner.h"
+#line 368 "balance_settings.scanner.h"
 #undef balance_settings_yyIN_HEADER
 #endif /* balance_settings_yyHEADER_H */

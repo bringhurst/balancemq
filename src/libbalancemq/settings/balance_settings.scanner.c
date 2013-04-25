@@ -4,14 +4,16 @@
 
   /* Needed for extra type BALANCE_settings_t and YYSTYPE. */
   #include <balancemq/settings.h>
+
   #define YYSTYPE BALANCE_SETTINGS_YYSTYPE
+  #define YY_EXTRA_TYPE BALANCE_scanner_t*
 
   /* Include for token constants. */
   #include "balance_settings.parser.h"
 
 
 
-#line 15 "balance_settings.scanner.c"
+#line 17 "balance_settings.scanner.c"
 
 #define  YY_INT_ALIGNED long int
 
@@ -910,7 +912,7 @@ static yyconst flex_int32_t yy_rule_can_match_eol[14] =
 #line 1 "balance_settings.l"
 
 
-#line 914 "balance_settings.scanner.c"
+#line 916 "balance_settings.scanner.c"
 
 #define INITIAL 0
 #define IN_COMMENT 1
@@ -1131,10 +1133,10 @@ YY_DECL
 	register int yy_act;
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
-#line 27 "balance_settings.l"
+#line 29 "balance_settings.l"
 
 
-#line 1138 "balance_settings.scanner.c"
+#line 1140 "balance_settings.scanner.c"
 
     yylval = yylval_param;
 
@@ -1214,42 +1216,42 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 29 "balance_settings.l"
+#line 31 "balance_settings.l"
 { }
 	YY_BREAK
 
 case 2:
 YY_RULE_SETUP
-#line 32 "balance_settings.l"
+#line 34 "balance_settings.l"
 BEGIN(IN_COMMENT);
 	YY_BREAK
 
 
 case 3:
 YY_RULE_SETUP
-#line 35 "balance_settings.l"
+#line 37 "balance_settings.l"
 BEGIN(INITIAL);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 36 "balance_settings.l"
+#line 38 "balance_settings.l"
 /* Ignore entire lines at a time. */
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 37 "balance_settings.l"
+#line 39 "balance_settings.l"
 /* Ignore solo stars. */
 	YY_BREAK
 case 6:
 /* rule 6 can match eol */
 YY_RULE_SETUP
-#line 38 "balance_settings.l"
+#line 40 "balance_settings.l"
 yylineno++;
 	YY_BREAK
 
 case 7:
 YY_RULE_SETUP
-#line 41 "balance_settings.l"
+#line 43 "balance_settings.l"
 
                          /* printf("Found block start.\n"); */
                          return T_LBRACE;
@@ -1257,7 +1259,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 46 "balance_settings.l"
+#line 48 "balance_settings.l"
 
                          /* printf("Found block end.\n"); */
                          return T_RBRACE;
@@ -1265,7 +1267,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 51 "balance_settings.l"
+#line 53 "balance_settings.l"
 
                           /* printf("Found identifier: `%s'\n", yytext); */
                           yylval->string_value = yytext;
@@ -1274,7 +1276,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 57 "balance_settings.l"
+#line 59 "balance_settings.l"
 
                           /* printf("Found double value of: `%s'\n", yytext); */
                           yylval->double_value = atof(yytext);
@@ -1283,7 +1285,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 63 "balance_settings.l"
+#line 65 "balance_settings.l"
 
                           /* printf("Found integer value of: `%s'\n", yytext); */
                           yylval->integer_value = atoi(yytext);
@@ -1292,7 +1294,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 69 "balance_settings.l"
+#line 71 "balance_settings.l"
 
                           printf("Unknown character found in configuration file: " \
                                  "`%s' at line `%d'\n", yytext, yylineno);
@@ -1300,10 +1302,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 74 "balance_settings.l"
+#line 76 "balance_settings.l"
 ECHO;
 	YY_BREAK
-#line 1307 "balance_settings.scanner.c"
+#line 1309 "balance_settings.scanner.c"
 			case YY_STATE_EOF(INITIAL):
 			case YY_STATE_EOF(IN_COMMENT):
 				yyterminate();
@@ -2419,7 +2421,7 @@ void balance_settings_yyfree (void * ptr , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 74 "balance_settings.l"
+#line 76 "balance_settings.l"
 
 
 

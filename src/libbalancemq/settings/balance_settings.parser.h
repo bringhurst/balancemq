@@ -51,8 +51,10 @@ extern int balance_settings_yydebug;
 /* Line 2058 of yacc.c  */
 #line 17 "balance_settings.y"
 
-  #include <balancemq/settings.h>
   #include <log.h>
+  #include <balancemq/settings.h>
+  #include "private_settings.h"
+
   #include <stdio.h>
 
   typedef union BALANCE_SETTINGS_YYSTYPE
@@ -71,7 +73,7 @@ extern int balance_settings_yydebug;
 
 
 /* Line 2058 of yacc.c  */
-#line 75 "balance_settings.parser.h"
+#line 77 "balance_settings.parser.h"
 
 /* Tokens.  */
 #ifndef BALANCE_SETTINGS_YYTOKENTYPE
