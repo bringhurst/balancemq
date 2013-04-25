@@ -95,8 +95,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libbalancemq_la_DEPENDENCIES = ../common/libbalancemq_common.la \
-	runtime/libbalancemq_runtime.la \
-	startup/libbalancemq_startup.la
+	settings/libbalancemq_settings.la \
+	runtime/libbalancemq_runtime.la
 am_libbalancemq_la_OBJECTS =
 libbalancemq_la_OBJECTS = $(am_libbalancemq_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -298,7 +298,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CFLAGS = -std=gnu99 -ggdb -W -pedantic -Wall -Wextra -Wconversion -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-default -Wswitch-enum -Wuninitialized -Wunknown-pragmas -Wstrict-aliasing -Wfloat-equal -Wundef -Wbad-function-cast -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wredundant-decls -Winline -Wdisabled-optimization -Wshadow -Wwrite-strings
-SUBDIRS = include startup runtime plugins
+SUBDIRS = include settings runtime plugins
 lib_LTLIBRARIES = libbalancemq.la
 libbalancemq_la_SOURCES = 
 libbalancemq_la_LDFLAGS = $(LIB_LDFLAGS)
@@ -308,8 +308,8 @@ libbalancemq_la_CPPFLAGS = \
 
 libbalancemq_la_LIBADD = \
                          ../common/libbalancemq_common.la \
-                         runtime/libbalancemq_runtime.la \
-                         startup/libbalancemq_startup.la
+                         settings/libbalancemq_settings.la \
+                         runtime/libbalancemq_runtime.la
 
 all: all-recursive
 

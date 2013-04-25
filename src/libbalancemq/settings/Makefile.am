@@ -14,12 +14,12 @@ balance_settings.parser.c : balance_settings.y
 balance_settings.scanner.c : balance_settings.l #balance_settings.parser.h
 	$(LEX) $(LFLAGS) $(AM_LFLAGS) -o$@ $<
 
-noinst_LTLIBRARIES = libbalancemq_startup_settings.la
+noinst_LTLIBRARIES = libbalancemq_settings.la
 
-libbalancemq_startup_settings_la_SOURCES = \
+libbalancemq_settings_la_SOURCES = \
                                            balance_settings.parser.c \
 										   balance_settings.scanner.c \
 										   settings.c
 
-libbalancemq_startup_settings_la_LIBADD = $(LEXLIB) -lfl
-libbalancemq_startup_settings_la_LDFLAGS = $(LIB_LDFLAGS)
+libbalancemq_settings_la_LIBADD = $(LEXLIB) -lfl
+libbalancemq_settings_la_LDFLAGS = $(LIB_LDFLAGS)

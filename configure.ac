@@ -83,9 +83,8 @@ AC_CONFIG_FILES([Makefile                                              \
                  src/libbalancemq/plugins/protocol/asn_1/Makefile      \
                  src/libbalancemq/plugins/protocol/mpi/Makefile        \
                  src/libbalancemq/runtime/Makefile                     \
-                 src/libbalancemq/startup/Makefile                     \
-                 src/libbalancemq/startup/plugin_loader/Makefile       \
-                 src/libbalancemq/startup/settings/Makefile            \
+                 src/libbalancemq/runtime/plugin_loader/Makefile       \
+                 src/libbalancemq/settings/Makefile                    \
 ])
 
 AC_OUTPUT
