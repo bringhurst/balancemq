@@ -32,9 +32,10 @@ typedef struct {
     BALANCE_settings_block_t* blocks;
 } BALANCE_settings_t;
 
-BALANCE_settings_t* BALANCE_settings_create_settings();
-BALANCE_settings_block_t* BALANCE_settings_create_block();
-BALANCE_settings_variable_t* BALANCE_settings_create_variable();
+BALANCE_settings_t* BALANCE_settings_create_settings(void);
+BALANCE_settings_block_t* BALANCE_settings_create_block(void);
+BALANCE_settings_variable_t* BALANCE_settings_create_variable(char* key, \
+        BALANCE_settings_value_t* value);
 
 BALANCE_settings_value_t* BALANCE_settings_create_string_value(char* value);
 BALANCE_settings_value_t* BALANCE_settings_create_integer_value(int value);

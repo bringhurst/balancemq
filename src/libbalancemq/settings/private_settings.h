@@ -4,8 +4,8 @@
 #include <balancemq/balancemq.h>
 
 typedef struct {
-    void* scanner;
-    BALANCE_context_t* context;
+    struct BALANCE_context_t* context;
+    void* state;
 } BALANCE_scanner_t;
 
 #endif /* _BALANCE_PRIVATE_SETTINGS_H */

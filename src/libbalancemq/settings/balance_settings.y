@@ -7,19 +7,24 @@
 
 %file-prefix "balance_settings.parser"
 
+%locations
+
 %lex-param { void* scanner }
-%parse-param { void* scanner }
+%parse-param { BALANCE_scanner_t* context }
 
 %code top {
-/*  #define _GNU_SOURCE */
+  #define scanner context->state
 }
 
 %code requires {
   #include <log.h>
   #include <balancemq/settings.h>
+
   #include "private_settings.h"
 
   #include <stdio.h>
+
+  int yyerror(void *locp, BALANCE_scanner_t* context, const char* msg);
 
   typedef union BALANCE_SETTINGS_YYSTYPE
   {
@@ -33,7 +38,7 @@
       BALANCE_settings_t*           settings_value;
   } BALANCE_SETTINGS_YYSTYPE;
 
-  int yyerror(BALANCE_settings_t* settings, const char* msg);
+
 }
 
 %token <string_value>  T_IDENTIFIER T_LBRACE T_RBRACE
@@ -79,12 +84,12 @@ blocks    : block {
 /* Build a BALANCE_settings_block_t */
 block     : T_IDENTIFIER T_LBRACE var_decls T_RBRACE {
                 printf("Creating block.\n");
-                $$ = BALANCE_settings_create_block($1);
+                $$ = BALANCE_settings_create_block();
                 $$->variables = $var_decls;
             }
           | T_IDENTIFIER T_LBRACE blocks T_RBRACE {
                 printf("Creating subblocks.\n");
-                $$ = BALANCE_settings_create_block($1);
+                $$ = BALANCE_settings_create_block();
                 $$->blocks = $blocks;
             }
           ;

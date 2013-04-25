@@ -33,10 +33,11 @@ int BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
     return BALANCE_OK;
 }
 
-void balance_settings_yyerror(BALANCE_settings_t* settings, const char* msg)
+int balance_settings_yyerror(void *locp, BALANCE_scanner_t* context, const char* msg)
 {
     /* TODO: Use settings somehow? */
     fprintf(stderr, "Configuration file parse error: `%s'\n", msg);
+    return 0;
 }
 
 BALANCE_settings_t* BALANCE_settings_create_settings()

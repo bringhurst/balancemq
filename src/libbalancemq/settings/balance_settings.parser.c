@@ -60,15 +60,16 @@
 
 /* "%code top" blocks.  */
 /* Line 349 of yacc.c  */
-#line 13 "balance_settings.y"
+#line 15 "balance_settings.y"
 
-/*  #define _GNU_SOURCE */
+  #define scanner context->state
 
 
 /* Line 349 of yacc.c  */
 #line 70 "balance_settings.parser.c"
 /* Substitute the type names.  */
 #define YYSTYPE         BALANCE_SETTINGS_YYSTYPE
+#define YYLTYPE         BALANCE_SETTINGS_YYLTYPE
 /* Substitute the variable and function names.  */
 #define yyparse         balance_settings_yyparse
 #define yylex           balance_settings_yylex
@@ -77,11 +78,12 @@
 #define yychar          balance_settings_yychar
 #define yydebug         balance_settings_yydebug
 #define yynerrs         balance_settings_yynerrs
+#define yylloc          balance_settings_yylloc
 
 /* Copy the first part of user declarations.  */
 
 /* Line 371 of yacc.c  */
-#line 85 "balance_settings.parser.c"
+#line 87 "balance_settings.parser.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -120,13 +122,16 @@ extern int balance_settings_yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 387 of yacc.c  */
-#line 17 "balance_settings.y"
+#line 19 "balance_settings.y"
 
   #include <log.h>
   #include <balancemq/settings.h>
+
   #include "private_settings.h"
 
   #include <stdio.h>
+
+  int yyerror(void *locp, BALANCE_scanner_t* context, const char* msg);
 
   typedef union BALANCE_SETTINGS_YYSTYPE
   {
@@ -140,11 +145,11 @@ extern int balance_settings_yydebug;
       BALANCE_settings_t*           settings_value;
   } BALANCE_SETTINGS_YYSTYPE;
 
-  int yyerror(BALANCE_settings_t* settings, const char* msg);
+
 
 
 /* Line 387 of yacc.c  */
-#line 148 "balance_settings.parser.c"
+#line 153 "balance_settings.parser.c"
 
 /* Tokens.  */
 #ifndef BALANCE_SETTINGS_YYTOKENTYPE
@@ -174,6 +179,19 @@ extern int balance_settings_yydebug;
 # define BALANCE_SETTINGS_YYSTYPE_IS_DECLARED 1
 #endif
 
+#if ! defined BALANCE_SETTINGS_YYLTYPE && ! defined BALANCE_SETTINGS_YYLTYPE_IS_DECLARED
+typedef struct BALANCE_SETTINGS_YYLTYPE
+{
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
+} BALANCE_SETTINGS_YYLTYPE;
+# define balance_settings_yyltype BALANCE_SETTINGS_YYLTYPE /* obsolescent; will be withdrawn */
+# define BALANCE_SETTINGS_YYLTYPE_IS_DECLARED 1
+# define BALANCE_SETTINGS_YYLTYPE_IS_TRIVIAL 1
+#endif
+
 
 #ifdef YYPARSE_PARAM
 #if defined __STDC__ || defined __cplusplus
@@ -183,7 +201,7 @@ int balance_settings_yyparse ();
 #endif
 #else /* ! YYPARSE_PARAM */
 #if defined __STDC__ || defined __cplusplus
-int balance_settings_yyparse (void* scanner);
+int balance_settings_yyparse (BALANCE_scanner_t* context);
 #else
 int balance_settings_yyparse ();
 #endif
@@ -194,7 +212,7 @@ int balance_settings_yyparse ();
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 198 "balance_settings.parser.c"
+#line 216 "balance_settings.parser.c"
 
 #ifdef short
 # undef short
@@ -353,13 +371,15 @@ void free (void *); /* INFRINGES ON USER NAME SPACE */
 
 #if (! defined yyoverflow \
      && (! defined __cplusplus \
-	 || (defined BALANCE_SETTINGS_YYSTYPE_IS_TRIVIAL && BALANCE_SETTINGS_YYSTYPE_IS_TRIVIAL)))
+	 || (defined BALANCE_SETTINGS_YYLTYPE_IS_TRIVIAL && BALANCE_SETTINGS_YYLTYPE_IS_TRIVIAL \
+	     && defined BALANCE_SETTINGS_YYSTYPE_IS_TRIVIAL && BALANCE_SETTINGS_YYSTYPE_IS_TRIVIAL)))
 
 /* A type that is properly aligned for any stack member.  */
 union yyalloc
 {
   yytype_int16 yyss_alloc;
   YYSTYPE yyvs_alloc;
+  YYLTYPE yyls_alloc;
 };
 
 /* The size of the maximum gap between one aligned stack and the next.  */
@@ -368,8 +388,8 @@ union yyalloc
 /* The size of an array large to enough to hold all stacks, each with
    N elements.  */
 # define YYSTACK_BYTES(N) \
-     ((N) * (sizeof (yytype_int16) + sizeof (YYSTYPE)) \
-      + YYSTACK_GAP_MAXIMUM)
+     ((N) * (sizeof (yytype_int16) + sizeof (YYSTYPE) + sizeof (YYLTYPE)) \
+      + 2 * YYSTACK_GAP_MAXIMUM)
 
 # define YYCOPY_NEEDED 1
 
@@ -485,8 +505,8 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    55,    55,    59,    67,    71,    80,    85,    93,    97,
-     106,   113,   117,   121
+       0,    60,    60,    64,    72,    76,    85,    90,    98,   102,
+     111,   118,   122,   126
 };
 #endif
 
@@ -625,7 +645,7 @@ do                                                              \
     }                                                           \
   else                                                          \
     {                                                           \
-      yyerror (scanner, YY_("syntax error: cannot back up")); \
+      yyerror (&yylloc, context, YY_("syntax error: cannot back up")); \
       YYERROR;							\
     }								\
 while (YYID (0))
@@ -635,17 +655,90 @@ while (YYID (0))
 #define YYERRCODE	256
 
 
-/* This macro is provided for backward compatibility. */
+/* YYLLOC_DEFAULT -- Set CURRENT to span from RHS[1] to RHS[N].
+   If N is 0, then set CURRENT to the empty location which ends
+   the previous symbol: RHS[0] (always defined).  */
+
+#ifndef YYLLOC_DEFAULT
+# define YYLLOC_DEFAULT(Current, Rhs, N)                                \
+    do                                                                  \
+      if (YYID (N))                                                     \
+        {                                                               \
+          (Current).first_line   = YYRHSLOC (Rhs, 1).first_line;        \
+          (Current).first_column = YYRHSLOC (Rhs, 1).first_column;      \
+          (Current).last_line    = YYRHSLOC (Rhs, N).last_line;         \
+          (Current).last_column  = YYRHSLOC (Rhs, N).last_column;       \
+        }                                                               \
+      else                                                              \
+        {                                                               \
+          (Current).first_line   = (Current).last_line   =              \
+            YYRHSLOC (Rhs, 0).last_line;                                \
+          (Current).first_column = (Current).last_column =              \
+            YYRHSLOC (Rhs, 0).last_column;                              \
+        }                                                               \
+    while (YYID (0))
+#endif
+
+#define YYRHSLOC(Rhs, K) ((Rhs)[K])
+
+
+/* YY_LOCATION_PRINT -- Print the location on the stream.
+   This macro was not mandated originally: define only if we know
+   we won't break user code: when these are the locations we know.  */
+
 #ifndef YY_LOCATION_PRINT
-# define YY_LOCATION_PRINT(File, Loc) ((void) 0)
+# if defined BALANCE_SETTINGS_YYLTYPE_IS_TRIVIAL && BALANCE_SETTINGS_YYLTYPE_IS_TRIVIAL
+
+/* Print *YYLOCP on YYO.  Private, do not rely on its existence. */
+
+__attribute__((__unused__))
+#if (defined __STDC__ || defined __C99__FUNC__ \
+     || defined __cplusplus || defined _MSC_VER)
+static unsigned
+yy_location_print_ (FILE *yyo, YYLTYPE const * const yylocp)
+#else
+static unsigned
+yy_location_print_ (yyo, yylocp)
+    FILE *yyo;
+    YYLTYPE const * const yylocp;
+#endif
+{
+  unsigned res = 0;
+  int end_col = 0 != yylocp->last_column ? yylocp->last_column - 1 : 0;
+  if (0 <= yylocp->first_line)
+    {
+      res += fprintf (yyo, "%d", yylocp->first_line);
+      if (0 <= yylocp->first_column)
+        res += fprintf (yyo, ".%d", yylocp->first_column);
+    }
+  if (0 <= yylocp->last_line)
+    {
+      if (yylocp->first_line < yylocp->last_line)
+        {
+          res += fprintf (yyo, "-%d", yylocp->last_line);
+          if (0 <= end_col)
+            res += fprintf (yyo, ".%d", end_col);
+        }
+      else if (0 <= end_col && yylocp->first_column < end_col)
+        res += fprintf (yyo, "-%d", end_col);
+    }
+  return res;
+ }
+
+#  define YY_LOCATION_PRINT(File, Loc)          \
+  yy_location_print_ (File, &(Loc))
+
+# else
+#  define YY_LOCATION_PRINT(File, Loc) ((void) 0)
+# endif
 #endif
 
 
 /* YYLEX -- calling `yylex' with the right arguments.  */
 #ifdef YYLEX_PARAM
-# define YYLEX yylex (&yylval, YYLEX_PARAM)
+# define YYLEX yylex (&yylval, &yylloc, YYLEX_PARAM)
 #else
-# define YYLEX yylex (&yylval, scanner)
+# define YYLEX yylex (&yylval, &yylloc, scanner)
 #endif
 
 /* Enable debugging if requested.  */
@@ -668,7 +761,7 @@ do {									  \
     {									  \
       YYFPRINTF (stderr, "%s ", Title);					  \
       yy_symbol_print (stderr,						  \
-		  Type, Value, scanner); \
+		  Type, Value, Location, context); \
       YYFPRINTF (stderr, "\n");						  \
     }									  \
 } while (YYID (0))
@@ -682,21 +775,23 @@ do {									  \
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, void* scanner)
+yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, YYLTYPE const * const yylocationp, BALANCE_scanner_t* context)
 #else
 static void
-yy_symbol_value_print (yyoutput, yytype, yyvaluep, scanner)
+yy_symbol_value_print (yyoutput, yytype, yyvaluep, yylocationp, context)
     FILE *yyoutput;
     int yytype;
     YYSTYPE const * const yyvaluep;
-    void* scanner;
+    YYLTYPE const * const yylocationp;
+    BALANCE_scanner_t* context;
 #endif
 {
   FILE *yyo = yyoutput;
   YYUSE (yyo);
   if (!yyvaluep)
     return;
-  YYUSE (scanner);
+  YYUSE (yylocationp);
+  YYUSE (context);
 # ifdef YYPRINT
   if (yytype < YYNTOKENS)
     YYPRINT (yyoutput, yytoknum[yytype], *yyvaluep);
@@ -718,14 +813,15 @@ yy_symbol_value_print (yyoutput, yytype, yyvaluep, scanner)
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, void* scanner)
+yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, YYLTYPE const * const yylocationp, BALANCE_scanner_t* context)
 #else
 static void
-yy_symbol_print (yyoutput, yytype, yyvaluep, scanner)
+yy_symbol_print (yyoutput, yytype, yyvaluep, yylocationp, context)
     FILE *yyoutput;
     int yytype;
     YYSTYPE const * const yyvaluep;
-    void* scanner;
+    YYLTYPE const * const yylocationp;
+    BALANCE_scanner_t* context;
 #endif
 {
   if (yytype < YYNTOKENS)
@@ -733,7 +829,9 @@ yy_symbol_print (yyoutput, yytype, yyvaluep, scanner)
   else
     YYFPRINTF (yyoutput, "nterm %s (", yytname[yytype]);
 
-  yy_symbol_value_print (yyoutput, yytype, yyvaluep, scanner);
+  YY_LOCATION_PRINT (yyoutput, *yylocationp);
+  YYFPRINTF (yyoutput, ": ");
+  yy_symbol_value_print (yyoutput, yytype, yyvaluep, yylocationp, context);
   YYFPRINTF (yyoutput, ")");
 }
 
@@ -776,13 +874,14 @@ do {								\
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_reduce_print (YYSTYPE *yyvsp, int yyrule, void* scanner)
+yy_reduce_print (YYSTYPE *yyvsp, YYLTYPE *yylsp, int yyrule, BALANCE_scanner_t* context)
 #else
 static void
-yy_reduce_print (yyvsp, yyrule, scanner)
+yy_reduce_print (yyvsp, yylsp, yyrule, context)
     YYSTYPE *yyvsp;
+    YYLTYPE *yylsp;
     int yyrule;
-    void* scanner;
+    BALANCE_scanner_t* context;
 #endif
 {
   int yynrhs = yyr2[yyrule];
@@ -796,7 +895,7 @@ yy_reduce_print (yyvsp, yyrule, scanner)
       YYFPRINTF (stderr, "   $%d = ", yyi + 1);
       yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],
 		       &(yyvsp[(yyi + 1) - (yynrhs)])
-		       		       , scanner);
+		       , &(yylsp[(yyi + 1) - (yynrhs)])		       , context);
       YYFPRINTF (stderr, "\n");
     }
 }
@@ -804,7 +903,7 @@ yy_reduce_print (yyvsp, yyrule, scanner)
 # define YY_REDUCE_PRINT(Rule)		\
 do {					\
   if (yydebug)				\
-    yy_reduce_print (yyvsp, Rule, scanner); \
+    yy_reduce_print (yyvsp, yylsp, Rule, context); \
 } while (YYID (0))
 
 /* Nonzero means print parse trace.  It is left uninitialized so that
@@ -1084,18 +1183,20 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, void* scanner)
+yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, YYLTYPE *yylocationp, BALANCE_scanner_t* context)
 #else
 static void
-yydestruct (yymsg, yytype, yyvaluep, scanner)
+yydestruct (yymsg, yytype, yyvaluep, yylocationp, context)
     const char *yymsg;
     int yytype;
     YYSTYPE *yyvaluep;
-    void* scanner;
+    YYLTYPE *yylocationp;
+    BALANCE_scanner_t* context;
 #endif
 {
   YYUSE (yyvaluep);
-  YYUSE (scanner);
+  YYUSE (yylocationp);
+  YYUSE (context);
 
   if (!yymsg)
     yymsg = "Deleting";
@@ -1130,11 +1231,11 @@ yyparse (YYPARSE_PARAM)
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 int
-yyparse (void* scanner)
+yyparse (BALANCE_scanner_t* context)
 #else
 int
-yyparse (scanner)
-    void* scanner;
+yyparse (context)
+    BALANCE_scanner_t* context;
 #endif
 #endif
 {
@@ -1156,6 +1257,11 @@ int yychar;
 static YYSTYPE yyval_default;
 # define YY_INITIAL_VALUE(Value) = Value
 #endif
+static YYLTYPE yyloc_default
+# if defined BALANCE_SETTINGS_YYLTYPE_IS_TRIVIAL && BALANCE_SETTINGS_YYLTYPE_IS_TRIVIAL
+  = { 1, 1, 1, 1 }
+# endif
+;
 #ifndef YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
 # define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
 # define YY_IGNORE_MAYBE_UNINITIALIZED_END
@@ -1167,6 +1273,10 @@ static YYSTYPE yyval_default;
 /* The semantic value of the lookahead symbol.  */
 YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
 
+/* Location data for the lookahead symbol.  */
+YYLTYPE yylloc = yyloc_default;
+
+
     /* Number of syntax errors so far.  */
     int yynerrs;
 
@@ -1177,6 +1287,7 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
     /* The stacks and their tools:
        `yyss': related to states.
        `yyvs': related to semantic values.
+       `yyls': related to locations.
 
        Refer to the stacks through separate pointers, to allow yyoverflow
        to reallocate them elsewhere.  */
@@ -1191,6 +1302,14 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
     YYSTYPE *yyvs;
     YYSTYPE *yyvsp;
 
+    /* The location stack.  */
+    YYLTYPE yylsa[YYINITDEPTH];
+    YYLTYPE *yyls;
+    YYLTYPE *yylsp;
+
+    /* The locations where the error started and ended.  */
+    YYLTYPE yyerror_range[3];
+
     YYSIZE_T yystacksize;
 
   int yyn;
@@ -1200,6 +1319,7 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
   /* The variables used to return semantic value and location from the
      action routines.  */
   YYSTYPE yyval;
+  YYLTYPE yyloc;
 
 #if YYERROR_VERBOSE
   /* Buffer for error messages, and its allocated size.  */
@@ -1208,7 +1328,7 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
   YYSIZE_T yymsg_alloc = sizeof yymsgbuf;
 #endif
 
-#define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N))
+#define YYPOPSTACK(N)   (yyvsp -= (N), yyssp -= (N), yylsp -= (N))
 
   /* The number of symbols on the RHS of the reduced rule.
      Keep to zero when no symbol should be popped.  */
@@ -1216,6 +1336,7 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
 
   yyssp = yyss = yyssa;
   yyvsp = yyvs = yyvsa;
+  yylsp = yyls = yylsa;
   yystacksize = YYINITDEPTH;
 
   YYDPRINTF ((stderr, "Starting parse\n"));
@@ -1224,6 +1345,7 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
   yyerrstatus = 0;
   yynerrs = 0;
   yychar = YYEMPTY; /* Cause a token to be read.  */
+  yylsp[0] = yylloc;
   goto yysetstate;
 
 /*------------------------------------------------------------.
@@ -1249,6 +1371,7 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
 	   memory.  */
 	YYSTYPE *yyvs1 = yyvs;
 	yytype_int16 *yyss1 = yyss;
+	YYLTYPE *yyls1 = yyls;
 
 	/* Each stack pointer address is followed by the size of the
 	   data in use in that stack, in bytes.  This used to be a
@@ -1257,8 +1380,10 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
 	yyoverflow (YY_("memory exhausted"),
 		    &yyss1, yysize * sizeof (*yyssp),
 		    &yyvs1, yysize * sizeof (*yyvsp),
+		    &yyls1, yysize * sizeof (*yylsp),
 		    &yystacksize);
 
+	yyls = yyls1;
 	yyss = yyss1;
 	yyvs = yyvs1;
       }
@@ -1281,6 +1406,7 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
 	  goto yyexhaustedlab;
 	YYSTACK_RELOCATE (yyss_alloc, yyss);
 	YYSTACK_RELOCATE (yyvs_alloc, yyvs);
+	YYSTACK_RELOCATE (yyls_alloc, yyls);
 #  undef YYSTACK_RELOCATE
 	if (yyss1 != yyssa)
 	  YYSTACK_FREE (yyss1);
@@ -1290,6 +1416,7 @@ YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
 
       yyssp = yyss + yysize - 1;
       yyvsp = yyvs + yysize - 1;
+      yylsp = yyls + yysize - 1;
 
       YYDPRINTF ((stderr, "Stack size increased to %lu\n",
 		  (unsigned long int) yystacksize));
@@ -1367,7 +1494,7 @@ yybackup:
   YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
   *++yyvsp = yylval;
   YY_IGNORE_MAYBE_UNINITIALIZED_END
-
+  *++yylsp = yylloc;
   goto yynewstate;
 
 
@@ -1398,13 +1525,14 @@ yyreduce:
      GCC warning that YYVAL may be used uninitialized.  */
   yyval = yyvsp[1-yylen];
 
-
+  /* Default location.  */
+  YYLLOC_DEFAULT (yyloc, (yylsp - yylen), yylen);
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
         case 2:
 /* Line 1792 of yacc.c  */
-#line 55 "balance_settings.y"
+#line 60 "balance_settings.y"
     {
                 printf("Creating null settings.\n");
                 (yyval.settings_value) = (BALANCE_settings_t*) NULL;
@@ -1413,7 +1541,7 @@ yyreduce:
 
   case 3:
 /* Line 1792 of yacc.c  */
-#line 59 "balance_settings.y"
+#line 64 "balance_settings.y"
     {
                 printf("Creating settings.\n");
                 (yyval.settings_value) = BALANCE_settings_create_settings();
@@ -1423,7 +1551,7 @@ yyreduce:
 
   case 4:
 /* Line 1792 of yacc.c  */
-#line 67 "balance_settings.y"
+#line 72 "balance_settings.y"
     {
                 printf("Creating block list.\n");
                 (yyval.block_value) = (yyvsp[(1) - (1)].block_value);
@@ -1432,7 +1560,7 @@ yyreduce:
 
   case 5:
 /* Line 1792 of yacc.c  */
-#line 71 "balance_settings.y"
+#line 76 "balance_settings.y"
     {
                 printf("Appending to block list.\n");
                 BALANCE_settings_block_t* next = (yyvsp[(1) - (2)].block_value)->next;
@@ -1443,27 +1571,27 @@ yyreduce:
 
   case 6:
 /* Line 1792 of yacc.c  */
-#line 80 "balance_settings.y"
+#line 85 "balance_settings.y"
     {
                 printf("Creating block.\n");
-                (yyval.block_value) = BALANCE_settings_create_block((yyvsp[(1) - (4)].string_value));
+                (yyval.block_value) = BALANCE_settings_create_block();
                 (yyval.block_value)->variables = (yyvsp[(3) - (4)].variable_value);
             }
     break;
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 85 "balance_settings.y"
+#line 90 "balance_settings.y"
     {
                 printf("Creating subblocks.\n");
-                (yyval.block_value) = BALANCE_settings_create_block((yyvsp[(1) - (4)].string_value));
+                (yyval.block_value) = BALANCE_settings_create_block();
                 (yyval.block_value)->blocks = (yyvsp[(3) - (4)].block_value);
             }
     break;
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 93 "balance_settings.y"
+#line 98 "balance_settings.y"
     {
                 printf("Creating variable list.\n");
                 (yyval.variable_value) = (yyvsp[(1) - (1)].variable_value);
@@ -1472,7 +1600,7 @@ yyreduce:
 
   case 9:
 /* Line 1792 of yacc.c  */
-#line 97 "balance_settings.y"
+#line 102 "balance_settings.y"
     {
                 printf("Appending to variable list.\n");
                 BALANCE_settings_variable_t* next = (yyvsp[(1) - (2)].variable_value)->next;
@@ -1483,7 +1611,7 @@ yyreduce:
 
   case 10:
 /* Line 1792 of yacc.c  */
-#line 106 "balance_settings.y"
+#line 111 "balance_settings.y"
     {
                 printf("Creating variable.\n");
                 (yyval.variable_value) = BALANCE_settings_create_variable((yyvsp[(1) - (2)].string_value), (yyvsp[(2) - (2)].balance_value));
@@ -1492,7 +1620,7 @@ yyreduce:
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 113 "balance_settings.y"
+#line 118 "balance_settings.y"
     {
                 printf("Creating string variable value.\n");
                 (yyval.balance_value) = BALANCE_settings_create_string_value((yyvsp[(1) - (1)].string_value));
@@ -1501,7 +1629,7 @@ yyreduce:
 
   case 12:
 /* Line 1792 of yacc.c  */
-#line 117 "balance_settings.y"
+#line 122 "balance_settings.y"
     {
                 printf("Creating integer variable value.\n");
                 (yyval.balance_value) = BALANCE_settings_create_integer_value((yyvsp[(1) - (1)].integer_value));
@@ -1510,7 +1638,7 @@ yyreduce:
 
   case 13:
 /* Line 1792 of yacc.c  */
-#line 121 "balance_settings.y"
+#line 126 "balance_settings.y"
     {
                 printf("Creating double variable value.\n");
                 (yyval.balance_value) = BALANCE_settings_create_double_value((yyvsp[(1) - (1)].double_value));
@@ -1519,7 +1647,7 @@ yyreduce:
 
 
 /* Line 1792 of yacc.c  */
-#line 1523 "balance_settings.parser.c"
+#line 1651 "balance_settings.parser.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1540,6 +1668,7 @@ yyreduce:
   YY_STACK_PRINT (yyss, yyssp);
 
   *++yyvsp = yyval;
+  *++yylsp = yyloc;
 
   /* Now `shift' the result of the reduction.  Determine what state
      that goes to, based on the state we popped back to and the rule
@@ -1569,7 +1698,7 @@ yyerrlab:
     {
       ++yynerrs;
 #if ! YYERROR_VERBOSE
-      yyerror (scanner, YY_("syntax error"));
+      yyerror (&yylloc, context, YY_("syntax error"));
 #else
 # define YYSYNTAX_ERROR yysyntax_error (&yymsg_alloc, &yymsg, \
                                         yyssp, yytoken)
@@ -1596,7 +1725,7 @@ yyerrlab:
                 yymsgp = yymsg;
               }
           }
-        yyerror (scanner, yymsgp);
+        yyerror (&yylloc, context, yymsgp);
         if (yysyntax_error_status == 2)
           goto yyexhaustedlab;
       }
@@ -1604,7 +1733,7 @@ yyerrlab:
 #endif
     }
 
-
+  yyerror_range[1] = yylloc;
 
   if (yyerrstatus == 3)
     {
@@ -1620,7 +1749,7 @@ yyerrlab:
       else
 	{
 	  yydestruct ("Error: discarding",
-		      yytoken, &yylval, scanner);
+		      yytoken, &yylval, &yylloc, context);
 	  yychar = YYEMPTY;
 	}
     }
@@ -1641,6 +1770,7 @@ yyerrorlab:
   if (/*CONSTCOND*/ 0)
      goto yyerrorlab;
 
+  yyerror_range[1] = yylsp[1-yylen];
   /* Do not reclaim the symbols of the rule which action triggered
      this YYERROR.  */
   YYPOPSTACK (yylen);
@@ -1674,9 +1804,9 @@ yyerrlab1:
       if (yyssp == yyss)
 	YYABORT;
 
-
+      yyerror_range[1] = *yylsp;
       yydestruct ("Error: popping",
-		  yystos[yystate], yyvsp, scanner);
+		  yystos[yystate], yyvsp, yylsp, context);
       YYPOPSTACK (1);
       yystate = *yyssp;
       YY_STACK_PRINT (yyss, yyssp);
@@ -1686,6 +1816,11 @@ yyerrlab1:
   *++yyvsp = yylval;
   YY_IGNORE_MAYBE_UNINITIALIZED_END
 
+  yyerror_range[2] = yylloc;
+  /* Using YYLLOC is tempting, but would change the location of
+     the lookahead.  YYLOC is available though.  */
+  YYLLOC_DEFAULT (yyloc, yyerror_range, 2);
+  *++yylsp = yyloc;
 
   /* Shift the error token.  */
   YY_SYMBOL_PRINT ("Shifting", yystos[yyn], yyvsp, yylsp);
@@ -1713,7 +1848,7 @@ yyabortlab:
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
 yyexhaustedlab:
-  yyerror (scanner, YY_("memory exhausted"));
+  yyerror (&yylloc, context, YY_("memory exhausted"));
   yyresult = 2;
   /* Fall through.  */
 #endif
@@ -1725,7 +1860,7 @@ yyreturn:
          user semantic actions for why this is necessary.  */
       yytoken = YYTRANSLATE (yychar);
       yydestruct ("Cleanup: discarding lookahead",
-                  yytoken, &yylval, scanner);
+                  yytoken, &yylval, &yylloc, context);
     }
   /* Do not reclaim the symbols of the rule which action triggered
      this YYABORT or YYACCEPT.  */
@@ -1734,7 +1869,7 @@ yyreturn:
   while (yyssp != yyss)
     {
       yydestruct ("Cleanup: popping",
-		  yystos[*yyssp], yyvsp, scanner);
+		  yystos[*yyssp], yyvsp, yylsp, context);
       YYPOPSTACK (1);
     }
 #ifndef yyoverflow
@@ -1751,7 +1886,7 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 127 "balance_settings.y"
+#line 132 "balance_settings.y"
 
 
 /* EOF */

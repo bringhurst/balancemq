@@ -49,13 +49,16 @@ extern int balance_settings_yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 2058 of yacc.c  */
-#line 17 "balance_settings.y"
+#line 19 "balance_settings.y"
 
   #include <log.h>
   #include <balancemq/settings.h>
+
   #include "private_settings.h"
 
   #include <stdio.h>
+
+  int yyerror(void *locp, BALANCE_scanner_t* context, const char* msg);
 
   typedef union BALANCE_SETTINGS_YYSTYPE
   {
@@ -69,11 +72,11 @@ extern int balance_settings_yydebug;
       BALANCE_settings_t*           settings_value;
   } BALANCE_SETTINGS_YYSTYPE;
 
-  int yyerror(BALANCE_settings_t* settings, const char* msg);
+
 
 
 /* Line 2058 of yacc.c  */
-#line 77 "balance_settings.parser.h"
+#line 80 "balance_settings.parser.h"
 
 /* Tokens.  */
 #ifndef BALANCE_SETTINGS_YYTOKENTYPE
@@ -103,6 +106,19 @@ extern int balance_settings_yydebug;
 # define BALANCE_SETTINGS_YYSTYPE_IS_DECLARED 1
 #endif
 
+#if ! defined BALANCE_SETTINGS_YYLTYPE && ! defined BALANCE_SETTINGS_YYLTYPE_IS_DECLARED
+typedef struct BALANCE_SETTINGS_YYLTYPE
+{
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
+} BALANCE_SETTINGS_YYLTYPE;
+# define balance_settings_yyltype BALANCE_SETTINGS_YYLTYPE /* obsolescent; will be withdrawn */
+# define BALANCE_SETTINGS_YYLTYPE_IS_DECLARED 1
+# define BALANCE_SETTINGS_YYLTYPE_IS_TRIVIAL 1
+#endif
+
 
 #ifdef YYPARSE_PARAM
 #if defined __STDC__ || defined __cplusplus
@@ -112,7 +128,7 @@ int balance_settings_yyparse ();
 #endif
 #else /* ! YYPARSE_PARAM */
 #if defined __STDC__ || defined __cplusplus
-int balance_settings_yyparse (void* scanner);
+int balance_settings_yyparse (BALANCE_scanner_t* context);
 #else
 int balance_settings_yyparse ();
 #endif
