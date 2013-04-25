@@ -27,12 +27,10 @@ int BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
     }
 
     balance_settings_yyset_in(settings_file, scanner);
-
     balance_settings_yyparse(scanner);
-    //balance_settings_yylex(NULL, scanner);
-
     balance_settings_yylex_destroy(scanner);
 
+    fclose(settings_file);
     ctx->settings = settings;
 
     return BALANCE_OK;
