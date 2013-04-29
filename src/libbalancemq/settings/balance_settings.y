@@ -9,22 +9,20 @@
 
 %locations
 
-%lex-param { void* scanner }
-%parse-param { BALANCE_scanner_t* context }
+%lex-param { yyscan_t scanner }
+%parse-param { BALANCE_scanner_t* bscanner }
 
 %code top {
-  #define scanner context->state
 }
 
 %code requires {
   #include <log.h>
   #include <balancemq/settings.h>
-
   #include "private_settings.h"
 
   #include <stdio.h>
 
-  int yyerror(void *locp, BALANCE_scanner_t* context, const char* msg);
+  int yyerror(void *locp, BALANCE_scanner_t* bscanner, const char* msg);
 
   typedef union BALANCE_SETTINGS_YYSTYPE
   {
@@ -38,7 +36,7 @@
       BALANCE_settings_t*           settings_value;
   } BALANCE_SETTINGS_YYSTYPE;
 
-
+//  #define scanner bscanner->state
 }
 
 %token <string_value>  T_IDENTIFIER T_LBRACE T_RBRACE

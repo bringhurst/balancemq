@@ -70,7 +70,7 @@ INTEGER               [0-9]+
 
 .                     %{
                           printf("Unknown character found in configuration file: " \
-                                 "`%s' at line `%d'\n", yytext, yylineno);
+                                 "`%s' near line `%d'\n", yytext, yylineno);
                       %}
 
 %%

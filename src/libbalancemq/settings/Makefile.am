@@ -1,7 +1,7 @@
 include $(top_srcdir)/common.mk
 
-AM_YFLAGS = --defines
-AM_LFLAGS = -CFa --header-file=balance_settings.scanner.h
+AM_YFLAGS = -p balance_settings_yy --defines
+AM_LFLAGS = -P balance_settings_yy -CFa --header-file=balance_settings.scanner.h
 
 INCLUDES = \
            -I$(top_srcdir) \
