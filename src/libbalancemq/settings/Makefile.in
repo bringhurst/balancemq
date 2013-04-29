@@ -235,9 +235,9 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-AM_CFLAGS = -std=gnu99 -ggdb -W -Wall -Wfatal-errors -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-enum -Wuninitialized -Wunknown-pragmas -Wstrict-aliasing -Wfloat-equal -Wundef -Wbad-function-cast -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wredundant-decls -Winline -Wdisabled-optimization -Wshadow -Wwrite-strings
-AM_YFLAGS = -p balance_settings_yy --defines
-AM_LFLAGS = -P balance_settings_yy -CFa --header-file=balance_settings.scanner.h
+AM_CFLAGS = -std=gnu99 -ggdb -W -pedantic -Wall -Wextra -Wconversion -Wformat=2 -Winit-self -Wmissing-include-dirs -Wswitch-enum -Wuninitialized -Wunknown-pragmas -Wstrict-aliasing -Wfloat-equal -Wundef -Wbad-function-cast -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wredundant-decls -Winline -Wdisabled-optimization -Wshadow -Wwrite-strings
+AM_YFLAGS = --defines
+AM_LFLAGS = -CFa --header-file=balance_settings.scanner.h
 INCLUDES = \
            -I$(top_srcdir) \
            -I$(top_srcdir)/src/libbalancemq/include/ \

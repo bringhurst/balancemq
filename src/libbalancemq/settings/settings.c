@@ -12,16 +12,11 @@
 
 int BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
 {
-    FILE* settings_file = NULL;
+    FILE* settings_file;
+    BALANCE_scanner_t* scanner = NULL;
 
-    BALANCE_scanner_t* scanner = (BALANCE_scanner_t*) malloc(sizeof(BALANCE_scanner_t));
-    scanner->context = ctx;
-
-    balance_settings_yylex_init(scanner->state);
-    LOG(ctx, BALANCE_LOG_DBG, "Passed yylex_init.");
-
-    balance_settings_yylex_init_extra(scanner, scanner->state);
-    LOG(ctx, BALANCE_LOG_DBG, "Passed yylex_init_extra.");
+    balance_settings_yylex_init(&scanner);
+    balance_settings_yylex_init_extra(ctx, &scanner);
 
     settings_file = fopen(path, "r");
     if(settings_file == NULL) {
@@ -29,18 +24,12 @@ int BALANCE_parse_settings(BALANCE_context_t* ctx, char* path)
                 path, strerror(errno));
         return BALANCE_ERR;
     }
-    LOG(ctx, BALANCE_LOG_DBG, "Opened settings_file.");
 
-    balance_settings_yyset_in(settings_file, &(scanner->state));
-    LOG(ctx, BALANCE_LOG_DBG, "Passed yyset_in.");
-
+    balance_settings_yyset_in(settings_file, scanner);
     balance_settings_yyparse(scanner);
-    LOG(ctx, BALANCE_LOG_DBG, "Passed yyparse.");
+    balance_settings_yylex_destroy(scanner);
 
-    balance_settings_yylex_destroy(scanner->state);
-    LOG(ctx, BALANCE_LOG_DBG, "Passed yylex_destroy.");
-
-    //fclose(settings_file);
+    fclose(settings_file);
     return BALANCE_OK;
 }
 

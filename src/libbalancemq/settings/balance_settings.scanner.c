@@ -1297,7 +1297,7 @@ YY_RULE_SETUP
 #line 71 "balance_settings.l"
 
                           printf("Unknown character found in configuration file: " \
-                                 "`%s' near line `%d'\n", yytext, yylineno);
+                                 "`%s' at line `%d'\n", yytext, yylineno);
 
 	YY_BREAK
 case 13:

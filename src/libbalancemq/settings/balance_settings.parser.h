@@ -49,15 +49,16 @@ extern int balance_settings_yydebug;
 #endif
 /* "%code requires" blocks.  */
 /* Line 2058 of yacc.c  */
-#line 18 "balance_settings.y"
+#line 19 "balance_settings.y"
 
   #include <log.h>
   #include <balancemq/settings.h>
+
   #include "private_settings.h"
 
   #include <stdio.h>
 
-  int yyerror(void *locp, BALANCE_scanner_t* bscanner, const char* msg);
+  int yyerror(void *locp, BALANCE_scanner_t* context, const char* msg);
 
   typedef union BALANCE_SETTINGS_YYSTYPE
   {
@@ -71,11 +72,11 @@ extern int balance_settings_yydebug;
       BALANCE_settings_t*           settings_value;
   } BALANCE_SETTINGS_YYSTYPE;
 
-//  #define scanner bscanner->state
+
 
 
 /* Line 2058 of yacc.c  */
-#line 79 "balance_settings.parser.h"
+#line 80 "balance_settings.parser.h"
 
 /* Tokens.  */
 #ifndef BALANCE_SETTINGS_YYTOKENTYPE
@@ -127,7 +128,7 @@ int balance_settings_yyparse ();
 #endif
 #else /* ! YYPARSE_PARAM */
 #if defined __STDC__ || defined __cplusplus
-int balance_settings_yyparse (BALANCE_scanner_t* bscanner);
+int balance_settings_yyparse (BALANCE_scanner_t* context);
 #else
 int balance_settings_yyparse ();
 #endif
